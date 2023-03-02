@@ -19,5 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/{id}', [Controller::class, 'getOneUser']);
+Route::get('/users', [Controller::class, 'getAllUser']);
 
+Route::get('/users/{id}', [Controller::class, 'getOneUser']);

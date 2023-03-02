@@ -13,7 +13,19 @@ class Controller extends BaseController
 
     public function getOneUser($id)
 {
-    $users = User::find($id);
+    $users = User::findOrFail($id);
+    return response()->json([
+    'status' => 'Success',
+    'message' => 'all users grabbed',
+    'data' => [
+    'users' => $users,
+    ]
+    ],200);
+    }
+
+    public function getAllUser()
+{
+    $users = User::all();
     return response()->json([
     'status' => 'Success',
     'message' => 'all users grabbed',
