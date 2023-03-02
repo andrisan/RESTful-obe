@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function getOneUser($id)
+    public function show($id)
 {
     $users = User::findOrFail($id);
     return response()->json([
