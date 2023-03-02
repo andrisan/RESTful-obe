@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', [usersController::class, 'getUser']);
+Route::get('/users', [userController::class, 'getUser']);
