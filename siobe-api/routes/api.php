@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/rubrics', [RubricController::class, 'index']);
+
+Route::get('faculties', [\App\Http\Controllers\FacultyController::class, 'index']);  
