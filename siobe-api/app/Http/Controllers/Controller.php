@@ -22,17 +22,5 @@ class Controller extends BaseController
     ]
     ],200);
     }
-
-    public function getAllUser()
-{
-    $users = User::all();
-    return response()->json([
-    'status' => 'Success',
-    'message' => 'all users grabbed',
-    'data' => [
-    'users' => $users,
-    ]
-    ],200);
-    }
 }
 
