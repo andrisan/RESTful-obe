@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RubricController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -19,6 +20,8 @@ use App\Http\Controllers\UserController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::get('/users/{id}', [UserController::class, 'show']);
 
 Route::get('/rubrics', [RubricController::class, 'index']);
 
