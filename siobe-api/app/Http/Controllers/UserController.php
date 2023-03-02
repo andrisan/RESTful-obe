@@ -7,7 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\User;
 
-class Controller extends BaseController
+class UserController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
