@@ -3,6 +3,7 @@
 use App\Http\Controllers\RubricController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/rubrics', [RubricController::class, 'index']);
 
-Route::get('faculties', [\App\Http\Controllers\FacultyController::class, 'index']);  
+Route::get('faculties', [\App\Http\Controllers\FacultyController::class, 'index']);
+
+Route::get('/showUsers', [userController::class, 'show']);
