@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRubricRequest;
+use App\Http\Resources\RubricResource;
 use App\Models\Rubric;
 use Illuminate\Http\Request;
 
@@ -26,9 +28,10 @@ class RubricController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) :RubricResource
     {
-        //
+        $validated = $request->validate();
+        return new RubricResource(Rubric::create($validated));
     }
 
     /**
