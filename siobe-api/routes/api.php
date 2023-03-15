@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RubricController;
 use App\Http\Controllers\UserController;
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
+
+    Route::apiResource('rubrics', RubricController::class);
 });
 
 Route::post('register-device', function (Request $request) {
@@ -40,3 +43,5 @@ Route::post('register-device', function (Request $request) {
 
 Route::get('/rubricdelete/{rubric}', [RubricController::class, 'destroy']);
 Route::get('rubricshow/{rubric}', [RubricController::class, 'show']);
+
+Route::patch('rubric/{rubric}', [RubricController::class, 'update']);

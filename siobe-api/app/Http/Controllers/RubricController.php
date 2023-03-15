@@ -12,9 +12,10 @@ class RubricController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Rubric $rubric)
     {
-        //
+        
+        return RubricResource::collection($rubric->paginate(10));
     }
 
     /**
@@ -54,9 +55,11 @@ class RubricController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    //public function update(Request $request, Rubric $rubric)
     public function update(Request $request, Rubric $rubric)
     {
-        //
+        $rubric->update($request->all());
+        return response()->json(['Pesan' => $rubric, 'Berhasil di-update']);
     }
 
     /**
