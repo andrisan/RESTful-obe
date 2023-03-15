@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RubricController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,3 +37,6 @@ Route::post('register-device', function (Request $request) {
         'token' => $token
     ]);
 });
+
+Route::get('/rubricdelete/{rubric}', [RubricController::class, 'destroy']);
+Route::get('rubricshow/{rubric}', [RubricController::class, 'show']);

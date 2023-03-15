@@ -39,7 +39,8 @@ class RubricController extends Controller
      */
     public function show(Rubric $rubric)
     {
-        //
+        $show = Rubric::find($rubric);
+        return response()->json($show);
     }
 
     /**
@@ -63,6 +64,10 @@ class RubricController extends Controller
      */
     public function destroy(Rubric $rubric)
     {
-        //
+        $rubric->delete();
+        return response()->json([
+            'message' => 'Successfully Deleted'
+        ]);
     }
+
 }
