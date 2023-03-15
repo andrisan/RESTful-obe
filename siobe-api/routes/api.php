@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::group(['middleware' => ['auth:sanctum']], function () {
-//     Route::apiResource('users', UserController::class);
-// });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResource('users', UserController::class);
+
+    Route::apiResource('rubrics', RubricController::class);
+});
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([

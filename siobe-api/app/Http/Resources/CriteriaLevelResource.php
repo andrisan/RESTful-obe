@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RubricResource extends JsonResource
+class CriteriaLevelResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,10 @@ class RubricResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'criteria_id' => $this->criteria_id,
+            'point' => $this->point,
             'title' => $this->title,
-            'criterias' => CriteriaResource::collection($this->whenLoaded('criterias')),
+            'description' => $this->description,
         ];
     }
 }

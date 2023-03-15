@@ -12,9 +12,10 @@ class RubricController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Rubric $rubric)
     {
-        //
+        
+        return RubricResource::collection($rubric->paginate(10));
     }
 
     /**
