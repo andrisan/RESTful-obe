@@ -55,7 +55,12 @@ class SyllabusController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Syllabus::findOrFail($id);
+        $data->update($request->all());
+
+        return response()->json([
+            'message' => 'data updated'
+        ]);
     }
 
     /**
