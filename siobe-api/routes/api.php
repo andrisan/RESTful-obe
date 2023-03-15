@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\RubricController;
 use App\Http\Controllers\UserController;
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::apiResource('users', UserController::class);
-});
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+//     Route::apiResource('users', UserController::class);
+// });
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([
@@ -36,3 +38,5 @@ Route::post('register-device', function (Request $request) {
         'token' => $token
     ]);
 });
+
+Route::patch('rubric/{rubric}', [RubricController::class, 'update']);

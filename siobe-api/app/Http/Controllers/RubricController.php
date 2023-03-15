@@ -53,9 +53,11 @@ class RubricController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    //public function update(Request $request, Rubric $rubric)
     public function update(Request $request, Rubric $rubric)
     {
-        //
+        $rubric->update($request->all());
+        return response()->json(['Pesan' => $rubric, 'Berhasil di-update']);
     }
 
     /**
