@@ -14,6 +14,17 @@ class CriteriaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'rubric_id' => $this->rubric_id,
+            'llo_id' => $this->llo_id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'max_point' => $this->max_point,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'criteria_levels' => CriteriaLevelResource::collection($this->whenLoaded('criteriaLevels')),
+
+        ];
     }
 }
