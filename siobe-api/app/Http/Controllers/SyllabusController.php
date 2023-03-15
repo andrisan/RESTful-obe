@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Syllabus;
 use Illuminate\Http\Request;
+
 
 class SyllabusController extends Controller
 {
@@ -11,7 +12,10 @@ class SyllabusController extends Controller
      */
     public function index()
     {
-        //
+        $data = Syllabus::all();
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     /**
@@ -57,8 +61,11 @@ class SyllabusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Syllabus $id)
     {
-        //
+        $id->delete();
+        return response()->json([
+            'message' => 'Resource deleted'
+        ]);
     }
 }
