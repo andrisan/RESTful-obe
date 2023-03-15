@@ -39,3 +39,4 @@ Route::post('register-device', function (Request $request) {
 
 Route::get('/syllabi', [App\Http\Controllers\SyllabusController::class, 'index']);
 Route::get('/syllabiDelete/{id}', [App\Http\Controllers\SyllabusController::class, 'destroy']);
+Route::patch('/sylabi/{id}', [App\Http\Controllers\Syllabuscontroller::class,'update']);
