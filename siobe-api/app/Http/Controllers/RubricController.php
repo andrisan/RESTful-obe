@@ -29,7 +29,7 @@ class RubricController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) :RubricResource
+    public function store(StoreRubricRequest $request) :RubricResource
     {
         $validated = $request->validate();
         return new RubricResource(Rubric::create($validated));
