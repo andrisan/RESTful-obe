@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRubricRequest;
+use App\Http\Requests\UpdateRubricRequest;
 use App\Http\Resources\RubricResource;
 use App\Models\Rubric;
 use Illuminate\Http\Request;
@@ -56,10 +57,13 @@ class RubricController extends Controller
      * Update the specified resource in storage.
      */
     //public function update(Request $request, Rubric $rubric)
-    public function update(Request $request, Rubric $rubric)
+    public function update(UpdateRubricRequest $request, Rubric $rubric)
     {
-        $rubric->update($request->all());
-        return response()->json(['Pesan' => $rubric, 'Berhasil di-update']);
+        // $rubric->update($request->all());
+        $validated = $request->validate();
+        $rubric->update($validated);
+        // return response()->json(['Pesan' => $rubric, 'Berhasil di-update']);
+        return new RubricResource($rubric);
     }
 
     /**
