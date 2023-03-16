@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use PhpParser\Node\Name;
 
 class StoreRubricRequest extends FormRequest
 {
@@ -23,8 +22,8 @@ class StoreRubricRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tittle' => 'required|unique|string',
-            'assignment_plant_id' => 'required|unique'
+            'title' => ['required'],
+            // 'assignment_plan_id' => ['required', '']
         ];
     }
 }

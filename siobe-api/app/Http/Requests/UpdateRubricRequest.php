@@ -11,7 +11,7 @@ class UpdateRubricRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateRubricRequest extends FormRequest
     {
         
         return [       
-            'title' => 'required|unique:rubrics,name,'.$this->route('rubric')->id,
+            'title' => 'required|string',
         ];
     }
 }
