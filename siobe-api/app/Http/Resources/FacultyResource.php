@@ -14,14 +14,15 @@ class FacultyResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-			$includeDate = $request->query('includeDate');
-			return [
-					'name'=> $this->name,
-					$this->mergeWhen($includeDate, [
-							'email_verified_at' => $this->email_verified_at,
-							'created_at' => $this->created_at,
-							'updated_at' => $this->updated_at,
-					]),
-			];
+        $includeDate = $request->query('includeDate');
+        return [
+
+            'name' => $this->name,
+            $this->mergeWhen($includeDate, [
+                'email_verified_at' => $this->email_verified_at,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
+            ]),
+        ];
     }
 }
