@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateSyllabusRequest;
 use App\Http\Resources\SyllabusDetailResource;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
@@ -56,30 +57,19 @@ class SyllabusController extends Controller
              ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateSyllabusRequest $request, Syllabus $syllabus)
     {
-        $this->validate($request,[
-            'author' => 'required|string',
-            'title' => 'required|string',
-            'head_of_study_program' => 'required|string',
-            'course_id' => 'required'
-        ]);
-
-        $data = Syllabus::findOrFail($id);
-        $data->update([
-            'author' => $request->input('author'),
-            'title' => $request->input('title'),
-            'head_of_study_program' => $request->input('head_of_study_program'),
-            'course_id' => $request->input('course_id')
-        ]);
+        $validated = $request->validated();
+        $syllabus->update($validated);
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Syllabus $id)
+    public function destroy(Syllabus $syllabus)
     {
-        $id->delete();
+        $syllabus->delete();
         return response()->json([
             'message' => 'Resource deleted'
         ]);

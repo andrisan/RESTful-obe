@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,9 +37,4 @@ Route::post('register-device', function (Request $request) {
         'token' => $token
     ]);
 });
-
-Route::get('/syllabi', [App\Http\Controllers\SyllabusController::class, 'index']);
-Route::get('/syllabi/{id}', [App\Http\Controllers\SyllabusController::class, 'show']);
-Route::post('/syllabi', [App\Http\Controllers\SyllabusController::class, 'store']);
-Route::patch('/syllabi/{id}', [App\Http\Controllers\Syllabuscontroller::class,'update']);
-Route::get('/syllabiDelete/{id}', [App\Http\Controllers\SyllabusController::class, 'destroy']);
+Route::apiResource('syllabi', SyllabusController::class);
