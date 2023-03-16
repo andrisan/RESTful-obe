@@ -37,6 +37,8 @@ Route::post('register-device', function (Request $request) {
     ]);
 });
 
-Route::get('/syllabi', [SyllabusController::class, 'index']);
-Route::get('/syllabiDelete/{id}', [SyllabusController::class, 'destroy']);
-Route::patch('/sylabi/{id}', [Syllabuscontroller::class,'update']);
+Route::get('/syllabi', [App\Http\Controllers\SyllabusController::class, 'index']);
+Route::get('/syllabi/{id}', [App\Http\Controllers\SyllabusController::class, 'show']);
+Route::post('/syllabi', [App\Http\Controllers\SyllabusController::class, 'store']);
+Route::patch('/syllabi/{id}', [App\Http\Controllers\Syllabuscontroller::class,'update']);
+Route::get('/syllabiDelete/{id}', [App\Http\Controllers\SyllabusController::class, 'destroy']);

@@ -14,6 +14,14 @@ class SyllabusDetailResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return[
+                'id' => $this->id,
+                'course_id' =>$this->course_id, 
+                'title' =>$this->title,
+                'author' => $this->author,
+                'head_of_study_program' =>$this->head_of_study_program, 
+                //'creator_user_id' =>$this->creator_user_id,
+                'studyProgram' =>$this->whenLoaded('studyProgram')
+            ];
     }
 }

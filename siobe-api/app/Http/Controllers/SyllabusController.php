@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\SyllabusDetailResource;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
 
@@ -17,50 +19,41 @@ class SyllabusController extends Controller
             'data' => $data
         ]);
     }
-
+    
     /**
-     * Show the form for creating a new resource.
+     * Display the specified resource.
      */
-    public function create()
+    public function show($id)
     {
-        //
+        $data = Syllabus::with('studyProgram')->findOrFail($id);
+        return new SyllabusDetailResource($data);
     }
 
-    /**
+     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'head_of_study_program' => 'required|string',
+            'author' => 'required|string',
+            'course_id' => 'required',
+            'creator_user_id' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $data = Syllabus::findOrFail($id);
-        $data->update($request->all());
+        $syllabus = new Syllabus();
+        $syllabus->title = $validated['title'];
+        $syllabus->head_of_study_program = $validated['head_of_study_program'];
+        $syllabus->author = $validated['author'];
+        $syllabus->course_id = $validated['course_id'];
+        //$syllabus->creator_user_id = Auth::id();
+        $syllabus->creator_user_id = $validated['creator_user_id'];
+        $syllabus->save();
 
         return response()->json([
-            'message' => 'data updated'
-        ]);
+                 'message' => 'data added'
+             ]);
     }
 
     /**
@@ -73,4 +66,21 @@ class SyllabusController extends Controller
             'message' => 'Resource deleted'
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
 }
