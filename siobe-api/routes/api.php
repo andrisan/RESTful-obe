@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::group(['middleware' => ['auth:sanctum']], function () {
-//     Route::apiResource('users', UserController::class);
-// });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+     Route::apiResource('users', UserController::class);
+ });
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([
@@ -37,6 +37,6 @@ Route::post('register-device', function (Request $request) {
     ]);
 });
 
-Route::get('/syllabi', [App\Http\Controllers\SyllabusController::class, 'index']);
-Route::get('/syllabiDelete/{id}', [App\Http\Controllers\SyllabusController::class, 'destroy']);
-Route::patch('/sylabi/{id}', [App\Http\Controllers\Syllabuscontroller::class,'update']);
+Route::get('/syllabi', [SyllabusController::class, 'index']);
+Route::get('/syllabiDelete/{id}', [SyllabusController::class, 'destroy']);
+Route::patch('/sylabi/{id}', [Syllabuscontroller::class,'update']);
