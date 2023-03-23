@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\RubricController;
-use App\Http\Controllers\UserController;
-use App\Models\Rubric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\RubricController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
-
+    Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
+    
+    Route::scopeBindings()->group(function () {
+        Route::apiResource('faculties.departments', DepartmentController::class);
+    });
 });
 
 Route::post('register-device', function (Request $request) {
@@ -40,8 +45,3 @@ Route::post('register-device', function (Request $request) {
         'token' => $token
     ]);
 });
-
-Route::get('/rubricdelete/{rubric}', [RubricController::class, 'destroy']);
-Route::get('rubricshow/{rubric}', [RubricController::class, 'show']);
-
-Route::patch('rubric/{rubric}', [RubricController::class, 'update']);
