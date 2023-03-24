@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateSyllabusRequest;
-use App\Http\Resources\SyllabusDetailResource;
+use App\Http\Resources\SyllabusResource;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
 
@@ -27,7 +27,7 @@ class SyllabusController extends Controller
     public function show($id)
     {
         $data = Syllabus::with('studyProgram')->findOrFail($id);
-        return new SyllabusDetailResource($data);
+        return new SyllabusResource($data);
     }
 
      /**
