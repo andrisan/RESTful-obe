@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\SyllabusController;
-use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\RubricController;
+use App\Http\Controllers\SyllabusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::apiResource('users', UserController::class);
  });
+=======
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('faculties',FacultyController::class);
+    Route::apiResource('rubrics', RubricController::class);
+    
+    Route::scopeBindings()->group(function () {
+        Route::apiResource('faculties.departments', DepartmentController::class);
+    });
+});
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([
@@ -36,5 +48,3 @@ Route::post('register-device', function (Request $request) {
         'message' => 'Device registered successfully.',
         'token' => $token
     ]);
-});
-Route::apiResource('syllabi', SyllabusController::class);
