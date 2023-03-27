@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateCritreriaRequest;
+use App\Http\Resources\CriteriaCollection;
 use App\Http\Resources\CriteriaResource;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
@@ -12,9 +13,9 @@ class CriteriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Criteria $criteria)
     {
-        //
+        return new CriteriaCollection($criteria->paginate(10));
     }
 
     /**
