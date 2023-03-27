@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CriteriaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
+    Route::apiResource('criterias', CriteriaController::class);
     
     Route::scopeBindings()->group(function () {
         Route::apiResource('faculties.departments', DepartmentController::class);
