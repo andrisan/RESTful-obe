@@ -50,9 +50,10 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Criteria $criteria)
     {
-        //
+        $criteria->load('criterias.criteriaLevels');
+        return new CriteriaResource($criteria);
     }
 
     /**
@@ -76,8 +77,11 @@ class CriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(criteria $criteria)
     {
-        //
+        $criteria->delete();
+        return response()->json([
+            'message' => 'Successfully Deleted'
+        ]);
     }
 }
