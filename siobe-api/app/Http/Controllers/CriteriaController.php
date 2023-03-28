@@ -52,8 +52,7 @@ class CriteriaController extends Controller
      */
     public function show(Criteria $criteria)
     {
-        $criteria->load('criterias.criteriaLevels');
-        return new CriteriaResource($criteria);
+        //
     }
 
     /**
