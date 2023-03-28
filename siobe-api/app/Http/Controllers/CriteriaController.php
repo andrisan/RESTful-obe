@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCritreriaRequest;
 use App\Http\Resources\CriteriaCollection;
 use App\Http\Resources\CriteriaResource;
 use App\Models\Criteria;
+use App\Models\Rubric;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
@@ -31,10 +32,19 @@ class CriteriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCriteriasRequest $request): CriteriaResource
+    public function store(StoreCriteriasRequest $request, Rubric $rubric): CriteriaResource
     {
         $validated = $request->validate();
-        return new CriteriaResource(Criteria::create($validated));
+
+        $criteria = new Criteria;
+        $criteria->rubric_id = $rubric->id;
+        $criteria->title = $validated['title'];
+        $criteria->llo_id = $validated['llo'];
+        $criteria->description = $validated['description'];
+        $criteria->max_point = $validated['max_point'];
+        $criteria->save();
+
+        return new CriteriaResource($criteria);
     }
 
     /**
