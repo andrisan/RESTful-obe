@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCriteriasRequest;
 use App\Http\Requests\UpdateCritreriaRequest;
 use App\Http\Resources\CriteriaCollection;
 use App\Http\Resources\CriteriaResource;
 use App\Models\Criteria;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
@@ -29,9 +31,10 @@ class CriteriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCriteriasRequest $request): CriteriaResource
     {
-        //
+        $validated = $request -> validate();
+        return new CriteriaResource(Criteria::create($validated));
     }
 
     /**
