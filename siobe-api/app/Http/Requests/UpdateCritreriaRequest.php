@@ -25,8 +25,6 @@ class UpdateCritreriaRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'string|max:1024',
             'max_point' => 'decimal:2',
-            'created_at' => 'timestamp',
-            'updated_at' => 'timestamp',
         ];
     }
 }
