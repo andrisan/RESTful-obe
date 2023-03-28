@@ -23,9 +23,8 @@ class StoreCriteriasRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'llo' => 'required|numeric',
-            'description' => 'nullable|string',
-            'point' => 'required|numeric'
+            'description' => 'required|string',
+            'max_point' => 'required|decimal:2'
         ];
     }
 }

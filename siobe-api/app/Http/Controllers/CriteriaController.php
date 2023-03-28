@@ -33,7 +33,7 @@ class CriteriaController extends Controller
      */
     public function store(StoreCriteriasRequest $request): CriteriaResource
     {
-        $validated = $request -> validate();
+        $validated = $request->validate();
         return new CriteriaResource(Criteria::create($validated));
     }
 
