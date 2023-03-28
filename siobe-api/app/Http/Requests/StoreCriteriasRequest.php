@@ -22,7 +22,10 @@ class StoreCriteriasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string',
+            'llo' => 'required|numeric',
+            'description' => 'nullable|string',
+            'point' => 'required|numeric'
         ];
     }
 }
