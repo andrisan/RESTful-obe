@@ -9,6 +9,9 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RubricController;
 use App\Http\Controllers\SyllabusController;
 
+use App\Http\Controllers\StudyProgramController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,11 +22,14 @@ use App\Http\Controllers\SyllabusController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('study-programs',[StudyProgramController::class, 'index'])->name('study-programs.get');
+Route::post('study-programs',[StudyProgramController::class, 'store'])->name('study-programs.post');
+Route::put('study-programs/{study_programs}', [StudyProgramController::class, 'update'])->name('study-programs.update');
+Route::delete('study-programs/{study_programs}', [StudyProgramController::class, 'destroy'])->name('study-programs.destroy');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-     Route::apiResource('users', UserController::class);
- });
-=======
+   Route::apiResource('users', UserController::class);
+
     Route::apiResource('users', UserController::class);
     Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
@@ -48,3 +54,4 @@ Route::post('register-device', function (Request $request) {
         'message' => 'Device registered successfully.',
         'token' => $token
     ]);
+});
