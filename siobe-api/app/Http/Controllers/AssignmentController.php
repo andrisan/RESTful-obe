@@ -6,6 +6,8 @@ use App\Http\Requests\AssignmentStoreRequest;
 use App\Http\Resources\AssignmentResource;
 use App\Models\Assignment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
 
 class AssignmentController extends Controller
 {
@@ -52,14 +54,14 @@ class AssignmentController extends Controller
 	 */
 	public function update(Request $request, string $id)
 	{
-		//
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(Assignment $assignment)
 	{
-		//
+		$assignment->delete();
+		return response()->json(['message' => 'Resource deleted']);
 	}
 }
