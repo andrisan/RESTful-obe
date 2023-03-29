@@ -11,9 +11,11 @@ class IntendedLearningOutcomeController extends Controller
      */
     public function index()
     {
-        //
+        $data = IntendedLearningOutcome::all();
+        return response()->json([
+            'data' => $data
+        ]);
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -33,9 +35,12 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $data = IntendedLearningOutcome::findOrFail($id);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     /**
