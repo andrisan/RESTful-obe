@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,11 +22,13 @@ use App\Http\Controllers\DepartmentController;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('faculties',FacultyController::class);
-    
+		
+
     Route::scopeBindings()->group(function () {
         Route::apiResource('faculties.departments', DepartmentController::class);
     });
 });
+Route::apiResource('assignments',AssignmentController::class);
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([

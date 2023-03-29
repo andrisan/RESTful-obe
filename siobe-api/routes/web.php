@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,6 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return ['message' => 'You must login to access this data'];
 })->name('login');
+
 
 require __DIR__.'/auth.php';
