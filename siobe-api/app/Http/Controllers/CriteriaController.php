@@ -52,7 +52,7 @@ class CriteriaController extends Controller
      */
     public function show(Criteria $criteria)
     {
-        //
+        return new CriteriaResource($criteria);
     }
 
     /**
