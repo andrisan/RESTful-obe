@@ -22,7 +22,9 @@ class StudentGradeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'int', 'max:255']
+            'student_user_id' => ['sometimes'],
+            'assignment_id' => ['sometimes'],
+            'published' => ['required']
         ];
     }
 }

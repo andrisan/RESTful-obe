@@ -45,15 +45,15 @@ class StudentGradeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StudentGradeUpdateRequest $request, StudentGrade $StudentGrade): StudentGradeResource|JsonResponse
+    public function update(StudentGradeUpdateRequest $request, StudentGrade $studentGrade): StudentGradeResource|JsonResponse
     {
         $validated = $request->validated();
         if (empty($validated)) {
             return response()->json(['message' => 'Not modified'], 304);
         }
 
-        $StudentGrade->update($validated);
-        return new StudentGradeResource($StudentGrade);
+        $studentGrade->update($validated);
+        return new StudentGradeResource($studentGrade);
     }
 
     /**
