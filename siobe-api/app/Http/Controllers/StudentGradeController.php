@@ -18,9 +18,9 @@ class StudentGradeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
-        $StudentGrade = StudentGrade::all();
+        $StudentGrade = StudentGrade::all()->paginate(10);
         return StudentGradeResource::collection($StudentGrade);
     }
 
