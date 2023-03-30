@@ -37,9 +37,9 @@ class StudentGradeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StudentGrade $StudentGrade): StudentGradeResource
+    public function show(StudentGrade $studentGrade): StudentGradeResource
     {
-        return new StudentGradeResource($StudentGrade);
+        return new StudentGradeResource($studentGrade);
     }
 
     /**
@@ -59,9 +59,9 @@ class StudentGradeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StudentGrade $StudentGrade): JsonResponse
+    public function destroy(StudentGrade $studentGrade): JsonResponse
     {
-        $StudentGrade->delete();
+        $studentGrade->delete();
         return response()->json(['message' => 'Resource deleted']);
     }
 }
