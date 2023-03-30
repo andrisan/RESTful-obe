@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\StudentGradeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::post('register-device', function (Request $request) {
     ]);
 });
 
+Route::apiResource('student-grades', StudentGradeController::class);
 Route::scopeBindings()->group(function () {
     Route::apiResource('faculties.departments', DepartmentController::class);
 });
