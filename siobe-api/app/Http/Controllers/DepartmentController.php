@@ -56,6 +56,7 @@ class DepartmentController extends Controller
 
         $department->update($validated);
         return new DepartmentResource($department);
+        return response()->json(['message' => 'Department updated'], 304);
     }
 
     /**

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AssignmentStoreRequest;
+use App\Http\Requests\AssignmentUpdateRequest;
 use App\Http\Resources\AssignmentResource;
+use Illuminate\Http\JsonResponse;
 use App\Models\Assignment;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 
 class AssignmentController extends Controller
 {
@@ -51,9 +52,17 @@ class AssignmentController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
+	public function update(AssignmentUpdateRequest $request, $id): AssignmentResource|JsonResponse
 	{
-		//
+        $assignment = Assignment::find($id);
+		$validated = $request->validated();
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
+		
+        $assignment->update($request->all());
+        return new AssignmentResource($assignment);
+		return response()->json(['message' => 'Assignment updated successfully'], 304);
 	}
 
 	/**
@@ -62,6 +71,6 @@ class AssignmentController extends Controller
 	public function destroy(Assignment $assignment): JsonResponse
 	{
 		$assignment->delete();
-        return response()->json(['message' => 'Resource deleted']);
+        return response()->json(['message' => 'Assignment deleted'], 304);
 	}
 }
