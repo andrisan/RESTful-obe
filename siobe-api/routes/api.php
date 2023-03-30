@@ -21,7 +21,7 @@ use App\Http\Controllers\DepartmentController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
-    Route::apiResource('faculties',FacultyController::class);
+    
 		
 
     Route::scopeBindings()->group(function () {
@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 });
 Route::apiResource('assignments',AssignmentController::class);
+Route::apiResource('faculties',FacultyController::class);
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([
