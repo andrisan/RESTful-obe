@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCriteriasRequest;
+use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Requests\UpdateCritreriaRequest;
 use App\Http\Resources\CriteriaCollection;
 use App\Http\Resources\CriteriaResource;
@@ -22,24 +22,16 @@ class CriteriaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCriteriasRequest $request, Rubric $rubric): CriteriaResource
+    public function store(StoreCriteriaRequest $request, Rubric $rubric): CriteriaResource
     {
-        $validated = $request->validate();
+        $validated = $request->validated();
 
         $criteria = new Criteria;
         $criteria->rubric_id = $rubric->id;
         $criteria->title = $validated['title'];
-        $criteria->llo_id = $validated['llo'];
+        $criteria->llo_id = $validated['llo_id'];
         $criteria->description = $validated['description'];
         $criteria->max_point = $validated['max_point'];
         $criteria->save();
@@ -50,24 +42,16 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Criteria $criteria)
+    public function show(Rubric $rubric, Criteria $criteria)
     {
         return new CriteriaResource($criteria);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCritreriaRequest $request, Criteria $criteria)
-    {
+    public function update(UpdateCritreriaRequest $request, Rubric $rubric, Criteria $criteria)
+    {   
         $validated = $request->validated();
         $criteria->update($validated);
         return new CriteriaResource($criteria);
@@ -76,7 +60,7 @@ class CriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(criteria $criteria)
+    public function destroy(Rubric $rubric, Criteria $criteria)
     {
         $criteria->delete();
         return response()->json([
