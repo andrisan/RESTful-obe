@@ -11,7 +11,7 @@ class UpdateIntendedLearningOutcomesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -20,9 +20,12 @@ class UpdateIntendedLearningOutcomesRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
+
     {
         return [
-            //
+            'position' => ['required'],
+            'description' => ['required'],
+            'code' => ['required']
         ];
     }
 }
