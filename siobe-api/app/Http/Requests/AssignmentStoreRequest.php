@@ -22,10 +22,10 @@ class AssignmentStoreRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-            'assignment_plan_id' => ['integer'],
-            'course_class_id' => ['integer'],
-            'assigned_date' => ['date'],
-            'due_date' => ['date'],
+			'assignment_plan_id' => ['integer'],
+			'course_class_id' => ['integer'],
+			'assigned_date' => ['date'],
+			'due_date' => ['date'],
 			'note' => ['string', 'max:255']
 		];
 	}
