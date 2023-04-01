@@ -23,8 +23,8 @@ use App\Http\Controllers\SyllabusController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::apiResource('users', UserController::class);
- });
-=======
+ 
+
     Route::apiResource('users', UserController::class);
     Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
@@ -50,3 +50,4 @@ Route::post('register-device', function (Request $request) {
         'message' => 'Device registered successfully.',
         'token' => $token
     ]);
+});
