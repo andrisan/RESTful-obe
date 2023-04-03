@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateCriteriaLevel;
+use App\Http\Resources\CriteriaLevelResource;
+use App\Models\CriteriaLevel;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CriteriaLevelController extends Controller
@@ -49,9 +53,11 @@ class CriteriaLevelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCriteriaLevel $request, CriteriaLevel $id)
     {
-        //
+        $validated = $request->validated();
+        $id->update($validated);
+        return new CriteriaLevelResource($id);
     }
 
     /**
