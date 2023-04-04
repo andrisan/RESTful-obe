@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
     Route::apiResource('rubrics.criterias', CriteriaController::class);
+    Route::apiResource('rubrics.criterias.criteria-levels', CriteriaController::class);
     
     Route::scopeBindings()->group(function () {
         Route::apiResource('faculties.departments', DepartmentController::class);
