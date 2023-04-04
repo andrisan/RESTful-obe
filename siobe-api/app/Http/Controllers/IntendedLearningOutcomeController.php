@@ -43,10 +43,14 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIntendedLearningOutcomesRequest $request, IntendedLearningOutcome $ilo)
+    public function update(UpdateIntendedLearningOutcomesRequest $request, IntendedLearningOutcome $ilo): IntendedLearningOutcomeResource|JsonResponse
     {
         $validated = $request->validated();
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
         $ilo->update($validated);
+        return new IntendedLearningOutcomeResource($ilo);
     }
 
     /**

@@ -31,28 +31,10 @@ class SyllabusController extends Controller
      /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSyllabusRequest $request): SyllabusResource
     {
-        $validated = $request->validate([
-            'title' => 'required|string',
-            'head_of_study_program' => 'required|string',
-            'author' => 'required|string',
-            'course_id' => 'required',
-            'creator_user_id' => 'required'
-        ]);
-
-        $syllabus = new Syllabus();
-        $syllabus->title = $validated['title'];
-        $syllabus->head_of_study_program = $validated['head_of_study_program'];
-        $syllabus->author = $validated['author'];
-        $syllabus->course_id = $validated['course_id'];
-        //$syllabus->creator_user_id = Auth::id();
-        $syllabus->creator_user_id = $validated['creator_user_id'];
-        $syllabus->save();
-
-        return response()->json([
-                 'message' => 'data added'
-             ]);
+        $validated = $request->validated();
+        return new SyllabusResource(Syllabus::create($validated));
     }
 
     public function update(UpdateSyllabusRequest $request, Syllabus $syllabus)
