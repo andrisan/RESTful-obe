@@ -8,7 +8,6 @@ use App\Models\CriteriaLevel;
 use App\Models\Rubric;
 use App\Http\Requests\UpdateCriteriaLevel;
 use App\Http\Resources\CriteriaLevelResource;
-use App\Models\CriteriaLevel;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
