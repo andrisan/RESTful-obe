@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CriteriaLevelCollection;
+use App\Models\Criteria;
+use App\Models\CriteriaLevel;
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 
 class CriteriaLevelController extends Controller
@@ -9,23 +13,15 @@ class CriteriaLevelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return new CriteriaLevelCollection($criteria_level->paginate(10));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Rubric $rubric, Criteria $criteria)
     {
         //
     }
@@ -33,15 +29,7 @@ class CriteriaLevelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function show(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
         //
     }
@@ -49,7 +37,7 @@ class CriteriaLevelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
         //
     }
@@ -57,7 +45,7 @@ class CriteriaLevelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
         //
     }
