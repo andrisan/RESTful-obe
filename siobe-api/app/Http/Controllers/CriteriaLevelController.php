@@ -6,6 +6,10 @@ use App\Http\Resources\CriteriaLevelCollection;
 use App\Models\Criteria;
 use App\Models\CriteriaLevel;
 use App\Models\Rubric;
+use App\Http\Requests\UpdateCriteriaLevel;
+use App\Http\Resources\CriteriaLevelResource;
+use App\Models\CriteriaLevel;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CriteriaLevelController extends Controller
@@ -37,9 +41,15 @@ class CriteriaLevelController extends Controller
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(Request $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
+=======
+    public function update(UpdateCriteriaLevel $request, CriteriaLevel $id)
+>>>>>>> 124be634f6daac7c190b60e9739f728454b3c1b5
     {
-        //
+        $validated = $request->validated();
+        $id->update($validated);
+        return new CriteriaLevelResource($id);
     }
 
     /**
