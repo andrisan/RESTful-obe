@@ -13,12 +13,10 @@ class SyllabusController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(syllabus $syllabus)
     {
-        $data = Syllabus::all();
-        return response()->json([
-            'data' => $data
-        ]);
+        return syllabusResource::collection($ilo->paginate(10));
+        
     }
     
     /**

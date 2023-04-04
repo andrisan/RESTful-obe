@@ -12,12 +12,9 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IntendedLearningOutcome $ilo)
     {
-        $data = IntendedLearningOutcome::all();
-        return response()->json([
-            'data' => $data
-        ]);
+        return IntendedLearningOutcomeResource::collection($ilo->paginate(10));
     }
     
     /**
@@ -38,12 +35,9 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(IntendedLearningOutcome $ilo): IntendedLearningOutcomeResource
     {
-        $data = IntendedLearningOutcome::findOrFail($id);
-        return response()->json([
-            'data' => $data
-        ]);
+        return new IntendedLearningOutcomeResource($ilo);
     }
 
     /**
