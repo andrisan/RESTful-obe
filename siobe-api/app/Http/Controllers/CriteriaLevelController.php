@@ -41,11 +41,7 @@ class CriteriaLevelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
-    public function update(Request $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
-=======
     public function update(UpdateCriteriaLevel $request, CriteriaLevel $id)
->>>>>>> 124be634f6daac7c190b60e9739f728454b3c1b5
     {
         $validated = $request->validated();
         $id->update($validated);
