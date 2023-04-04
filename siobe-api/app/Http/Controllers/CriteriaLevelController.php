@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\CriteriaLevelsFilters;
 use App\Http\Resources\CriteriaLevelCollection;
 use App\Models\Criteria;
 use App\Models\CriteriaLevel;
@@ -16,9 +17,17 @@ class CriteriaLevelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
+    public function index(Request $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
-        return new CriteriaLevelCollection($criteria_level->paginate(10));
+        $filterItems = [];
+
+        if (empty(!$request->query())) {
+            $filter = new CriteriaLevelsFilters();
+            $filterItems = $filter->filter($request);
+        }
+
+        $criteria_level = $criteria_level->where($filterItems)->paginate(10);
+        return new CriteriaLevelCollection($criteria_level->appends(request()->query()));
     }
 
     /**
