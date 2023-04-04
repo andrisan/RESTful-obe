@@ -15,7 +15,7 @@ class SyllabusController extends Controller
      */
     public function index(syllabus $syllabus)
     {
-        return syllabusResource::collection($ilo->paginate(10));
+        return syllabusResource::collection($syllabus->paginate(10));
         
     }
     
