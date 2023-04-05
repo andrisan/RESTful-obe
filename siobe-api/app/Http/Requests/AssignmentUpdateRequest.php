@@ -25,11 +25,11 @@ class AssignmentUpdateRequest extends FormRequest
          $method = $this->method();
          if ($method == 'PATCH') {
              return [
-                'assignment_plan_id' => ['sometimes','integer'],
-                'course_class_id' => ['sometimes','integer'],
-                'assigned_date' => ['sometimes'],
-                'due_date' => ['sometimes'],
-                'note' => ['sometimes','string', 'max:255']
+                'assignment_plan_id' => ['required','integer'],
+                'course_class_id' => ['required','integer'],
+                'assigned_date' => ['required'],
+                'due_date' => ['required'],
+                'note' => ['required','string', 'max:255']
              ];
          } else {
              return [

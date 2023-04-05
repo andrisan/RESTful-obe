@@ -62,6 +62,7 @@ class AssignmentController extends Controller
         return new AssignmentResource($assignment);
 	}
 
+
 	/**
 	 * Remove the specified resource from storage.
 	 */
