@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LessonLearningOutcomeStoreRequest;
 use App\Http\Resources\LessonLearningOutcomeResource;
 use App\Models\Faculty;
 use App\Models\LessonLearningOutcome;
@@ -24,9 +25,11 @@ class LessonLearningOutcomeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LessonLearningOutcomeStoreRequest $llo): LessonLearningOutcomeResource
     {
-        
+        $validated = $llo->validated();
+
+		return new LessonLearningOutcomeResource(LessonLearningOutcome::create($validated));
     }
 
     /**
