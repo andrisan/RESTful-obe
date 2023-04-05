@@ -53,7 +53,7 @@ class FacultyController extends Controller
         
         $Faculty->update($validated);
         return new FacultyResource($Faculty);
-        return response()->json(['message' => 'Resource updated successfully'], 304);
+        // return response()->json(['message' => 'Resource updated successfully'], 304);
     }
 
     /**

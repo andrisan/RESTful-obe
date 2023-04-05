@@ -14,6 +14,7 @@ class AssignmentController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
+
 	public function index()
 	{
 		try {
@@ -56,15 +57,15 @@ class AssignmentController extends Controller
 	 */
 	public function update(AssignmentUpdateRequest $request, $id): AssignmentResource|JsonResponse
 	{
-        $assignment = Assignment::find($id);
+		$assignment = Assignment::find($id);
 		$validated = $request->validated();
-        if (empty($validated)) {
-            return response()->json(['message' => 'Not modified'], 304);
-        }
-		
-        $assignment->update($request->all());
-        return new AssignmentResource($assignment);
-		return response()->json(['message' => 'Assignment updated successfully'], 304);
+		if (empty($validated)) {
+			return response()->json(['message' => 'Not modified'], 304);
+		}
+
+		$assignment->update($request->all());
+		return new AssignmentResource($assignment);
+		// return response()->json(['message' => 'Assignment updated successfully'], 304);
 	}
 
 	/**
@@ -73,6 +74,6 @@ class AssignmentController extends Controller
 	public function destroy(Assignment $assignment): JsonResponse
 	{
 		$assignment->delete();
-        return response()->json(['message' => 'Resource deleted']);
+		return response()->json(['message' => 'Resource deleted']);
 	}
 }
