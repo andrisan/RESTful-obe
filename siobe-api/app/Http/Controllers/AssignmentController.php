@@ -55,18 +55,17 @@ class AssignmentController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(AssignmentUpdateRequest $request, $id): AssignmentResource|JsonResponse
+	public function update(AssignmentUpdateRequest $request, Assignment $assignment): AssignmentResource|JsonResponse
 	{
-		$assignment = Assignment::find($id);
 		$validated = $request->validated();
-		if (empty($validated)) {
-			return response()->json(['message' => 'Not modified'], 304);
-		}
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
 
 		$assignment->update($request->all());
 		return new AssignmentResource($assignment);
-		// return response()->json(['message' => 'Assignment updated successfully'], 304);
 	}
+
 
 	/**
 	 * Remove the specified resource from storage.
