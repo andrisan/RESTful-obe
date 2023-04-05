@@ -50,11 +50,10 @@ class LearningPlanController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, LearningPlan $learningPlan): LearningPlanResource|JsonResponse
     {
-        $validated = $request->validated();
-        if (empty($validated)) {
-            return response()->json(['message' => 'Not modified'], 304);
+        $validated= $request->validated();
+        if(empty($validated)){
+            return response()->json(['message'=> 'Not modified'], 304);
         }
-
         $learningPlan->update($validated);
         return new LearningPlanResource($learningPlan);
     }
