@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreIntendedLearningOutcomeRequest;
 use App\Http\Requests\UpdateIntendedLearningOutcomesRequest;
+use App\Http\Resources\IntendedLearningOutcomeResource;
 use App\Models\IntendedLearningOutcome;
 use App\Models\Syllabus;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class IntendedLearningOutcomeController extends Controller
@@ -20,16 +23,21 @@ class IntendedLearningOutcomeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Syllabus $syllabus)
+    public function store(StoreIntendedLearningOutcomeRequest $request, Syllabus $syllabus): IntendedLearningOutcomeResource
     {
-        $validateData = $request->validate([
-            'code' => 'nullable|string|max:255',
-            'description' => 'required|string',
-        ]);
+        $validate = $request->validated();
         $newPosition = $syllabus->intendedLearningOutcomes()->max('position') + 1;
-        $validateData['position'] = $newPosition;
+        $validate['position'] = $newPosition;
+        return new IntendedLearningOutcomeResource($syllabus->intendedLearningOutcomes()->create($validate));
 
-        $syllabus->intendedLearningOutcomes()->create($validateData);
+        // $validateData = $request->validate([
+        //     'code' => 'nullable|string|max:255',
+        //     'description' => 'required|string',
+        // ]);
+        // $newPosition = $syllabus->intendedLearningOutcomes()->max('position') + 1;
+        // $validateData['position'] = $newPosition;
+
+        // $syllabus->intendedLearningOutcomes()->create($validateData);
     }
 
     /**

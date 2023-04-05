@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSyllabusRequest;
 use App\Http\Requests\UpdateSyllabusRequest;
 use App\Http\Resources\SyllabusResource;
 use App\Models\Syllabus;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 
@@ -22,10 +24,10 @@ class SyllabusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Syllabus $syllabus)
     {
-        $data = Syllabus::with('studyProgram')->findOrFail($id);
-        return new SyllabusResource($data);
+        $syllabus->load('studyProgram');
+        return new SyllabusResource($syllabus);
     }
 
      /**
@@ -37,10 +39,15 @@ class SyllabusController extends Controller
         return new SyllabusResource(Syllabus::create($validated));
     }
 
-    public function update(UpdateSyllabusRequest $request, Syllabus $syllabus)
+    public function update(UpdateSyllabusRequest $request, Syllabus $syllabus): SyllabusResource|JsonResponse
     {
         $validated = $request->validated();
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
+
         $syllabus->update($validated);
+        return new SyllabusResource($syllabus);
         
     }
 
