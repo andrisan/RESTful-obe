@@ -30,6 +30,7 @@ class LearningPlanController extends Controller
      */
     public function store(LearningPlanStoreRequest $request): LearningPlanResource
     {
+        dd($request);
         $validated = $request->validated();
 
         return new LearningPlanResource(LearningPlan::create($validated));
@@ -49,7 +50,6 @@ class LearningPlanController extends Controller
      */
     public function update(Request $request, Syllabus $syllabus, LearningPlan $learningPlan): LearningPlanResource|JsonResponse
     {
-        dd($request);
         $validated = $request->validated();
         if (empty($validated)) {
             return response()->json(['message' => 'Not modified'], 304);
