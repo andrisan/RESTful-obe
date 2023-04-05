@@ -24,6 +24,7 @@ class LearningPlanStoreRequest extends FormRequest
         return [
             'week_number' => ['sometimes'],
             'llo_id' => ['required'],
+            'syllabus_id' => ['sometimes'],
             'study_material' => ['sometimes'],
             'learning_method' => ['sometimes'],
             'estimated_time' => ['sometimes'],
