@@ -17,19 +17,8 @@ class AssignmentController extends Controller
 
 	public function index()
 	{
-		try {
-			$assignment = Assignment::all();
-			return AssignmentResource::collection($assignment);
-		} catch (\Exception $e) {
-			$data = array(
-				[
-					"status" => "error",
-					"message" => "assignment retrieved unsuccesfully",
-					"error" => $e->getMessage()
-				]
-			);
-			return response()->json($data, 500);
-		}
+		$assignment = Assignment::paginate(10);
+		return AssignmentResource::collection($assignment);
 	}
 
 	/**
