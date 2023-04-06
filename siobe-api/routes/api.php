@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\CriteriaLevelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
     Route::apiResource('rubrics.criterias', CriteriaController::class);
-    Route::apiResource('rubrics.criterias.criteria-levels', CriteriaController::class);
+    Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
     
     Route::scopeBindings()->group(function () {
         Route::apiResource('faculties.departments', DepartmentController::class);

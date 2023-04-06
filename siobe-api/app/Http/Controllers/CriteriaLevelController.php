@@ -39,6 +39,8 @@ class CriteriaLevelController extends Controller
     public function store(StoreCriteriaLevelRequest $request, Rubric $rubric, Criteria $criteria)
     {
         $validated = $request->validated();
+        $validated = $validated->concat(['criterida_id' => $criteria->id]);
+        return $validated;
         return new CriteriaLevelResource(CriteriaLevel::create($validated));
     }
 
