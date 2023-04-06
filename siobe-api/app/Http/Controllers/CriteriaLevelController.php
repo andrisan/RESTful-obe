@@ -43,7 +43,7 @@ class CriteriaLevelController extends Controller
      */
     public function show(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
-        //
+        return new CriteriaLevelResource($criteria_level);
     }
 
     /**
@@ -61,6 +61,9 @@ class CriteriaLevelController extends Controller
      */
     public function destroy(Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
     {
-        //
+        $criteria_level->delete();
+        return response()->json([
+            'message' => 'Successfully Deleted'
+        ]);
     }
 }
