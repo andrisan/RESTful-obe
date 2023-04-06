@@ -20,7 +20,7 @@ class SyllabusResource extends JsonResource
                 'title' =>$this->title,
                 'author' => $this->author,
                 'head_of_study_program' =>$this->head_of_study_program, 
-                //'creator_user_id' =>$this->creator_user_id,
+                'creator_user_id' =>$this->creator_user_id,
                 'studyProgram' =>$this->whenLoaded('studyProgram')
             ];
     }

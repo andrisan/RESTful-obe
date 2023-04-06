@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateIntendedLearningOutcomesRequest extends FormRequest
+class StudentGradeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,11 +20,11 @@ class UpdateIntendedLearningOutcomesRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
-
     {
         return [
-            'description' => ['required'],
-            'code' => ['required']
+            'student_user_id' => ['required'],
+            'assignment_id' => ['required'],
+            'published' => ['required']
         ];
     }
 }
