@@ -14,6 +14,7 @@ class LearningPlan extends Model
     protected $fillable = [
         'week_number',
         'llo_id',
+        'syllabus_id',
         'study_material',
         'learning_method',
         'estimated_time',

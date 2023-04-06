@@ -14,8 +14,7 @@ class StudentGrade extends Model
     protected $fillable = [
         'student_user_id',
         'assignment_id',
-        'assignment_plan_task_id',
-        'criteria_level_id'
+        'published'
     ];
 
     public function assignment()
