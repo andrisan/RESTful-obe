@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\CriteriaLevelsFilters;
+use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Resources\CriteriaLevelCollection;
 use App\Models\Criteria;
 use App\Models\CriteriaLevel;
@@ -11,6 +12,7 @@ use App\Http\Requests\UpdateCriteriaLevel;
 use App\Http\Resources\CriteriaLevelResource;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
 class CriteriaLevelController extends Controller
 {
@@ -35,7 +37,8 @@ class CriteriaLevelController extends Controller
      */
     public function store(Request $request, Rubric $rubric, Criteria $criteria)
     {
-        //
+        $validated = $request->validate();
+        return new StoreCriteriaRequest(CriteriaLevel::create($validated));
     }
 
     /**
