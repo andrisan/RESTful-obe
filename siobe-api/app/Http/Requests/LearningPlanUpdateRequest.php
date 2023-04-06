@@ -23,11 +23,12 @@ class LearningPlanUpdateRequest extends FormRequest
     {
         return [
             'week_number' => ['sometimes'],
-            'llo_id' => ['required'],
+            'llo_id' => ['required', 'integer'],
             'syllabus_id' => ['sometimes'],
             'study_material' => ['sometimes'],
             'learning_method' => ['sometimes'],
             'estimated_time' => ['sometimes'],
         ];
+        
     }
 }
