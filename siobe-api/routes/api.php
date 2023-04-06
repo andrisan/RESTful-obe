@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\CriteriaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 });
 Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
+Route::apiResource('ilo', IntendedLearningOutcomeController::class);
+Route::apiResource('syllabi.clo', CourseLearningOutcomeController::class);
+Route::apiResource('clo', CourseLearningOutcomeController::class);
+Route::apiResource('syllabi', SyllabusController::class);
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([
