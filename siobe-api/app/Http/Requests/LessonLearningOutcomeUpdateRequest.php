@@ -38,6 +38,6 @@ class LessonLearningOutcomeUpdateRequest extends FormRequest
                 'code' => ['required', 'string'],
                 'syllabus_id' => ['required','integer']
             ];
-        }
-    }
+ }
+}
 }

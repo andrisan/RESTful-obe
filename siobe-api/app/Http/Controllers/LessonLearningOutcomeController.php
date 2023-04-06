@@ -48,10 +48,6 @@ class LessonLearningOutcomeController extends Controller
             return response()->json(['message' => 'Not modified'], 304);
         }
 
-<<<<<<< HEAD
-        $faculty->update($validated);
-        return new LessonLearningResource($llo);
-=======
 		$llo->update($request->all());
 		return new LessonLearningOutcomeResource($llo);
 	}
@@ -65,6 +61,5 @@ class LessonLearningOutcomeController extends Controller
 
         return response()->json(['message' => 'Resource deleted']);
 
->>>>>>> ff0b8a496d4acffbc31cf54c24df3ade3e0955ae
 	}
 }

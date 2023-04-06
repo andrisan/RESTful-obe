@@ -41,9 +41,9 @@ Route::post('register-device', function (Request $request) {
         abort(401, 'The provided credentials are incorrect.');
     }
 
-    $token = Auth::user()->createToken($request->device_name)->plainTextToken;
-    return response()->json([
-        'message' => 'Device registered successfully.',
-        'token' => $token
-    ]);
+    // $token = Auth::user()->createToken($request->device_name)->plainTextToken;
+    // return response()->json([
+    //     'message' => 'Device registered successfully.',
+    // //     'token' => $token
+    // ]);
 });
