@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\CriteriaLevelsFilters;
+use App\Http\Requests\StoreCriteriaLevelRequest;
 use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Resources\CriteriaLevelCollection;
 use App\Models\Criteria;
@@ -35,10 +36,10 @@ class CriteriaLevelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Rubric $rubric, Criteria $criteria)
+    public function store(StoreCriteriaLevelRequest $request, Rubric $rubric, Criteria $criteria)
     {
-        $validated = $request->validate();
-        return new StoreCriteriaRequest(CriteriaLevel::create($validated));
+        $validated = $request->validated();
+        return new CriteriaLevelResource(CriteriaLevel::create($validated));
     }
 
     /**
