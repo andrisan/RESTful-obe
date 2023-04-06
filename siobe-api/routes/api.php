@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\IntendedLearningOutcomeController;
 use App\Http\Controllers\RubricController;
 use App\Http\Controllers\SyllabusController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::scopeBindings()->group(function () {
         Route::apiResource('faculties.departments', DepartmentController::class);
         Route::apiResource('syllabi.learning-plans', LearningPlanController::class);
+        Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
     });
 });
 
