@@ -21,8 +21,23 @@ class LessonLearningOutcomeUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PATCH') {
+            return [
+                'clo_id' => ['required', 'integer'],
+                'position' => ['sometimes','integer'],
+                'description' => ['sometimes','string'],
+                'code' => ['required', 'string'],
+                'syllabus_id' => ['required','integer']
+            ];
+        } else {
+            return [
+                'clo_id' => ['required', 'integer'],
+                'position' => ['required','integer'],
+                'description' => ['required','string'],
+                'code' => ['required', 'string'],
+                'syllabus_id' => ['required','integer']
+            ];
+        }
     }
 }

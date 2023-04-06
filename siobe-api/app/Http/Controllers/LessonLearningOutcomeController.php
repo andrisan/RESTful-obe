@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LessonLearningOutcomeStoreRequest;
+use App\Http\Requests\LessonLearningOutcomeUpdateRequest;
 use App\Http\Resources\LessonLearningOutcomeResource;
 use App\Models\Faculty;
 use App\Models\LessonLearningOutcome;
@@ -43,15 +44,22 @@ class LessonLearningOutcomeController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
-	{
-		//
+	public function update(LessonLearningOutcomeUpdateRequest $request, LessonLearningOutcome $llo): LessonLearningOutcomeResource|JsonResponse
+		$validated = $request->validated();
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
+
+        $faculty->update($validated);
+        return new LessonLearningResource($llo);
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(LessonLearningOutcome $llo): JsonResponse
 	{
+		$llo->delete();
+        return response()->json(['message' => 'Resource deleted']);
 	}
 }

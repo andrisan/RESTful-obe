@@ -29,7 +29,7 @@ class AssignmentUpdateRequest extends FormRequest
                 'course_class_id' => ['required','integer'],
                 'assigned_date' => ['required'],
                 'due_date' => ['required'],
-                'note' => ['required','string', 'max:255']
+                'note' => ['sometimes','string', 'max:255']
              ];
          } else {
              return [
