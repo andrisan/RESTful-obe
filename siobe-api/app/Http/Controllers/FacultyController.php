@@ -41,15 +41,15 @@ class FacultyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(FacultyUpdateRequest $request, Faculty $faculty): FacultyResource|JsonResponse
+    public function update(FacultyUpdateRequest $request, Faculty $Faculty): FacultyResource|JsonResponse
     {
         $validated = $request->validated();
         if (empty($validated)) {
             return response()->json(['message' => 'Not modified'], 304);
         }
 
-        $faculty->update($validated);
-        return new FacultyResource($faculty);
+        $Faculty->update($validated);
+        return new FacultyResource($Faculty);
     }
 
     /**

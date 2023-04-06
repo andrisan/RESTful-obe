@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\LessonLearningOutcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +21,4 @@ Route::get('/login', function () {
     return ['message' => 'You must login to access this data'];
 })->name('login');
 
-
 require __DIR__.'/auth.php';
-
-// Route::get('/llo', [LessonLearningOutcomeController::class, 'index']);

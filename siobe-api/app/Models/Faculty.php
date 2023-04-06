@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faculty extends Model
 {
-	use HasFactory;
+    use HasFactory;
 
-	protected $fillable = ['name'];
+    protected $fillable = ['name'];
 
-	public $timestamps = false;
+    public $timestamps = false;
 
-	public function departments()
-	{
-		return $this->hasMany(Department::class);
-	}
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
 
-	public function studyPrograms()
-	{
-		return $this->hasMany(StudyProgram::class);
-	}
+    public function studyPrograms()
+    {
+        return $this->hasMany(StudyProgram::class);
+    }
 }

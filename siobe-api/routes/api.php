@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\CriteriaLevelController;
 use App\Http\Controllers\StudentGradeController;
@@ -15,7 +16,6 @@ use App\Http\Controllers\IntendedLearningOutcomeController;
 use App\Http\Controllers\RubricController;
 use App\Http\Controllers\SyllabusController;
 
-use App\Http\Controllers\LessonLearningOutcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +30,13 @@ use App\Http\Controllers\LessonLearningOutcomeController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
-
-
-    Route::apiResource('users', UserController::class);
-    Route::apiResource('faculties', FacultyController::class);
-
+    Route::apiResource('faculties',FacultyController::class);
+    Route::apiResource('rubrics', RubricController::class);
+    Route::apiResource('rubrics.criterias', CriteriaController::class);
+    Route::apiResource('ilo', IntendedLearningOutcomeController::class);
+    Route::apiResource('clo', CourseLearningOutcomeController::class);
+    Route::apiResource('syllabi', SyllabusController::class);
+    
     Route::scopeBindings()->group(function () {
         Route::apiResource('rubrics', RubricController::class);
         Route::apiResource('rubrics.criterias', CriteriaController::class);
@@ -42,13 +44,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::apiResource('student-grades', StudentGradeController::class);
         Route::apiResource('assignments', AssignmentController::class);
         Route::apiResource('llo', LessonLearningOutcomeController::class);
-    });
-
-    Route::scopeBindings()->group(function () {
-        Route::apiResource('rubrics.criterias', CriteriaController::class);
         Route::apiResource('faculties.departments', DepartmentController::class);
-        Route::apiResource('syllabi.learning-plans', LearningPlanController::class);
         Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
+        Route::apiResource('syllabi.clo', CourseLearningOutcomeController::class);
     });
 });
 
