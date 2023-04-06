@@ -48,7 +48,7 @@ class LearningPlanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Syllabus $syllabus, LearningPlan $learningPlan): LearningPlanResource|JsonResponse
+    public function update(Request $request, Syllabus $syllabus, LearningPlan $learningPlan)
     {
         $validated= $request->validated();
         if(empty($validated)){
