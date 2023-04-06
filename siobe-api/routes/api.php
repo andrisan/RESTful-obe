@@ -23,16 +23,16 @@ use App\Http\Controllers\SyllabusController;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-     Route::apiResource('users', UserController::class);
- 
+    Route::apiResource('users', UserController::class);
+
 
     Route::apiResource('users', UserController::class);
-    Route::apiResource('faculties',FacultyController::class);
+    Route::apiResource('faculties', FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
     Route::apiResource('rubrics.criterias', CriteriaController::class);
-    Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
-    
+
     Route::scopeBindings()->group(function () {
+        Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
         Route::apiResource('faculties.departments', DepartmentController::class);
     });
 });
