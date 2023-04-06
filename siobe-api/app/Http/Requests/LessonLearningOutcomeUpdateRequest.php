@@ -14,15 +14,30 @@ class LessonLearningOutcomeUpdateRequest extends FormRequest
 		return true;
 	}
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
-     */
-    public function rules(): array
-    {
-        return [
-            //
-        ];
-    }
+	/**
+	 * Get the validation rules that apply to the request.
+	 *
+	 * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+	 */
+	public function rules(): array
+	{
+		$method = $this->method();
+		if ($method == 'PATCH') {
+			return [
+				'clo_id' => ['required', 'integer'],
+				'position' => ['sometimes', 'integer'],
+				'description' => ['sometimes', 'string'],
+				'code' => ['required', 'string'],
+				'syllabus_id' => ['required', 'integer']
+			];
+		} else {
+			return [
+				'clo_id' => ['required', 'integer'],
+				'position' => ['required', 'integer'],
+				'description' => ['required', 'string'],
+				'code' => ['required', 'string'],
+				'syllabus_id' => ['required', 'integer']
+			];
+		}
+	}
 }

@@ -45,39 +45,22 @@ class LessonLearningOutcomeController extends Controller
 	 * Update the specified resource in storage.
 	 */
 	public function update(LessonLearningOutcomeUpdateRequest $request, LessonLearningOutcome $llo): LessonLearningOutcomeResource|JsonResponse
-<<<<<<< HEAD
-=======
 	{
->>>>>>> ff0b8a496d4acffbc31cf54c24df3ade3e0955ae
 		$validated = $request->validated();
-        if (empty($validated)) {
-            return response()->json(['message' => 'Not modified'], 304);
-        }
-
-<<<<<<< HEAD
-        $faculty->update($validated);
-        return new LessonLearningResource($llo);
-=======
+		if (empty($validated)) {
+			return response()->json(['message' => 'Not modified'], 304);
+		}
 		$llo->update($request->all());
 		return new LessonLearningOutcomeResource($llo);
->>>>>>> ff0b8a496d4acffbc31cf54c24df3ade3e0955ae
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
-<<<<<<< HEAD
-	public function destroy(LessonLearningOutcome $llo): JsonResponse
-	{
-		$llo->delete();
-        return response()->json(['message' => 'Resource deleted']);
-=======
 	public function destroy(LessonLearningOutcome $llo)
 	{
-        $llo->delete();
+		$llo->delete();
 
-        return response()->json(['message' => 'Resource deleted']);
-
->>>>>>> ff0b8a496d4acffbc31cf54c24df3ade3e0955ae
+		return response()->json(['message' => 'Resource deleted']);
 	}
 }
