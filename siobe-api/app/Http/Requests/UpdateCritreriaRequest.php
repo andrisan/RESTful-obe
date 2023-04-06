@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateCritreriaRequest extends FormRequest
 {
@@ -26,5 +28,10 @@ class UpdateCritreriaRequest extends FormRequest
             'description' => 'string|max:1024',
             'max_point' => 'decimal:2',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json(['errors' => $validator->errors()], 409));
     }
 }
