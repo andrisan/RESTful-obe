@@ -41,7 +41,7 @@ class CriteriaLevelController extends Controller
     {
         $validated = $request->validated();
         $validated = $validated->concat(['criterida_id' => $criteria->id]);
-        return $validated;
+        
         return new CriteriaLevelResource(CriteriaLevel::create($validated));
     }
 
