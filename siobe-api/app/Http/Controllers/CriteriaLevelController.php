@@ -37,7 +37,7 @@ class CriteriaLevelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCriteriaLevelRequest $request, Rubric $rubric, Criteria $criteria, CriteriaLevel $criteria_level)
+    public function store(StoreCriteriaLevelRequest $request, Rubric $rubric, Criteria $criteria)
     {
         $validated = $request->validated();
 
@@ -48,7 +48,7 @@ class CriteriaLevelController extends Controller
         $criteria_level->point = $validated['point'];
         $criteria_level->save();
         
-        return new CriteriaLevelResource(CriteriaLevel::create($validated));
+        return new CriteriaLevelResource($criteria_level);
     }
 
     /**
