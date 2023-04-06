@@ -23,7 +23,7 @@ class StoreCriteriaLevelRequest extends FormRequest
     {
         return [
             'point' =>'required|decimal:2',
-            'tittle' =>'required|string',
+            'title' =>'required|string',
             'description' =>'required|string',
         ];
     }
