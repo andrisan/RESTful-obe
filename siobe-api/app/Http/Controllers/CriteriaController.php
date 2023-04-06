@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\CriteriasFilter;
 use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Requests\UpdateCritreriaRequest;
 use App\Http\Resources\CriteriaCollection;
@@ -16,9 +17,17 @@ class CriteriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Criteria $criteria)
+    public function index(Request $request, Criteria $criteria)
     {
-        return new CriteriaCollection($criteria->paginate(10));
+        $filterItems = [];
+        
+        if (!empty($request->query())) {
+            $filter = new CriteriasFilter();
+            $filterItems = $filter->filter($request);
+        }
+
+        $criteria = $criteria->where($filterItems)->paginate(10);
+        return new CriteriaCollection($criteria->appends(request()->query()));
     }
 
     /**
