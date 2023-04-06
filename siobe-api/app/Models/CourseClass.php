@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CourseClass;
+
 
 class CourseClass extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
-        'name',
-        'class_code',
-        'thumnbnail_img'
+        'course_id','name','thumnbnail_img',
+        'class_code','creator_user_id','syllabus_id'
     ];
 
     protected $casts = [

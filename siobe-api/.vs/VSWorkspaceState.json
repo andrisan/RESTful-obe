@@ -4,9 +4,12 @@
     "\\app",
     "\\app\\Http",
     "\\app\\Http\\Controllers",
-    "\\app\\Providers",
+    "\\app\\Http\\Requests",
+    "\\app\\Http\\Resources",
+    "\\app\\Models",
+    "\\database",
     "\\routes"
   ],
-  "SelectedNode": "\\routes\\api.php",
+  "SelectedNode": "\\app\\Http\\Requests\\UpdateCourseClassRequest.php",
   "PreviewInSolutionExplorer": false
 }

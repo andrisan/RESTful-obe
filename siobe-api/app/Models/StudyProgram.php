@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\StudyProgram;
 
 class StudyProgram extends Model
 {
@@ -11,16 +12,18 @@ class StudyProgram extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'name', 'department_id'
+    ];
+
     public function courses()
     {
         return $this->hasMany(Course::class);
     }
 
-    public function faculty()
+    public function department()
     {
-        return $this->belongsTo(Faculty::class);
+        return $this->belongsTo(Department::class);
     }
-    protected $fillable = [
-        'name',
-    ];
+
 }

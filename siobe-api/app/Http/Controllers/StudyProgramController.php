@@ -3,43 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Department;
+use App\Models\StudyProgram;
+use App\Http\Requests\StoreStudyProgramRequest;
 use App\Http\Requests\UpdateStudyProgramRequest;
 use App\Http\Resources\StudyProgramResource;
-use App\Models\StudyProgram;
+use App\Http\Resources\StudyProgramCollection;
 
 
 class StudyProgramController extends Controller
 {
-    //
-    public function index(){
-        return StudyProgram::all();
+    //Menampilkan seluruh data
+    public function index(Request $request, StudyProgram $studyProgram)
+    {
+        $StudyProgram = $studyProgram->with('department')->get();
+        return new StudyProgramCollection($StudyProgram);
     }
 
-    public function store(request $request){
-        $study_programs = new StudyProgram;
-        $study_programs->department_id = $request->department_id;
-        $study_programs->name = $request->name;
-        $study_programs->save();
-
-        return "Success";
+    //Menampilkan data berdasarkan id
+    public function show(Department $department, StudyProgram $studyProgram)
+    {
+        $studyProgram->load('department');
+        return new StudyProgramResource($studyProgram);
     }
 
-    public function update(request $request, $study_programs){
-        $name = $request->name;
-        $department_id = $request->department_id;
-
-        $study_programs = StudyProgram::find($study_programs);
-        $study_programs->name = $name;
-        $study_programs->department_id = $department_id;
-        $study_programs->save();
-
-        return "Success";
+    //Menambahkan data
+    public function store(StoreStudyProgramRequest $request): StudyProgramResource
+    {
+        $validated = $request->validated();
+        return new StudyProgramResource(StudyProgram::create($validated));
     }
 
-    public function destroy($study_programs){
-        $study_programs = StudyProgram::find($study_programs);
-        $study_programs->delete();
+    //Mengupdate data berdasarkan id
+    public function update(UpdateStudyProgramRequest $request, StudyProgram $studyProgram): StudyProgramResource|JsonResponse
+    {
+        $validated = $request->validated();
 
-        return "Success";
-    }   
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
+
+        $studyProgram->update($validated);
+        return new StudyProgramResource($studyProgram);
+    }
+
+    //Menghapus data
+    public function destroy(Department $department, StudyProgram $studyProgram): JsonResponse
+    {
+        $studyProgram->delete();
+        return response()->json(['message' => 'Resource deleted']);
+    }
 }

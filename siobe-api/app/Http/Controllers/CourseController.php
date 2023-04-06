@@ -3,83 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
+use App\Models\StudyProgram;
+use App\Models\Course;
+use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Resources\CourseResource;
-use App\Models\Course;
+use App\Http\Resources\CourseCollection;
 
 class CourseController extends Controller
 {
-    //
-    public function index(){
-        return Course::all();
-    }
-
-    public function create()
+    //Menampilkan seluruh data
+    public function index(Request $request, Course $course)
     {
-        return view('courses.create');
+        $Course = $course->with('studyProgram')->get();
+        return new CourseCollection($Course);
+    }
+    
+    //Menampilkan data berdasarkan id
+    public function show(StudyProgram $studyProgram, Course $course)
+    {
+        $course->load('studyProgram');
+        return new CourseResource($course);
     }
 
-    public function store(request $request){
-        $courses = new Course;
-        $courses->study_program_id = $request->study_program_id;
-        $courses->creator_user_id = $request->creator_user_id;
-        $courses->name = $request->name;
-        $courses->code = $request->code;
-        $courses->course_credit = $request->course_credit;
-        $courses->lab_credit = $request->lab_credit;
-        $courses->type = $request->type;
-        $courses->short_description = $request->short_description;
-        $courses->minimal_requirement = $request->minimal_requirement;
-        $courses->study_material_summary = $request->study_material_summary;
-        $courses->learning_media = $request->learning_media;
-        $courses->save();
-
-        return "Success";
+    //Menambahkan data
+    public function store(StoreCourseRequest $request): CourseResource
+    {
+        $validated = $request->validated();
+        return new CourseResource(Course::create($validated));
     }
 
-      public function edit($name){
-          $courses = Course::find($name);
 
-          return view('courses.edit', [
-            'name' => $name,
-          ]);
-      }
+    //Mengupdate data berdasarkan id
+    public function update(UpdateCourseRequest $request, Course $course): CourseResource|JsonResponse
+    {
+        $validated = $request->validated();
 
-    public function update(request $request, $id){
-        $study_program_id = $request->study_program_id;
-        $creator_user_id = $request->creator_user_id;
-        $name = $request->name;
-        $code = $request->code;
-        $course_credit = $request->course_credit;
-        $lab_credit = $request->lab_credit;
-        $type = $request->type;
-        $short_description = $request->short_description;
-        $minimal_requirement = $request->minimal_requirement;
-        $study_material_summary = $request->study_material_summary;
-        $learning_media = $request->learning_media;
+        if (empty($validated)) {
+            return response()->json(['message' => 'Not modified'], 304);
+        }
 
-
-        $courses = Course::find($id);
-        $courses->study_program_id = $study_program_id;
-        $courses->creator_user_id = $creator_user_id;
-        $courses->name = $name;
-        $courses->code = $code;
-        $courses->course_credit = $course_credit;
-        $courses->lab_credit = $lab_credit;
-        $courses->type = $type;
-        $courses->short_description = $short_description;
-        $courses->minimal_requirement = $minimal_requirement;
-        $courses->study_material_summary = $study_material_summary;
-        $courses->learning_media = $learning_media;
-        $courses->save();
-
-        return "Success";
+        $course->update($validated);
+        return new CourseResource($course);
     }
 
-    public function destroy($courses){
-        $courses = Course::find($courses);
-        $courses->delete();
-
-        return "Success";
+    //Menghapus data
+    public function destroy(Course $course): JsonResponse
+    {
+        $course->delete();
+        return response()->json(['message' => 'Resource deleted']);
     }
 }
