@@ -42,7 +42,7 @@ class CriteriaLevelController extends Controller
         $validated = $request->validated();
 
         $criteria_level = new CriteriaLevel;
-        $criteria_level->criteria = $criteria->id;
+        $criteria_level->criteria_id = $criteria->id;
         $criteria_level->title = $validated['title'];
         $criteria_level->description = $validated['description'];
         $criteria_level->point = $validated['point'];
