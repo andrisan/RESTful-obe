@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FacultyUpdateRequest extends FormRequest
+class LearningPlanUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +21,13 @@ class FacultyUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $method = $this->method();
-        if ($method == 'PATCH') {
-            return [
-                'name' => ['sometimes', 'string', 'max:255'],
-            ];
-        } else {
-            return [
-                'name' => ['required', 'string', 'max:255'],
-            ];
-        }
+        return [
+            'week_number' => ['sometimes'],
+            'llo_id' => ['required'],
+            'syllabus_id' => ['sometimes'],
+            'study_material' => ['sometimes'],
+            'learning_method' => ['sometimes'],
+            'estimated_time' => ['sometimes'],
+        ];
     }
 }
