@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LessonLearningOutcomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -7,7 +8,6 @@ use App\Http\Controllers\CourseLearningOutcomeController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\CriteriaLevelController;
 use App\Http\Controllers\StudentGradeController;
-use App\Http\Controllers\LearningPlanController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FacultyController;
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('study-programs',StudyProgramController::class);
     Route::apiResource('courses',CourseController::class);
     Route::apiResource('course-classes',CourseClassController::class);
-    
+
     Route::scopeBindings()->group(function () {
         Route::apiResource('rubrics', RubricController::class);
         Route::apiResource('rubrics.criterias', CriteriaController::class);
