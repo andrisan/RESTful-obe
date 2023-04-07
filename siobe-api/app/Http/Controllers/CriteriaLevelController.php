@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\CriteriaLevelsFilters;
+use App\Filters\CriteriaLevelsFilter;
 use App\Http\Requests\StoreCriteriaLevelRequest;
-use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Resources\CriteriaLevelCollection;
 use App\Models\Criteria;
 use App\Models\CriteriaLevel;
 use App\Models\Rubric;
-use App\Http\Requests\UpdateCriteriaLevel;
 use App\Http\Requests\UpdateCriteriaLevelRequest;
 use App\Http\Resources\CriteriaLevelResource;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 
 class CriteriaLevelController extends Controller
 {
@@ -26,7 +22,7 @@ class CriteriaLevelController extends Controller
         $filterItems = [];
 
         if (empty(!$request->query())) {
-            $filter = new CriteriaLevelsFilters();
+            $filter = new CriteriaLevelsFilter();
             $filterItems = $filter->filter($request);
         }
 

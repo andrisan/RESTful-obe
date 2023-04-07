@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-class CriteriaLevelsFilters extends ApiFilter
+class CriteriaLevelsFilter extends ApiFilter
 {
     protected array $safeParams = [
         'title' => ['eq'],
