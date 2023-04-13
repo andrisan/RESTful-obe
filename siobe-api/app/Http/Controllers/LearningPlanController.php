@@ -13,15 +13,19 @@ use App\Http\Resources\UserCollection;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\LearningPlanResource;
 use App\Http\Resources\LearningPlanCollection;
+use App\Filters\LearningPlanFilter;
 
 class LearningPlanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, LearningPlan $learningPlan)
+    public function index(Request $request, LearningPlan $learningPlan): LearningPlanCollection
     {
-        $LearningPlan = $learningPlan->with('syllabus')->paginate(10);
+        $filter = new LearningPlanFilter();
+        $filterItems = $filter->filter($request);
+        
+        $LearningPlan = LearningPlan::where($filterItems)->with('syllabus')->paginate(10);
         return new LearningPlanCollection($LearningPlan);
     }
 
