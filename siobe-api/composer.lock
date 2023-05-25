@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40563c009ae877c6ca194a1b54f361c5",
+    "content-hash": "cfdbd35fbb66e4f3982a627f203f659c",
     "packages": [
         {
             "name": "brick/math",
@@ -983,6 +983,7 @@
         },
         {
             "name": "laravel/breeze",
+<<<<<<< HEAD
             "version": "v1.19.2",
             "source": {
                 "type": "git",
@@ -993,6 +994,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/725e0c4fb1f630afdd90b5fba2a7f6d8d547ac29",
                 "reference": "725e0c4fb1f630afdd90b5fba2a7f6d8d547ac29",
+=======
+            "version": "v1.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "a7e7e2acfb2fd332183aae41c445be7a2329e93e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/a7e7e2acfb2fd332183aae41c445be7a2329e93e",
+                "reference": "a7e7e2acfb2fd332183aae41c445be7a2329e93e",
+>>>>>>> fcc2eeb (siobe client)
                 "shasum": ""
             },
             "require": {
@@ -1040,7 +1053,11 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
+<<<<<<< HEAD
             "time": "2023-02-18T20:55:43+00:00"
+=======
+            "time": "2023-05-04T15:02:53+00:00"
+>>>>>>> fcc2eeb (siobe client)
         },
         {
             "name": "laravel/framework",
