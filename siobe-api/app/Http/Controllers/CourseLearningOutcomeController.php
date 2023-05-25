@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\CourseLearningOutcomeFilter;
 use App\Http\Requests\StoreCourseLearningOutcomesRequest;
 use App\Http\Requests\UpdateCourseLearningOutcomesRequest;
+use App\Http\Resources\CourseLearningOutcomeCollection;
 use App\Http\Resources\CourselearningOutcomeResource;
 use App\Models\CourseLearningOutcome;
 use App\Models\Syllabus;
@@ -15,9 +17,13 @@ class CourseLearningOutcomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(CourseLearningOutcome $clo)
+    public function index(Request $request): CourseLearningOutcomeCollection
     {
-        return CourseLearningOutcomeResource::collection($clo->paginate(10));
+        $filter = new CourseLearningOutcomeFilter();
+        $filterItems = $filter->filter($request);
+
+        $clo = CourseLearningOutcome::where($filterItems)->paginate(10);
+        return new CourseLearningOutcomeCollection($clo->appends(request()->query()));
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\SyllabusFilter;
 use App\Http\Requests\StoreSyllabusRequest;
 use App\Http\Requests\UpdateSyllabusRequest;
+use App\Http\Resources\SyllabusCollection;
 use App\Http\Resources\SyllabusResource;
 use App\Models\Syllabus;
 use Illuminate\Http\JsonResponse;
@@ -15,10 +17,13 @@ class SyllabusController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(syllabus $syllabus)
+    public function index(Request $request): SyllabusCollection
     {
-        return syllabusResource::collection($syllabus->paginate(10));
-        
+        $filter = new SyllabusFilter();
+        $filterItems = $filter->filter($request);
+
+        $syllabus = Syllabus::where($filterItems)->paginate(10);
+        return new SyllabusCollection($syllabus->appends(request()->query()));
     }
     
     /**
