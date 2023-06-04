@@ -5,7 +5,8 @@ import PageNotFound from '@/pages/errors/404.vue'
 import Dashboard from '@/pages/Dashboard.vue'
 import Syllabi from '@/pages/Syllabi.vue'
 import SyllabiDetail from '@/pages/SyllabiDetail.vue'
-import SyllabiCreateLearningPlan from '@/pages/SyllabiCreateLearningPlan.vue'
+import CreateLearningPlan from '@/pages/SyllabiCreateLearningPlan.vue'
+import EditLearningPlan from '@/pages/SyllabiEditLearningPlan.vue'
 import Login from '@/pages/auth/Login.vue'
 import Register from '@/pages/auth/Register.vue'
 import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
@@ -68,7 +69,7 @@ const routes = [
     },
     {
         path: '/syllabi/1',
-        name: 'first syllabi',
+        name: 'detail syllabi',
         component: SyllabiDetail,
         meta: {
             title: 'Syllabi',
@@ -79,7 +80,17 @@ const routes = [
     {
         path: '/syllabi/1/learning-plans/create',
         name: 'create learning plan',
-        component: SyllabiCreateLearningPlan,
+        component: CreateLearningPlan,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi/1/learning-plans/1/edit',
+        name: 'edit learning plan',
+        component: EditLearningPlan,
         meta: {
             title: 'Syllabi',
             guard: 'guest',
