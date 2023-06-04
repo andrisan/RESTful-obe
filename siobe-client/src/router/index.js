@@ -3,6 +3,9 @@ import { useUsers } from '@/stores/user'
 import Welcome from '@/pages/Welcome.vue'
 import PageNotFound from '@/pages/errors/404.vue'
 import Dashboard from '@/pages/Dashboard.vue'
+import Syllabi from '@/pages/Syllabi.vue'
+import SyllabiDetail from '@/pages/SyllabiDetail.vue'
+import SyllabiCreateLearningPlan from '@/pages/SyllabiCreateLearningPlan.vue'
 import Login from '@/pages/auth/Login.vue'
 import Register from '@/pages/auth/Register.vue'
 import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
@@ -49,7 +52,38 @@ const routes = [
         component: Dashboard,
         meta: {
             title: 'Dashboard',
-            guard: 'auth',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi',
+        name: 'syllabi',
+        component: Syllabi,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi/1',
+        name: 'first syllabi',
+        component: SyllabiDetail,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi/1/learning-plans/create',
+        name: 'create learning plan',
+        component: SyllabiCreateLearningPlan,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
         },
     },
     {
