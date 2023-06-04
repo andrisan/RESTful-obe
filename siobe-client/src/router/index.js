@@ -3,6 +3,10 @@ import { useUsers } from '@/stores/user'
 import Welcome from '@/pages/Welcome.vue'
 import PageNotFound from '@/pages/errors/404.vue'
 import Dashboard from '@/pages/Dashboard.vue'
+import Faculties from '@/pages/Faculties.vue'
+import Department from '@/pages/FacultiesDepartment.vue'
+import CreateDepartment from '@/pages/FacultiesCreateDepartment.vue'
+import EditDepartment from '@/pages/FacultiesEditDepartment.vue'
 import Syllabi from '@/pages/Syllabi.vue'
 import SyllabiDetail from '@/pages/SyllabiDetail.vue'
 import CreateLearningPlan from '@/pages/SyllabiCreateLearningPlan.vue'
@@ -53,6 +57,46 @@ const routes = [
         component: Dashboard,
         meta: {
             title: 'Dashboard',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties',
+        name: 'faculties',
+        component: Faculties,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties/1/departments',
+        name: 'department',
+        component: Department,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties/1/departments/create',
+        name: 'create department',
+        component: CreateDepartment,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties/1/departments/1/edit',
+        name: 'edit department',
+        component: EditDepartment,
+        meta: {
+            title: 'Faculties',
             guard: 'guest',
             // necessarily : auth
         },
@@ -160,7 +204,7 @@ const routes = [
         },
     },
     {
-        path: '/:pathMatch(.*)*',
+        path: '/:pathMatch(.)',
         redirect: '/page-not-found',
     },
 ]
