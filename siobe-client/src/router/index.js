@@ -39,9 +39,9 @@ const routes = [
         path: '/home',
         redirect: '/dashboard',
         component: Dashboard,
-        query: {
-            verified: 'verified',
-        },
+        // query: {
+        //     verified: 'verified',
+        // },
         meta: {
             guard: 'auth',
         },
@@ -126,17 +126,17 @@ const routes = [
         path: '/rubrics',
         name: 'rubrics',
         component: Rubrics,
-        meta: {
-            guard: 'auth',
-        },
+        // meta: {
+        //     guard: 'auth',
+        // },
     },
     {
         path: '/showrubrics',
-        name : 'showrubrics',
+        name: 'showrubrics',
         component: Showrubrics,
-        meta: {
-            guard: 'auth',
-        },
+        // meta: {
+        //     guard: 'auth',
+        // },
     },
 ]
 
