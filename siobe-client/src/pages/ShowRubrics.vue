@@ -1,4 +1,4 @@
-<template>
+    <template>
     <NavRubrics>
         <template #header>
             <h2 class="font-bold text-xl text-gray-800 leading-tight">
@@ -43,7 +43,7 @@
                     <button
                         class="button-link bg-white shadow font-bold border border-blue-800 rounded-lg"
                         style="padding: 6%; width: 150px"
-                        @click="createCriteria">
+                        @click="createcriterialevel">
                         Create Criteria
                     </button>
                 </div>
@@ -156,7 +156,21 @@
 </template>
 
 <script setup>
+
 import NavRubrics from '@/components/NavRubrics.vue'
+
+</script>
+
+<script>
+
+export default {
+    methods: {
+        createcriterialevel() {
+            this.$router.push('/createcriterialevel');
+        }
+    }
+}
+
 </script>
 
 <style></style>

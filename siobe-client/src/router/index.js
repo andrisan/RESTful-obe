@@ -11,6 +11,7 @@ import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
 
 import Rubrics from '@/pages/Rubrics.vue'
 import Showrubrics from '@/pages/ShowRubrics.vue'
+import Createcriterialevel from '@/pages/CreateCriteriaLevel.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -138,6 +139,11 @@ const routes = [
         //     guard: 'auth',
         // },
     },
+    {
+        path: '/createcriterialevel',
+        name: 'createcriterialevel',
+        component: Createcriterialevel,
+    }
 ]
 
 const router = createRouter({
