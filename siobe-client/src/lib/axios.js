@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-const axios = Axios.create({
+const axiosClient = Axios.create({
     baseURL: import.meta.env.VITE_PUBLIC_BACKEND_URL,
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -8,4 +8,4 @@ const axios = Axios.create({
     withCredentials: true,
 })
 
-export default axios
+export default axiosClient

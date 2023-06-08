@@ -27,9 +27,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="Faculty in faculties" :key="faculty.id">
+                        <tr v-for="Faculty in faculties" :key="Faculty.id">
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                {{ Faculty.no }}
+                                {{ Faculty.id }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ Faculty.name }}
@@ -46,82 +46,6 @@
                                 </button>
                             </td>
                         </tr>
-                        <!-- <tr class="bg-white border-b hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                2
-                            </th>
-                            <td class="px-6 py-4">
-                                Fakultas Ilmu Administrasi
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="text-orange-500 pr-5 hover:text-orange-800">
-                                    Manage Department
-                                </button>
-                                <button class="text-blue-500 pr-5 hover:text-blue-800">
-                                    Edit
-                                </button>
-                                <button class="text-red-500 pr-5 hover:text-red-800">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                3
-                            </th>
-                            <td class="px-6 py-4">
-                                Fakultas Kedokteran
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="text-orange-500 pr-5 hover:text-orange-800">
-                                    Manage Department
-                                </button>
-                                <button class="text-blue-500 pr-5 hover:text-blue-800">
-                                    Edit
-                                </button>
-                                <button class="text-red-500 pr-5 hover:text-red-800">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                4
-                            </th>
-                            <td class="px-6 py-4">
-                                Fakultas Kedokteran Gigi
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="text-orange-500 pr-5 hover:text-orange-800">
-                                    Manage Department
-                                </button>
-                                <button class="text-blue-500 pr-5 hover:text-blue-800">
-                                    Edit
-                                </button>
-                                <button class="text-red-500 pr-5 hover:text-red-800">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                5
-                            </th>
-                            <td class="px-6 py-4">
-                                Fakultas Hukum
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="text-orange-500 pr-5 hover:text-orange-800">
-                                    Manage Department
-                                </button>
-                                <button class="text-blue-500 pr-5 hover:text-blue-800">
-                                    Edit
-                                </button>
-                                <button class="text-red-500 pr-5 hover:text-red-800">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -130,7 +54,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosClient from '../lib/axios'
 
 export default {
     data() {
@@ -140,8 +64,9 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/faculties').then((response) => {
+        axiosClient.get('/api/faculties').then((response) => {
             this.faculties = response.data.data
+            console.log(response.data.data);
         })
     },
 
