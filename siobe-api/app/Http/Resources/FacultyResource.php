@@ -17,6 +17,7 @@ class FacultyResource extends JsonResource
         $includeDate = $request->query('includeDate');
         return [
 
+            'id' => $this->id,
             'name' => $this->name,
             $this->mergeWhen($includeDate, [
                 'email_verified_at' => $this->email_verified_at,
