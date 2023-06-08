@@ -10,6 +10,7 @@ import ResetPassword from '@/pages/auth/ResetPassword.vue'
 import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
 import Faculty from '@/pages/Faculty.vue'
 import CreateFaculty from '@/pages/CreateFaculty.vue'
+import AssignmentDetail from '@/pages/AssignmentDetails.vue'
 import Llo from '@/pages/Llo.vue'
 import AssignmentDetails from '@/pages/AssignmentDetails.vue'
 
@@ -146,31 +147,6 @@ const routes = [
         //     guard: 'auth',
         // },
     },
-    {
-        path: '/llo',
-        name: 'llo',
-        component: Llo,
-        query: {
-            resend: 'resend',
-        },
-        // meta: {
-        //     title: 'Email Verification',
-        //     guard: 'auth',
-        // },
-    },
-    {
-        path: '/assignment-details',
-        name: 'assignment details',
-        component: AssignmentDetails,
-        query: {
-            resend: 'resend',
-        },
-        // meta: {
-        //     title: 'Email Verification',
-        //     guard: 'auth',
-        // },
-    },
-
 ]
 
 const router = createRouter({
