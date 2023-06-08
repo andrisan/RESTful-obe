@@ -12,6 +12,7 @@ import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
 import Rubrics from '@/pages/Rubrics.vue'
 import Showrubrics from '@/pages/ShowRubrics.vue'
 import Createcriterialevel from '@/pages/CreateCriteriaLevel.vue'
+import EditRubrics from '@/pages/EditRubrics.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -143,7 +144,12 @@ const routes = [
         path: '/createcriterialevel',
         name: 'createcriterialevel',
         component: Createcriterialevel,
-    }
+    },
+    {
+        path: '/editrubrics',
+        name: 'editrubrics',
+        component: EditRubrics,
+    },
 ]
 
 const router = createRouter({
