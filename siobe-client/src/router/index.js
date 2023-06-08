@@ -10,6 +10,7 @@ import ResetPassword from '@/pages/auth/ResetPassword.vue'
 import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
 import Faculty from '@/pages/Faculty.vue'
 import CreateFaculty from '@/pages/CreateFaculty.vue'
+import AssignmentDetail from '@/pages/AssignmentDetails.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -143,6 +144,11 @@ const routes = [
         //     title: 'Email Verification',
         //     guard: 'auth',
         // },
+    },
+    {
+        path: '/detail-assignment',
+        name: 'detail assignment',
+        component: AssignmentDetail
     },
 ]
 
