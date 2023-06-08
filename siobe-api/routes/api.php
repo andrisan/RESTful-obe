@@ -29,10 +29,11 @@ use App\Http\Controllers\CourseClassController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::apiResource('assignments', AssignmentController::class);
+Route::apiResource('faculties',FacultyController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
-    Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
     Route::apiResource('ilo', IntendedLearningOutcomeController::class);
     Route::apiResource('clo', CourseLearningOutcomeController::class);
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::apiResource('rubrics.criterias', CriteriaController::class);
         Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
         Route::apiResource('student-grades', StudentGradeController::class);
-        Route::apiResource('assignments', AssignmentController::class);
+
         Route::apiResource('llo', LessonLearningOutcomeController::class);
         Route::apiResource('faculties.departments', DepartmentController::class);
         Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
