@@ -149,6 +149,9 @@ const routes = [
         path: '/editrubrics',
         name: 'editrubrics',
         component: EditRubrics,
+        meta: {
+            guard: 'auth',
+        },
     },
 ]
 
