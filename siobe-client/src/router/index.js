@@ -8,6 +8,8 @@ import Register from '@/pages/auth/Register.vue'
 import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
 import ResetPassword from '@/pages/auth/ResetPassword.vue'
 import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
+import Faculty from '@/pages/Faculty.vue'
+import CreateFaculty from '@/pages/CreateFaculty.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -47,10 +49,10 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
-        meta: {
-            title: 'Dashboard',
-            guard: 'auth',
-        },
+        // meta: {
+        //     title: 'Dashboard',
+        //     guard: 'auth',
+        // },
     },
     {
         path: '/login',
@@ -117,6 +119,30 @@ const routes = [
     {
         path: '/:pathMatch(.*)*',
         redirect: '/page-not-found',
+    },
+    {
+        path: '/faculty',
+        name: 'faculty',
+        component: Faculty,
+        query: {
+            resend: 'resend',
+        },
+        // meta: {
+        //     title: 'Email Verification',
+        //     guard: 'auth',
+        // },
+    },
+    {
+        path: '/create-faculty',
+        name: 'create faculty',
+        component: CreateFaculty,
+        query: {
+            resend: 'resend',
+        },
+        // meta: {
+        //     title: 'Email Verification',
+        //     guard: 'auth',
+        // },
     },
 ]
 
