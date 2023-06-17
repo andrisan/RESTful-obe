@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <hr class="h-px my-8 bg-gray-200 border-0" />
+        <hr class="h-px my-0 bg-gray-200 border-0" />
     </nav>
 </template>
 <script>
