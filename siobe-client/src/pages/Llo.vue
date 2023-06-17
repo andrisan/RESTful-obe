@@ -13,7 +13,7 @@
           <h1 class="text-gray-500 font-bold text-m ">Losson Learning Outcomes (LLO)</h1>
         </div>
         <div class="col-end-7 col-span-2">
-          <a href="/create-faculty" class="bg-white drop-shadow px-3 py-3 rounded-lg mr-48">Create New LLO</a>
+          <a href="/create-llo" class="bg-white drop-shadow px-3 py-3 rounded-lg mr-48">Create New LLO</a>
         </div>
 			</div>
 			<div class="flex justify-center items-center">

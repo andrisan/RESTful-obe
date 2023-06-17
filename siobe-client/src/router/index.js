@@ -12,6 +12,7 @@ import Faculty from '@/pages/Faculty.vue'
 import CreateFaculty from '@/pages/CreateFaculty.vue'
 import AssignmentDetail from '@/pages/AssignmentDetails.vue'
 import Llo from '@/pages/Llo.vue'
+import CreateLlo from '@/pages/CreateLLO.vue'
 import AssignmentDetails from '@/pages/AssignmentDetails.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
@@ -139,6 +140,30 @@ const routes = [
         path: '/create-faculty',
         name: 'create faculty',
         component: CreateFaculty,
+        query: {
+            resend: 'resend',
+        },
+        // meta: {
+        //     title: 'Email Verification',
+        //     guard: 'auth',
+        // },
+    },
+    {
+        path: '/llo',
+        name: 'llo',
+        component: Llo,
+        query: {
+            resend: 'resend',
+        },
+        // meta: {
+        //     title: 'Email Verification',
+        //     guard: 'auth',
+        // },
+    },
+    {
+        path: '/create-llo',
+        name: 'Create Llo',
+        component: CreateLlo,
         query: {
             resend: 'resend',
         },
