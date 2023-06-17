@@ -1,10 +1,8 @@
 <script setup>
-import Navbar from '@/components/Navbar.vue'
 </script>
 <template>
 
     <div class="bg-gray-200">
-        <Navbar />
         <div class="bg-white">
             <div class="nav-assignment px-40 py-6">
                 <nav class="bg-white border-gray-200">
