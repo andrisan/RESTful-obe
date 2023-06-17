@@ -1,6 +1,4 @@
-<script setup>
-import Navbar from '@/components/Navbar.vue'
-</script>
+
 <template>
     <div class="bg-gray-200 h-screen pb-10">
         <Navbar />
