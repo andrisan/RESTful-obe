@@ -31,7 +31,7 @@
                     :href="href"
                     :active="isActive"
                     @click="navigate">
-                    > facere beatae eos
+                    > {{ rubricStore.getShowRubric.title }}
                 </ResponsiveNavLink>
             </router-link>
         </div>
@@ -43,7 +43,7 @@
                     <button
                         class="button-link bg-white shadow font-bold border border-blue-800 rounded-lg"
                         style="padding: 6%; width: 150px"
-                        @click="createcriteria">
+                        @click="createCriteria">
                         Create Criteria
                     </button>
                 </div>
@@ -51,28 +51,21 @@
         </div>
 
         <div
-            class="bg-white shadow"
+            class="bg-white shadow mb-8 pb-8"
             style="margin-left: 10%; margin-right: 10%">
-            <div class="container">
+            <div v-for="criteria in criteriaStore.getAllCriteria" class="container">
                 <div class="row">
                     <div class="col" style="margin-top: 3%">
-                        <h5 class="font-bold">Facere Beate Eos</h5>
+                        <h5 class="font-bold">{{ criteria.title }}</h5>
                     </div>
                     <div class="col text-right" style="margin-top: 3%">
-                        <h6 class="font-bold">Max Point : 6.25</h6>
+                        <h6 class="font-bold">Max Point : {{ criteria.max_point }}</h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Pellentesque vitae sem ac augue hendrerit
-                            sollicitudin id quis nisl. Vestibulum ante ipsum
-                            primis in faucibus orci luctus et ultrices posuere
-                            cubilia curae; Nulla sed arcu vel tellus egestas
-                            pharetra. In ac dolor vehicula, iaculis augue et,
-                            blandit augue. Aliquam elit mi, sollicitudin non
-                            feugiat eget, varius ut nulla.
+                            {{ criteria.description }}
                         </p>
                     </div>
                 </div>
@@ -95,55 +88,12 @@
                                 <th>Point</th>
                                 <th>Description</th>
                             </tr>
-                            <tr>
-                                <th>1</th>
-                                <th>lorem ipsum</th>
-                                <th>6.25</th>
+                            <tr v-for="(criteriaLevel, index) in criteria.criteria_levels" :key="index">
+                                <th>{{ index + 1}}</th>
+                                <th>{{ criteriaLevel.title }}</th>
+                                <th>{{ criteriaLevel.point }}</th>
                                 <th>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Pellentesque vitae sem ac
-                                    augue hendrerit sollicitudin id quis nisl.
-                                    Vestibulum ante ipsum primis in faucibus
-                                    orci luctus et ultrices posuere cubilia
-                                    curae; Nulla sed arcu vel tellus egestas
-                                    pharetra. In ac dolor vehicula, iaculis
-                                    augue et, blandit augue. Aliquam elit mi,
-                                    sollicitudin non feugiat eget, varius ut
-                                    nulla.
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>2</th>
-                                <th>lorem ipsum</th>
-                                <th>6.25</th>
-                                <th>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Pellentesque vitae sem ac
-                                    augue hendrerit sollicitudin id quis nisl.
-                                    Vestibulum ante ipsum primis in faucibus
-                                    orci luctus et ultrices posuere cubilia
-                                    curae; Nulla sed arcu vel tellus egestas
-                                    pharetra. In ac dolor vehicula, iaculis
-                                    augue et, blandit augue. Aliquam elit mi,
-                                    sollicitudin non feugiat eget, varius ut
-                                    nulla.
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>3</th>
-                                <th>lorem ipsum</th>
-                                <th>6.25</th>
-                                <th>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Pellentesque vitae sem ac
-                                    augue hendrerit sollicitudin id quis nisl.
-                                    Vestibulum ante ipsum primis in faucibus
-                                    orci luctus et ultrices posuere cubilia
-                                    curae; Nulla sed arcu vel tellus egestas
-                                    pharetra. In ac dolor vehicula, iaculis
-                                    augue et, blandit augue. Aliquam elit mi,
-                                    sollicitudin non feugiat eget, varius ut
-                                    nulla.
+                                    {{ criteriaLevel.description }}
                                 </th>
                             </tr>
                         </thead>
@@ -158,19 +108,42 @@
 <script setup>
 
 import NavRubrics from '@/components/NavRubrics.vue'
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useRubrics } from '@/stores/rubric';
+import { useCriterias } from '@/stores/criteria';
+import { useLlo } from '@/stores/llo';
+
+const router = useRouter();
+
+const route = useRoute();
+const rubricId = ref(route.params.id)
+
+const rubricStore = useRubrics()
+rubricStore.fetchRubricWithId(rubricId.value)
+
+const criteriaStore = useCriterias()
+criteriaStore.fetchAllCriteria(rubricId.value)
+
+const lloStore = useLlo()
+lloStore.fetchLloById(1)
+
+function createCriteria() {
+    router.push('/criteria/' + 1 + '/create')
+}
 
 </script>
 
-<script>
+<!-- <script>
 
 export default {
     methods: {
         createcriteria() {
-            this.$router.push('/createCriteria');
+            this.$router.push('/criteria/' + 1 + '/create');
         }
     }
 }
-
-</script>
+ -->
+<!-- </script> -->
 
 <style></style>
