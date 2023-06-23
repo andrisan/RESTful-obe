@@ -30,7 +30,7 @@
                     class="font-semibold"
                     style="color: blue"
                     @click="navigate">
-                    > facere beatae eos
+                    > {{ rubricStore.getShowRubric.title }}
                 </ResponsiveNavLink>
             </router-link>
             <router-link
@@ -69,7 +69,7 @@
                             <span class="label-text">Criteria Title</span>
                         </label>
                         <div>
-                            <input type="text" name="title" placeholder="Title" class="input input-bordered select-bordered w-full max-w-xs"/>
+                            <input v-model="title" type="text" name="title" placeholder="Title" class="input input-bordered select-bordered w-full max-w-xs"/>
                         </div>
                     </div> 
                 </div>
@@ -80,14 +80,14 @@
                             <span class="label-text">Description</span>
                         </label>
                         <div>
-                            <textarea class="textarea textarea-bordered select-bordered w-full h-64" placeholder="Description" name="description"/>
+                            <textarea v-model="description" class="textarea textarea-bordered select-bordered w-full h-64" placeholder="Description" name="description"/>
                         </div>
                     </div>
                 </div>
                 
                 
                 <div class="mt-4 ml-3 mb-4" style="display: flex;">
-                    <button class="bg-gray-700 border rounded-md" style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
+                    <button @click="criteriaStore.createCriteria(rubricId, title, description)" class="bg-gray-700 border rounded-md" style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
                     <button class="ml-5 mt-1" style="color: darkslategray;" @click="showrubrics">Cancel</button>
                 </div>
             </div>
@@ -97,6 +97,20 @@
 
 <script setup>
 import NavRubrics from '@/components/NavRubrics.vue'
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useRubrics } from '@/stores/rubric';
+import { useCriterias } from '@/stores/criteria';
+
+const route = useRoute()
+const rubricId = ref(route.params.id)
+
+const rubricStore = useRubrics()
+rubricStore.fetchRubricWithId(rubricId.value)
+
+const criteriaStore = useCriterias()
+const title = ref('')
+const description = ref('')
 
 </script>
 
