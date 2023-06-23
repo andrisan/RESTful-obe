@@ -55,14 +55,14 @@
                         </th>
                     </tr>
                 </thead>
-                <tr>
+                <tr v-for="(rubric, index) in store.getAllRubric" :key="index">
                     <td
                         class="text-gray-600 font-semibold px-6 py-3 border-t border-gray-100">
-                        1
+                        {{ index + 1 }}
                     </td>
                     <td
                         class="text-gray-600 font-semibold px-6 py-3 border-t border-gray-100">
-                        facere beatae eos
+                        {{ rubric.title }}
                     </td>
                     <td
                         class="text-gray-600 px-6 py-3 border-t border-gray-100">
@@ -73,7 +73,7 @@
                                 style="text-decoration: none">
                                 <router-link
                                     v-slot="{ href, isActive, navigate }"
-                                    to="/showrubrics"
+                                    :to="'/rubrics/' + rubric.id"
                                     custom>
                                     <ResponsiveNavLink
                                         :href="href"
@@ -86,9 +86,19 @@
                             <a
                                 href="#"
                                 class="text-darkblue-700 font-semibold"
-                                style="text-decoration: none"
-                                >Edit</a
-                            >
+                                style="text-decoration: none">
+                                <router-link
+                                    v-slot="{ href, isActive, navigate }"
+                                    :to="'/rubrics/' + rubric.id + '/edit'"
+                                    custom>
+                                    <ResponsiveNavLink
+                                        :href="href"
+                                        :active="isActive"
+                                        @click="navigate">
+                                        Edit
+                                    </ResponsiveNavLink>
+                                </router-link>
+                            </a>
                             <form
                                 method="POST"
                                 action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
@@ -109,6 +119,10 @@
 
 <script setup>
 import NavRubrics from '@/components/NavRubrics.vue'
+import { useRubrics } from '@/stores/rubric'
+
+const store = useRubrics()
+store.fetchAllRubric()
 </script>
 
 <script>
