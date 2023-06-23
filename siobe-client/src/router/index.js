@@ -135,7 +135,7 @@ const routes = [
         },
     },
     {
-        path: '/showrubrics',
+        path: '/rubrics/:id',
         name: 'showrubrics',
         component: Showrubrics,
         meta: {
@@ -151,7 +151,7 @@ const routes = [
         },
     },
     {
-        path: '/editrubrics',
+        path: '/rubrics/:id/edit',
         name: 'editrubrics',
         component: EditRubrics,
         meta: {
@@ -159,7 +159,7 @@ const routes = [
         },
     },
     {
-        path: '/createCriteria',
+        path: '/criteria/:id/create',
         name: 'createCriteria',
         component: CreateCriteria,
         meta: {
