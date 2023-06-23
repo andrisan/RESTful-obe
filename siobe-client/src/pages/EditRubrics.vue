@@ -2,7 +2,7 @@
     <NavRubrics>
         <template #header>
             <h2 class="font-bold text-xl text-gray-800 leading-tight">
-                Edit Rubric: Lorem Ipsum
+                Edit Rubric
             </h2>
         </template>
 
@@ -16,14 +16,16 @@
                     </div>
                     <div>
                         <input
+                            v-model="title"
                             class="col ml-3 border border-gray-800 rounded-lg pl-4"
-                            placeholder="lorem ipsum"
+                            :placeholder="rubricStore.getShowRubric.title"
                             style="width: 360px; height: 48px"
                             type="text" />
                     </div>
                 </div>
                 <div class="mt-4 ml-3 mb-4" style="display: flex">
                     <button
+                        @click="rubricStore.updateRubric(rubricId, title)"
                         class="bg-gray-700 border rounded-md"
                         style="
                             font-weight: bold;
@@ -47,6 +49,17 @@
 
 <script setup>
 import NavRubrics from '@/components/NavRubrics.vue'
+import { useRoute } from 'vue-router';
+import { useRubrics } from '@/stores/rubric';
+import { ref } from 'vue';
+
+const route = useRoute();
+const rubricId = ref(route.params.id)
+
+const rubricStore = useRubrics()
+rubricStore.fetchRubricWithId(rubricId.value)
+
+const title = ref('')
 </script>
 
 <script>
