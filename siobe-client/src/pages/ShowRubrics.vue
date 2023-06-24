@@ -50,10 +50,155 @@
             </div>
         </div>
 
-        <div
-            class="bg-white shadow mb-8 pb-8"
+        <div class="bg-white shadow rounded-md" style="margin-left: 10%; margin-right: 12%;">
+            <div class="container text-justify" style="padding-top: 1%; padding-bottom: 1%;">
+                <div class="row" style="margin-left: 1%; margin-right: 1%;">
+                    <div class="col text-left">
+                        <p class="font-bold">Facere Beate Eos</p>
+                    </div>
+                    <div class="col text-right">
+                        <p class="font-bold">Max Point: 6.25</p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left: 2%; margin-right: 2%;">
+                    <div class="col text-justify">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Pellentesque vitae sem ac augue hendrerit
+                            sollicitudin id quis nisl. Vestibulum ante ipsum
+                            primis in faucibus orci luctus et ultrices posuere
+                            cubilia curae; Nulla sed arcu vel tellus egestas
+                            pharetra. In ac dolor vehicula, iaculis augue et,
+                            blandit augue. Aliquam elit mi, sollicitudin non
+                            feugiat eget, varius ut nulla.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left: 3%; margin-right: 2%;">
+                    <div class="col border p-3 rounded-md">
+                        <p class="font-semibold">Lesson Learning Outcome: Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Pellentesque vitae sem ac
+                            augue hendrerit sollicitudin id quis nisl
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left: 2%; margin-right: 1%; margin-top: 2%;">
+                    <div class="col">
+                        <h6 class="text-gray-600 font-semibold">Criteria Levels</h6>
+                    </div>
+
+                    <div class="col text-right">
+                        <button
+                            class="button-link border text-gray-600 font-semibold rounded-lg"
+                            style="padding-top: 1%; padding-bottom: 1%; padding-left: 2%; padding-right: 2%;"
+                            @click="addlevel">
+                            Add Level
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left: 3%; margin-right: 2%; margin-top: 1%;">
+                    <table class="border-collapse border table-auto w-full bg-white table-striped relative">
+                        <thead>
+                            <tr class="text-left">
+                                <th
+                                class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                    No
+                                </th>
+                                <th
+                                class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">
+                                    Title
+                                </th>
+                                <th
+                                class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                    Point
+                                </th>
+                                <th
+                                class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">
+                                    Description
+                                </th>
+                                <th
+                                class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-10">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tr>
+                            <td
+                            class="text-gray-500 px-6 py-3 border-t border-gray-100">
+                                1
+                            </td>
+
+                            <td
+                            class="text-gray-500 px-6 py-3 border-t border-gray-100">
+                                eveniet totam enim
+                            </td>
+
+                            <td
+                            class="text-gray-500 px-6 py-3 border-t border-gray-100">
+                                6.25
+                            </td>
+
+                            <td
+                            class="text-gray-500 px-6 py-3 border-t border-gray-100">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Pellentesque vitae sem ac augue hendrerit
+                                sollicitudin id quis nisl. Vestibulum ante ipsum
+                                primis in faucibus orci luctus et ultrices posuere
+                                cubilia curae; Nulla sed arcu vel tellus egestas
+                                pharetra. In ac dolor vehicula, iaculis augue et,
+                                blandit augue. Aliquam elit mi, sollicitudin non
+                                feugiat eget, varius ut nulla.
+                            </td>
+
+                            <td
+                            class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                <div class="flex flex-wrap space-x-4">
+                                    <a
+                                    href="#"
+                                    class="text-darkblue-700 font-semibold"
+                                    style="text-decoration: none"
+                                        >Edit
+                                    </a>
+                                    <form
+                                    method="POST"
+                                    action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
+                                        <button
+                                        class="text-red-500 font-semibold"
+                                        style="text-decoration: none"
+                                        onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="row" style="margin-left: 3%; margin-right: 1%; margin-top: 1%;">
+                    <div class="col text-right">
+                        <button
+                            class="button-link border text-white-600 font-semibold rounded-lg"
+                            style="padding-top: 4px; padding-bottom: 4px; padding-left: 2%; padding-right: 2%; background-color: red; color: white;"
+                            @click="addlevel">
+                            DELETE CRITERIA
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div
+            class="bg-white shadow"
             style="margin-left: 10%; margin-right: 10%">
-            <div v-for="criteria in criteriaStore.getAllCriteria" class="container">
+            <div class="container" style="margin-left: 2%;">
                 <div class="row">
                     <div class="col" style="margin-top: 3%">
                         <h5 class="font-bold">{{ criteria.title }}</h5>
@@ -101,7 +246,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
     </NavRubrics>
 </template>
 
