@@ -3,7 +3,7 @@ import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
-// const csrf = () => axios.get('/sanctum/csrf-cookie')
+const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
 
 export const useFaculties = defineStore('faculty', {
     state: () => ({
