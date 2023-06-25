@@ -21,19 +21,19 @@ export const useLlo = defineStore('llo', {
     actions: {
         fetchAllLlo() {
             axiosClient
-                .get('//127.0.0.1:8000/api/llo')
+                .get('//localhost:8000/api/llo')
                 .then(response => {
                     // console.log(response.data)
                     this.allLlo = response.data.data
                 })
                 .catch(error => {
-                    this.allLlo= error
+                    this.allLlo = error
                 })
         },
 
         createLlo(name) {
             axiosClient
-                .post('//127.0.0.1:8000/api/llo/', {
+                .post('//localhost:8000/api/llo/', {
                     name: name,
                 })
                 .then(response => {

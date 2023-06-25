@@ -38,7 +38,9 @@ export const useFaculties = defineStore('faculty', {
                 })
                 .then(response => {
                     console.log(response.status)
+                    window.location.href = '/faculty'
                     this.createFaculty = response.status
+
                 })
                 .catch(error => {
                     console.log(error.response)
