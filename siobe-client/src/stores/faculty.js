@@ -45,5 +45,20 @@ export const useFaculties = defineStore('faculty', {
                     this.createFaculty = error.response.status
                 })
         },
+
+        updateFaculty(facultyId, name) {
+            axiosClient
+                .put('//127.0.0.1:8000/api/faculties/' + facultyId, {
+                    name: name,
+                })
+                .then(response => {
+                    console.log(response.status)
+                    this.createFaculty = response.status
+                })
+                .catch(error => {
+                    console.log(error.response)
+                    this.createFaculty = error.response.status
+                })
+        },
     },
 })

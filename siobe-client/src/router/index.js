@@ -149,6 +149,18 @@ const routes = [
         // },
     },
     {
+        path: '/update-faculty',
+        name: 'update faculty',
+        component: CreateFaculty,
+        query: {
+            resend: 'resend',
+        },
+        // meta: {
+        //     title: 'Email Verification',
+        //     guard: 'auth',
+        // },
+    },
+    {
         path: '/llo',
         name: 'llo',
         component: Llo,
