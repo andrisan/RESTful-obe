@@ -15,6 +15,8 @@ import Createcriterialevel from '@/pages/CreateCriteriaLevel.vue'
 import EditRubrics from '@/pages/EditRubrics.vue'
 import CreateCriteria from '@/pages/CreateCriteria.vue'
 import EditCriteria from '@/pages/EditCriteria.vue'
+import EditCriteriaLevel from '@/pages/EditCriteriaLevel.vue'
+import CreateRubrics from '@/pages/CreateRubrics.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -170,6 +172,22 @@ const routes = [
         path: '/editCriteria',
         name: 'editCriteria',
         component: EditCriteria,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/editCriteriaLevel',
+        name: 'editCriteriaLevel',
+        component: EditCriteriaLevel,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/createRubrics',
+        name: 'createRubrics',
+        component: CreateRubrics,
         meta: {
             guard: 'auth',
         },
