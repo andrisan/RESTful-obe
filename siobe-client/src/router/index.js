@@ -153,6 +153,14 @@ const routes = [
         },
     },
     {
+        path: '/createcriterialevel',
+        name: 'editCriteriaLevel',
+        component: Createcriterialevel,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
         path: '/rubrics/:id/edit',
         name: 'editrubrics',
         component: EditRubrics,
