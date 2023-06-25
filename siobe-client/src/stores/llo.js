@@ -5,44 +5,44 @@ import { reactive, ref } from 'vue'
 
 const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
 
-export const useFaculties = defineStore('faculty', {
+export const useLlo = defineStore('llo', {
     state: () => ({
-        allFaculty: [],
-        showFaculty: [],
-        updateFaculty: null,
+        allLlo: [],
+        showLlo: [],
+        updateLlo: null,
     }),
 
     getters: {
-        getAllFaculty(state) {
-            return state.allFaculty
+        getAllLlo(state) {
+            return state.allLlo
         },
     },
 
     actions: {
-        fetchAllFaculty() {
+        fetchAllLlo() {
             axiosClient
-                .get('//127.0.0.1:8000/api/faculties')
+                .get('//127.0.0.1:8000/api/llo')
                 .then(response => {
                     // console.log(response.data)
-                    this.allFaculty = response.data.data
+                    this.allLlo = response.data.data
                 })
                 .catch(error => {
-                    this.allFaculty= error
+                    this.allLlo= error
                 })
         },
 
-        createFaculty(name) {
+        createLlo(name) {
             axiosClient
-                .post('//127.0.0.1:8000/api/faculties/', {
+                .post('//127.0.0.1:8000/api/llo/', {
                     name: name,
                 })
                 .then(response => {
                     console.log(response.status)
-                    this.createFaculty = response.status
+                    this.createLlo = response.status
                 })
                 .catch(error => {
                     console.log(error.response)
-                    this.createFaculty = error.response.status
+                    this.createLlo = error.response.status
                 })
         },
     },

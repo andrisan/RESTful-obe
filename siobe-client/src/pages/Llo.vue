@@ -72,3 +72,10 @@
 		</div>
 	</div>
 </template>
+
+<script setup>
+	import { useLlo } from '@/stores/llo'
+
+	const store = useLlo()
+	store.fetchAllLlo()
+</script>
