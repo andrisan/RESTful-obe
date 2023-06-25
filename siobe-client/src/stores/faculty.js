@@ -16,6 +16,9 @@ export const useFaculties = defineStore('faculty', {
         getAllFaculty(state) {
             return state.allFaculty
         },
+        getShowFaculty(state) {
+            return state.showFaculty
+        },
     },
 
     actions: {
@@ -45,6 +48,18 @@ export const useFaculties = defineStore('faculty', {
                 .catch(error => {
                     console.log(error.response)
                     this.createFaculty = error.response.status
+                })
+        },
+
+        fetchRubricWithId(id) {
+            axios
+                .get('//127.0.0.1:8000/api/faculties/' + id)
+                .then(response => {
+                    console.log(response.data)
+                    this.showFaculty = response.data.data
+                })
+                .catch(error => {
+                    this.showFaculty = error
                 })
         },
 

@@ -10,6 +10,7 @@ import ResetPassword from '@/pages/auth/ResetPassword.vue'
 import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
 import Faculty from '@/pages/Faculty.vue'
 import CreateFaculty from '@/pages/CreateFaculty.vue'
+import UpdateFaculty from '@/pages/UpdateFaculty.vue'
 import AssignmentDetail from '@/pages/AssignmentDetails.vue'
 import Llo from '@/pages/Llo.vue'
 import CreateLlo from '@/pages/CreateLLO.vue'
@@ -149,9 +150,9 @@ const routes = [
         // },
     },
     {
-        path: '/update-faculty',
+        path: '/update-faculty/:id',
         name: 'update faculty',
-        component: CreateFaculty,
+        component: UpdateFaculty,
         query: {
             resend: 'resend',
         },
