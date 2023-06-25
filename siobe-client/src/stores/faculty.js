@@ -1,63 +1,49 @@
-import axios from '@/lib/axios'
+import axiosClient from '@/lib/axios'
 import { useStorage } from '@vueuse/core'
-import { defineStore, acceptHMRUpdate } from 'pinia'
+import { defineStore } from 'pinia'
+import { reactive, ref } from 'vue'
 
-const csrf = () => axios.get('/sanctum/csrf-cookie')
+// const csrf = () => axios.get('/sanctum/csrf-cookie')
 
-export const useFaculties = defineStore('faculties', {
+export const useFaculties = defineStore('faculty', {
     state: () => ({
-        faculties: useStorage('faculties', []),
-        selectedFaculty: useStorage('selectedFaculty', null),
-      }),
-    
+        allFaculty: [],
+        showFaculty: [],
+        updateFaculty: null,
+    }),
+
     getters: {
-        getFaculties: state => state.faculties,
-        
-        // hasFaculties: state => state.faculties.length > 0,
-        // hasSelectedFaculty: state => state.selectedFaculty !== null,
+        getAllFaculty(state) {
+            return state.allFaculty
+        },
     },
 
     actions: {
-        async fetchFaculties() {
-        try {
-            const response = await axios.get('/api/faculties')
-            this.faculties = response.data
-        } catch (error) {
-            console.error(error)
-        }
+        fetchAllFaculty() {
+            axiosClient
+                .get('//127.0.0.1:8000/api/faculties')
+                .then(response => {
+                    // console.log(response.data)
+                    this.allFaculty = response.data.data
+                })
+                .catch(error => {
+                    this.allFaculty= error
+                })
         },
 
-        async addFaculty(faculty) {
-        try {
-            const response = await axios.post('/api/faculties', faculty)
-            this.faculties.push(response.data)
-        } catch (error) {
-            console.error(error)
-        }
-        },
-
-        async updateFaculty(faculty) {
-        try {
-            await axios.put(`/api/faculties/${faculty.id}`, faculty)
-            const index = this.faculties.findIndex(item => item.id === faculty.id)
-            if (index !== -1) {
-            this.faculties.splice(index, 1, faculty)
-            }
-        } catch (error) {
-            console.error(error)
-        }
-        },
-
-        async deleteFaculty(facultyId) {
-        try {
-            await axios.delete(`/api/faculties/${facultyId}`)
-            const index = this.faculties.findIndex(item => item.id === facultyId)
-            if (index !== -1) {
-            this.faculties.splice(index, 1)
-            }
-        } catch (error) {
-            console.error(error)
-        }
+        createFaculty(name) {
+            axiosClient
+                .post('//127.0.0.1:8000/api/faculties/', {
+                    name: name,
+                })
+                .then(response => {
+                    console.log(response.status)
+                    this.createFaculty = response.status
+                })
+                .catch(error => {
+                    console.log(error.response)
+                    this.createFaculty = error.response.status
+                })
         },
     },
-});
+})

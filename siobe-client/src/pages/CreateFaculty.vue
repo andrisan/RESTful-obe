@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { useUsers } from '@/stores/user'
 import { computed, ref } from 'vue'
 import PrimaryButton from '@/components/PrimaryButton.vue'
@@ -10,26 +10,23 @@ import { useFaculties } from '../stores/faculty'
 
 const form = ref({
     name: '',
-    terms: false,
+    // terms: false,
 })
 
-const store = useFaculties()
+const { addFaculty } = useFaculties()
 
 const processing = ref(false)
 
 const setErrors = ref()
 
-// const errors = computed(() => setErrors.value)
-
 const submitFaculty = () => {
-    store.register(form, setErrors, processing)
+    addFaculty(form.value, setErrors.value, processing.value)
 }
-</script>
+</script> -->
 
 <template>
     <div class="h-screen w-screen bg-gray-50">
-        <div
-            class="w-screen bg-white drop-shadow h-16 mb-10 flex align-center items-center">
+        <div class="w-screen bg-white drop-shadow h-16 mb-10 flex align-center items-center">
             <h1 class="text-gray-500 font-bold text-xl ml-48">
                 Create Faculty
             </h1>
@@ -39,61 +36,35 @@ const submitFaculty = () => {
                 Home > Faculties > Create
             </h1>
         </div>
-        <form @submit.prevent="submitFaculty">
+        <div>
             <div class="flex justify-center">
-                <div
-                    class="bg-white shadow-md sm:rounded-lg w-9/12 h-auto py-12 px-10">
+                <div class="bg-white shadow-md sm:rounded-lg w-9/12 h-auto py-12 px-10">
                     <div class="mb-10">
-                        <label
-                            for="Faculty Name"
-                            class="text-sm font-medium text-gray-500"
-                            >Faculty Name</label
-                        >
-                        <input
-                            type="text"
-                            id="default-input"
-                            v-model="form.name"
-                            required
+                        <label for="Faculty Name" class="text-sm font-medium text-gray-500">Faculty Name</label>
+
+                        <input v-model="name" type="text" placeholder="Enter Faculty Name"
                             class="bg-gray-50 border border-gray-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 mt-3" />
+
                     </div>
                     <div class="flex">
-                        <button
-                            type="submit"
-                            class="text-white bg-gray-700 py-2 px-4 rounded-lg text-md mr-4 hover:bg-gray-900">
-                            SAVE
-                        </button>
-                        <button
-                            class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
+                        <button @click="facultyStore.createFaculty(name)" class="bg-gray-700 border rounded-md"
+                            style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
+                        <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
                             Cancel
                         </button>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
-<script>
-import axiosClient from '../lib/axios'
+<script setup>
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useFaculties } from '@/stores/faculty';
 
-export default {
-    data() {
-        return {
-            name: '',
-        }
-    },
-
-    methods: {
-        submitForm() {
-            axiosClient
-                .post('/api/faculties', this.Faculty)
-                .then(response => {
-                    console.log('Faculty created successfully.')
-                })
-                .catch(error => {
-                    console.error(error)
-                })
-        },
-    },
-}
+const route = useRoute()
+const facultyStore = useFaculties()
+const name = ref('')
 </script>
