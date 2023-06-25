@@ -14,7 +14,7 @@ import UpdateFaculty from '@/pages/UpdateFaculty.vue'
 import AssignmentDetail from '@/pages/AssignmentDetails.vue'
 import Llo from '@/pages/Llo.vue'
 import CreateLlo from '@/pages/CreateLLO.vue'
-import AssignmentDetails from '@/pages/AssignmentDetails.vue'
+import CreateAssignment from '@/pages/CreateAssignment.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -168,10 +168,6 @@ const routes = [
         query: {
             resend: 'resend',
         },
-        // meta: {
-        //     title: 'Email Verification',
-        //     guard: 'auth',
-        // },
     },
     {
         path: '/create-llo',
@@ -180,10 +176,22 @@ const routes = [
         query: {
             resend: 'resend',
         },
-        // meta: {
-        //     title: 'Email Verification',
-        //     guard: 'auth',
-        // },
+    },
+    {
+        path: '/create-assignment',
+        name: 'Create Assignment',
+        component: CreateAssignment,
+        query: {
+            resend: 'resend',
+        },
+    },
+    {
+        path: '/detail-assignment',
+        name: 'Detail Assignment',
+        component: AssignmentDetail,
+        query: {
+            resend: 'resend',
+        },
     },
 ]
 
