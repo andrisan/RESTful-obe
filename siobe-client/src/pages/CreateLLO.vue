@@ -56,7 +56,7 @@
 
                 </div>
                 <div class="flex mt-5">
-                    <button @click="createLlo" class="bg-gray-700 border rounded-md"
+                    <button @click="lloStore.createLlo(selectedCloId, code, description);" class="bg-gray-700 border rounded-md"
                         style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
                     <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
                         Cancel
@@ -83,10 +83,10 @@ const code = ref('')
 const description = ref('')
 const selectedCloId = ref('');
 
-const selectedCloIdRef = toRef(store, 'selectedCloId');
+// const selectedCloIdRef = toRef(store, 'selectedCloId');
 
-const createLlo = () => {
-    lloStore.createLlo(description.value, code.value, selectedCloIdRef.value);
-};
-
+// const createLlo = () => {
+//     lloStore.createLlo(description.value, code.value, selectedCloIdRef.value);
+// };
+console.log(selectedCloId)
 </script>
