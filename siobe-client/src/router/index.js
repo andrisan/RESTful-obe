@@ -62,6 +62,12 @@ const routes = [
             guard: 'auth',
         },
     },
+    
+    {
+        path: '/studyprograms/create',
+        name: 'studyprograms.create',
+        component: () => import( /* webpackChunkName: "studyprograms.create" */ '@/pages/StudyProgram/StudyProgramCreate.vue')
+    },
     {
         path: '/studyprograms',
         name: 'studyprograms',
