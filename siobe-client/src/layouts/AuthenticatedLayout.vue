@@ -54,6 +54,51 @@ const submitLogout = () => {
                                     </NavLink>
                                 </router-link>
                             </div>
+
+                            <div
+                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <router-link
+                                    v-slot="{ href, isActive, navigate }"
+                                    to="/studyprograms"
+                                    custom>
+                                    <NavLink
+                                        :href="href"
+                                        :active="isActive"
+                                        @click="navigate">
+                                        Study Program
+                                    </NavLink>
+                                </router-link>
+                            </div>
+
+                            <div
+                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <router-link
+                                    v-slot="{ href, isActive, navigate }"
+                                    to="/courses"
+                                    custom>
+                                    <NavLink
+                                        :href="href"
+                                        :active="isActive"
+                                        @click="navigate">
+                                        Course
+                                    </NavLink>
+                                </router-link>
+                            </div>
+
+                            <div
+                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <router-link
+                                    v-slot="{ href, isActive, navigate }"
+                                    to="/courseclasses"
+                                    custom>
+                                    <NavLink
+                                        :href="href"
+                                        :active="isActive"
+                                        @click="navigate">
+                                        Course Class
+                                    </NavLink>
+                                </router-link>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
