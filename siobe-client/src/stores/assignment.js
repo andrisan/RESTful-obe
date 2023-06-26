@@ -26,7 +26,7 @@ export const useAssignments = defineStore('assignment', {
             axiosClient
                 .get('//127.0.0.1:8000/api/assignments')
                 .then(response => {
-                    // console.log(response.data)
+                    console.log(response.data)
                     this.allAssignment = response.data.data
                 })
                 .catch(error => {
@@ -34,10 +34,13 @@ export const useAssignments = defineStore('assignment', {
                 })
         },
 
-        createAssignment(name) {
+        createAssignment(assignment_plan_id, due_date, note,course_class_id) {
             axiosClient
                 .post('//127.0.0.1:8000/api/assignments/', {
-                    name: name,
+                    assignment_plan_id: assignment_plan_id,
+                    due_date:due_date,
+                    note:note,
+                    course_class_id:course_class_id
                 })
                 .then(response => {
                     console.log(response.status)
@@ -64,18 +67,34 @@ export const useAssignments = defineStore('assignment', {
         },
 
         updateAssignment(assignmentId, name) {
-            axiosClient
-                .put('//127.0.0.1:8000/api/assignments/' + assignmentId, {
+            axiosClient.patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
                     name: name,
                 })
                 .then(response => {
                     console.log(response.status)
+                    window.location.href = '/assignment'
                     this.createAssignment = response.status
                 })
                 .catch(error => {
                     console.log(error.response)
                     this.createAssignment = error.response.status
                 })
+        },
+
+        destroyAssignment(id) {
+            let del = window.confirm('Are you sure?')
+            // console.log(assignment.id);
+            if (del) {
+                axiosClient
+                    .delete(`/api/assigments/${id}`)
+                    .then(response => {
+                        console.log('Assignment deleted successfully.')
+                        this.fetchAllAssignment() // Update the assignment list after deletion
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+            }
         },
     },
 })

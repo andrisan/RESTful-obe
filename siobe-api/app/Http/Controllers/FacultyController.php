@@ -48,8 +48,9 @@ class FacultyController extends Controller
             return response()->json(['message' => 'Not modified'], 304);
         }
 
-        $Faculty->update($validated);
+        $Faculty->update($request->all());
         return new FacultyResource($Faculty);
+        // return response()->json(['message' => 'ASU']);
     }
 
     /**

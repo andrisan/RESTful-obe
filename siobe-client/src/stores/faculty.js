@@ -26,11 +26,11 @@ export const useFaculties = defineStore('faculty', {
             axiosClient
                 .get('//127.0.0.1:8000/api/faculties')
                 .then(response => {
-                    // console.log(response.data)
+                    console.log(response.data)
                     this.allFaculty = response.data.data
                 })
                 .catch(error => {
-                    this.allFaculty= error
+                    this.allFaculty = error
                 })
         },
 
@@ -43,7 +43,6 @@ export const useFaculties = defineStore('faculty', {
                     console.log(response.status)
                     window.location.href = '/faculty'
                     this.createFaculty = response.status
-
                 })
                 .catch(error => {
                     console.log(error.response)
@@ -51,31 +50,36 @@ export const useFaculties = defineStore('faculty', {
                 })
         },
 
-        fetchRubricWithId(id) {
-            axios
-                .get('//127.0.0.1:8000/api/faculties/' + id)
-                .then(response => {
-                    console.log(response.data)
-                    this.showFaculty = response.data.data
-                })
-                .catch(error => {
-                    this.showFaculty = error
-                })
-        },
-
         updateFaculty(facultyId, name) {
             axiosClient
-                .put('//127.0.0.1:8000/api/faculties/' + facultyId, {
+                .patch('//127.0.0.1:8000/api/faculties/' + facultyId, {
                     name: name,
                 })
                 .then(response => {
                     console.log(response.status)
+                    window.location.href = '/faculty'
                     this.createFaculty = response.status
                 })
                 .catch(error => {
                     console.log(error.response)
                     this.createFaculty = error.response.status
                 })
+        },
+
+        destroyFaculty(id) {
+            let del = window.confirm('Are you sure?')
+            // console.log(faculty.id);
+            if (del) {
+                axiosClient
+                    .delete(`//127.0.0.1:8000/api/faculties/${id}`)
+                    .then(response => {
+                        console.log('Faculty deleted successfully.')
+                        this.fetchAllFaculty() // Update the faculty list after deletion
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+            }
         },
     },
 })

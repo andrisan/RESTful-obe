@@ -3,7 +3,7 @@
         <div
             class="bg-white drop-shadow h-16 mb-10 flex align-center items-center">
             <h1 class="text-gray-500 font-bold text-xl ml-48">
-                New Assignment
+                Update Assignment
             </h1>
         </div>
 
@@ -11,7 +11,7 @@
             <a href="#" class="nav-link text-blue-500">Home</a><span> > </span>
             <a href="#" class="nav-link text-blue-500">MATKUL A</a
             ><span> > </span>
-            <span>Create Assignment</span>
+            <span>Update Assignment</span>
         </div>
 
         <div class="max-w-screen px-44 mt-4 justify-center">
@@ -39,22 +39,6 @@
                                         Choose the assignment plan
                                     </option>
                                     <option value="17">Judul</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="pb-4">
-                            <h1 class="font-bold text-gray-600">
-                                Course Class
-                            </h1>
-                            <div class="form-control w-full lg:w-[32rem]">
-                                <select v-model="course_class_id" class="text-gray-500 select select-bordered border rounded-md">
-                                    <option disabled="" selected="">
-                                        Choose the assignment course class
-                                    </option>
-                                    <option value="1">Course 1</option>
-                                    <option value="2">Course 2</option>
-                                    <option value="3">Course 3</option>
-
                                 </select>
                             </div>
                         </div>
@@ -86,7 +70,7 @@
                 </div>
                 <div class="flex">
                     <button
-                        @click="assignmentStore.createAssignment(assignment_plan_id, due_date, note,course_class_id)"
+                        @click="assignmentStore.createAssignment(assignment_plan_id, due_date, note)"
                         class="bg-gray-700 border rounded-md"
                         style="
                             font-weight: bold;

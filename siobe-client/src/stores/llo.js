@@ -23,7 +23,7 @@ export const useLlo = defineStore('llo', {
             axiosClient
                 .get('//127.0.0.1:8000/api/llo')
                 .then(response => {
-                    // console.log(response.data)
+                    console.log(response.data)
                     this.allLlo = response.data.data
                 })
                 .catch(error => {

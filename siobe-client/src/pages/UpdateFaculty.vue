@@ -1,29 +1,29 @@
 <template>
-	<div class="h-screen w-screen bg-gray-50">
-		<div class="w-screen bg-white drop-shadow h-16 mb-10 flex align-center items-center">
-			<h1 class="text-gray-500 font-bold text-xl ml-48">Update Faculty</h1>
-		</div>
-		<div class="ml-48 mb-10">
-			<h1 class="text-gray-500 font-bold text-m">Home > Faculties > Update</h1>
-		</div>
-		<div class="flex justify-center">
-			<div class="bg-white shadow-md sm:rounded-lg w-9/12 h-auto py-12 px-10">
-				<div class="mb-10">
-                        <label for="Faculty Name" class="text-sm font-medium text-gray-500">Faculty Name</label>
-                        <input v-model="name" type="text" placeholder="Enter Faculty Name"
-                            class="bg-gray-50 border border-gray-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 mt-3" />
+    <div class="h-screen w-screen bg-gray-50">
+        <div class="w-screen bg-white drop-shadow h-16 mb-10 flex align-center items-center">
+            <h1 class="text-gray-500 font-bold text-xl ml-48">Update Faculty</h1>
+        </div>
+        <div class="ml-48 mb-10">
+            <h1 class="text-gray-500 font-bold text-m">Home > Faculties > Update</h1>
+        </div>
+        <div class="flex justify-center">
+            <div class="bg-white shadow-md sm:rounded-lg w-9/12 h-auto py-12 px-10">
+                <div class="mb-10">
+                    <label for="Faculty Name" class="text-sm font-medium text-gray-500">Faculty Name</label>
+                    <input v-model="name" type="text" placeholder="Enter Faculty Name"
+                        class="bg-gray-50 border border-gray-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 mt-3" />
 
-                    </div>
-                    <div class="flex">
-                        <button @click="facultyStore.updateFaculty(facultyId, name)" class="bg-gray-700 border rounded-md"
-                            style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
-                        <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
-                            Cancel
-                        </button>
-                    </div>
-			</div>
-		</div>
-	</div>
+                </div>
+                <div class="flex">
+                    <button @click="facultyStore.updateFaculty(facultyId, name)" class="bg-gray-700 border rounded-md"
+                        style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
+                    <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -32,7 +32,8 @@ import { useFaculties } from '@/stores/faculty';
 import { ref } from 'vue';
 
 const route = useRoute();
-const facultyId = ref(route.params.id)
+const facultyId = ref(route.params.id).value
+// console.log(facultyId)
 
 const facultyStore = useFaculties()
 const name = ref('')

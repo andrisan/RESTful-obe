@@ -9,6 +9,7 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\CriteriaLevelController;
 use App\Http\Controllers\StudentGradeController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\AssignmentPlanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\DepartmentController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseClassController;
+use App\Models\AssignmentPlan;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,13 +45,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('courses',CourseController::class);
     Route::apiResource('course-classes',CourseClassController::class);
 
-
     Route::scopeBindings()->group(function () {
         Route::apiResource('rubrics', RubricController::class);
         Route::apiResource('rubrics.criterias', CriteriaController::class);
         Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
         Route::apiResource('student-grades', StudentGradeController::class);
-
         Route::apiResource('faculties.departments', DepartmentController::class);
         Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
         Route::apiResource('syllabi.clo', CourseLearningOutcomeController::class);

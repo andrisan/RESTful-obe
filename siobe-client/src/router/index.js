@@ -16,6 +16,7 @@ import Llo from '@/pages/Llo.vue'
 import CreateLlo from '@/pages/CreateLLO.vue'
 import UpdateLlo from '@/pages/UpdateLLO.vue'
 import CreateAssignment from '@/pages/CreateAssignment.vue'
+import Assignment from '@/pages/Assignment.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -197,9 +198,17 @@ const routes = [
         },
     },
     {
-        path: '/detail-assignment',
+        path: '/detail-assignment/:id',
         name: 'Detail Assignment',
         component: AssignmentDetail,
+        query: {
+            resend: 'resend',
+        },
+    },
+    {
+        path: '/assignment',
+        name: 'Assignment',
+        component: Assignment,
         query: {
             resend: 'resend',
         },
