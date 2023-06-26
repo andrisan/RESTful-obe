@@ -34,10 +34,12 @@ export const useAssignments = defineStore('assignment', {
                 })
         },
 
-        createAssignment(name) {
+        createAssignment(assignment_plan_id, due_date, note) {
             axiosClient
                 .post('//127.0.0.1:8000/api/assignments/', {
-                    name: name,
+                    assignment_plan_id: assignment_plan_id,
+                    due_date:due_date,
+                    note:note
                 })
                 .then(response => {
                     console.log(response.status)

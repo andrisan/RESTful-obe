@@ -3,7 +3,7 @@
         <div
             class="bg-white drop-shadow h-16 mb-10 flex align-center items-center">
             <h1 class="text-gray-500 font-bold text-xl ml-48">
-                New Assignment
+                Update Assignment
             </h1>
         </div>
 
@@ -11,7 +11,7 @@
             <a href="#" class="nav-link text-blue-500">Home</a><span> > </span>
             <a href="#" class="nav-link text-blue-500">MATKUL A</a
             ><span> > </span>
-            <span>Create Assignment</span>
+            <span>Update Assignment</span>
         </div>
 
         <div class="max-w-screen px-44 mt-4 justify-center">
