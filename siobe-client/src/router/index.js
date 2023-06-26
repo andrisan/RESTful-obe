@@ -11,6 +11,9 @@ import Syllabi from '@/pages/learningplan/Syllabi.vue'
 import SyllabiDetail from '@/pages/learningplan/SyllabiDetail.vue'
 import CreateLearningPlan from '@/pages/learningplan/SyllabiCreateLearningPlan.vue'
 import EditLearningPlan from '@/pages/learningplan/SyllabiEditLearningPlan.vue'
+import StudyProgram from '@/pages/StudyProgram.vue'
+import Course from '@/pages/Course.vue'
+import CourseClass from '@/pages/CourseClass.vue'
 import Login from '@/pages/auth/Login.vue'
 import Register from '@/pages/auth/Register.vue'
 import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
@@ -59,6 +62,33 @@ const routes = [
             title: 'Dashboard',
             guard: 'guest',
             // necessarily : auth
+        },
+    },
+    {
+        path: '/studyprograms',
+        name: 'studyprograms',
+        component: StudyProgram,
+        meta: {
+            title: 'StudyProgram',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/courses',
+        name: 'courses',
+        component: Course,
+        meta: {
+            title: 'Course',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/courseclasses',
+        name: 'courseclasses',
+        component: CourseClass,
+        meta: {
+            title: 'CourseClass',
+            guard: 'auth',
         },
     },
     {
