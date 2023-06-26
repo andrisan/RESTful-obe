@@ -22,7 +22,7 @@ fetchFaculties()
         <!-- Bagian template lainnya -->
         <div class="">
             <div class="flex justify-end mb-6">
-                <router-link to="/create-faculty" class="bg-white drop-shadow px-3 py-3 rounded-lg mr-48">
+                <router-link to="/create-faculty" class="bg-white drop-shadow px-3 py-3 rounded-lg mr-48 mt-6">
                     Create New Faculty
                 </router-link>
             </div>
@@ -62,13 +62,10 @@ fetchFaculties()
                                             </ResponsiveNavLink>
                                         </router-link>
                                     </a>
-                                    <!-- <form method="POST"
-										action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
-										<button class="text-red-500 pr-5 hover:text-red-800" style="text-decoration: none"
-											onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-											Delete
-										</button>
-									</form> -->
+                                    <button class="text-red-500 pr-5 hover:text-red-800"
+                                        @click="store.destroyFaculty(faculty.id)">
+                                        Delete
+                                    </button>
                                 </div>
                             </td>
                         </tr>

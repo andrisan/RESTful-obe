@@ -43,13 +43,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('courses',CourseController::class);
     Route::apiResource('course-classes',CourseClassController::class);
 
-
     Route::scopeBindings()->group(function () {
         Route::apiResource('rubrics', RubricController::class);
         Route::apiResource('rubrics.criterias', CriteriaController::class);
         Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
         Route::apiResource('student-grades', StudentGradeController::class);
-
         Route::apiResource('faculties.departments', DepartmentController::class);
         Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
         Route::apiResource('syllabi.clo', CourseLearningOutcomeController::class);
