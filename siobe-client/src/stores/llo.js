@@ -50,7 +50,7 @@ export const useLlo = defineStore('llo', {
                 })
         },
         
-        updateFaculty(lloId, description) {
+        updateLlo(lloId, description) {
             axiosClient
                 .patch('//127.0.0.1:8000/api/llo/' + lloId, {
                     description: description,
