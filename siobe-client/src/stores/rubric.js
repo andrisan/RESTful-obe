@@ -7,7 +7,9 @@ export const useRubrics = defineStore('rubrics', {
     state: () => ({
         allRubric: [],
         showRubric: [],
+        createRubricStatus: [],
         updateRubric: null,
+        deleteRubric: []
     }),
 
     getters: {
@@ -17,8 +19,14 @@ export const useRubrics = defineStore('rubrics', {
         getShowRubric(state) {
             return state.showRubric
         },
+        getCreateRubricStatus(state) {
+            return state.createRubricStatus
+        },
         getUpdateRubric(state) {
             return state.updateRubric
+        },
+        getDeleteRubric(state) {
+            return state.deleteRubric
         },
     },
 
@@ -45,6 +53,22 @@ export const useRubrics = defineStore('rubrics', {
                     this.showRubric = error
                 })
         },
+        createRubric(title, setErrors) {
+            axios
+                .post('//localhost:8000/api/rubrics', {
+                    title: title
+                })
+                .then(response => {
+                    console.log(response)
+                    this.createRubricStatus = response
+                })
+                .catch(error => {
+                    console.log(error.response)
+                    setErrors.value = Object.values(
+                        error.response.data.errors,
+                    ).flat()
+                })
+        },
         updateRubric(rubricId, title) {
             axios
                 .put('//localhost:8000/api/rubrics/' + rubricId, {
@@ -59,5 +83,17 @@ export const useRubrics = defineStore('rubrics', {
                     this.updateRubric = error.response.status
                 })
         },
+        deleteRubric(rubricId) {
+            axios.delete('//localhost:8000/api/rubrics/' + rubricId )
+            .then(response => {
+                console.log(response)
+                this.deleteRubric = response.status
+                location.reload()
+            })
+            .catch(error => {
+                console.log(error.response)
+                this.deleteRubric = error.response.status
+            })
+        }
     },
 })

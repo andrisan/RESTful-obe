@@ -133,7 +133,7 @@
                     <button
                         class="ml-5 mt-1"
                         style="color: darkslategray"
-                        @click="showrubrics">
+                        @click="toShowRubric()">
                         Cancel
                     </button>
                 </div>
@@ -181,11 +181,16 @@ watchEffect(() => {
     const createCriteriaStatus = criteriaStore.getCreateCriteria.status
 
     if (criteriaStore.createCriteriaStatus.status == '201') {
-        router.push('/rubrics/' + rubricId.value)
+        router.go(-1)
+        criteriaStore.createCriteriaStatus.status = 0
     } else if (criteriaStore.createCriteriaStatus.status == 409) {
         console.log('failed')
     }
 })
+
+function toShowRubric() {
+    router.push('/rubrics/' + rubricId.value)
+}
 </script>
 
 <style scoped>

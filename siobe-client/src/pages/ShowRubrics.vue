@@ -57,6 +57,21 @@
             <div
                 class="container text-justify"
                 style="padding-top: 1%; padding-bottom: 1%">
+
+                <div class="col text-right mt-4 mb-2">
+                        <button
+                            class="button-link border text-gray-600 font-semibold rounded-lg"
+                            style="
+                                padding-top: 1%;
+                                padding-bottom: 1%;
+                                padding-left: 2%;
+                                padding-right: 2%;
+                            "
+                            @click="editCriteria(criteria.id)">
+                            Edit Criteria
+                        </button>
+                    </div>
+
                 <div class="row" style="margin-left: 1%; margin-right: 1%">
                     <div class="col text-left">
                         <p class="font-bold">{{ criteria.title }}</p>
@@ -104,7 +119,7 @@
                                 padding-left: 2%;
                                 padding-right: 2%;
                             "
-                            @click="addlevel">
+                            @click="addLevel(criteria.id)">
                             Add Level
                         </button>
                     </div>
@@ -172,18 +187,36 @@
                                         href="#"
                                         class="text-darkblue-700 font-semibold"
                                         style="text-decoration: none"
-                                        >Edit
+                                        ><router-link
+                                            v-slot="{
+                                                href,
+                                                isActive,
+                                                navigate,
+                                            }"
+                                            :to="
+                                                '/rubrics/' +
+                                                rubricId +
+                                                '/criteria/' +
+                                                criteria.id +
+                                                '/criteria-level/' +
+                                                criteriaLevel.id +
+                                                '/edit'
+                                            "
+                                            custom>
+                                            <ResponsiveNavLink
+                                                :href="href"
+                                                :active="isActive"
+                                                @click="navigate">
+                                                Edit
+                                            </ResponsiveNavLink>
+                                        </router-link>
                                     </a>
-                                    <form
-                                        method="POST"
-                                        action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
-                                        <button
-                                            class="text-red-500 font-semibold"
-                                            style="text-decoration: none"
-                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                            Delete
-                                        </button>
-                                    </form>
+                                    <button
+                                        class="text-red-500 font-semibold"
+                                        style="text-decoration: none"
+                                        @click="criteriaLevelStore.deleteCriteriaLevel(rubricId, criteria.id, criteriaLevel.id)">
+                                        Delete
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -274,6 +307,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useRubrics } from '@/stores/rubric'
 import { useCriterias } from '@/stores/criteria'
 import { useLlo } from '@/stores/llo'
+import { useCriteriaLevels } from '../stores/criteriaLevel'
 
 const router = useRouter()
 
@@ -286,15 +320,25 @@ rubricStore.fetchRubricWithId(rubricId.value)
 const criteriaStore = useCriterias()
 criteriaStore.fetchAllCriteria(rubricId.value)
 
+const criteriaLevelStore = useCriteriaLevels()
+
 const lloStore = useLlo()
 lloStore.fetchLloById(1)
 
 function createCriteria() {
-    router.push('/criteria/' + 1 + '/create')
+    router.push('/rubrics/' + rubricId.value + '/criteria/create')
 }
 
 function deleteCriteria(criteriaId) {
     criteriaStore.deleteCriteria(rubricId.value, criteriaId)
+}
+
+function addLevel(criteriaId) {
+    router.push('/rubrics/' + rubricId.value + '/criteria/' + criteriaId + '/criteria-level/create')
+}
+
+function editCriteria(criteriaId) {
+    router.push('/rubrics/' + rubricId.value + '/criterias/' + criteriaId + '/edit')
 }
 </script>
 

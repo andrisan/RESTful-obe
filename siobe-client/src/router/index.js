@@ -145,16 +145,8 @@ const routes = [
         },
     },
     {
-        path: '/createcriterialevel',
+        path: '/rubrics/:rubricId/criteria/:criteriaId/criteria-level/create',
         name: 'createcriterialevel',
-        component: Createcriterialevel,
-        meta: {
-            guard: 'auth',
-        },
-    },
-    {
-        path: '/createcriterialevel',
-        name: 'editCriteriaLevel',
         component: Createcriterialevel,
         meta: {
             guard: 'auth',
@@ -169,7 +161,7 @@ const routes = [
         },
     },
     {
-        path: '/criteria/:id/create',
+        path: '/rubrics/:id/criteria/create',
         name: 'createCriteria',
         component: CreateCriteria,
         meta: {
@@ -177,7 +169,7 @@ const routes = [
         },
     },
     {
-        path: '/editCriteria',
+        path: '/rubrics/:rubricId/criterias/:criteriaId/edit',
         name: 'editCriteria',
         component: EditCriteria,
         meta: {
@@ -185,7 +177,7 @@ const routes = [
         },
     },
     {
-        path: '/editCriteriaLevel',
+        path: '/rubrics/:rubricId/criteria/:criteriaId/criteria-level/:criteriaLevelId/edit',
         name: 'editCriteriaLevel',
         component: EditCriteriaLevel,
         meta: {
@@ -193,7 +185,7 @@ const routes = [
         },
     },
     {
-        path: '/createRubrics',
+        path: '/rubrics/create',
         name: 'createRubrics',
         component: CreateRubrics,
         meta: {

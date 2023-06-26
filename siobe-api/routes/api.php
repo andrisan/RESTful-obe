@@ -17,6 +17,7 @@ use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseClassController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

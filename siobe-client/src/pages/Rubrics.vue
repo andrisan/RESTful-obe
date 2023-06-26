@@ -36,6 +36,20 @@
             </router-link>
         </div>
 
+        <div class="max-w-7xl mx-auto sm:px-6 pb-6 lg:px-8">
+            <div
+                class="flex flex-row justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                    <button
+                        class="button-link bg-white shadow font-bold border border-blue-800 rounded-lg"
+                        style="padding: 6%; width: 150px"
+                        @click="createRubric">
+                        Create Rubric
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div style="margin-left: 10%; margin-top: 2%; margin-right: 10%">
             <table
                 class="border-collapse table-auto w-full bg-white table-striped relative">
@@ -99,16 +113,13 @@
                                     </ResponsiveNavLink>
                                 </router-link>
                             </a>
-                            <form
-                                method="POST"
-                                action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
-                                <button
-                                    class="text-red-500 font-semibold"
-                                    style="text-decoration: none"
-                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                    Delete
-                                </button>
-                            </form>
+
+                            <button
+                                class="text-red-500 font-semibold"
+                                style="text-decoration: none"
+                                @click="store.deleteRubric(rubric.id)">
+                                Delete
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -120,9 +131,16 @@
 <script setup>
 import NavRubrics from '@/components/NavRubrics.vue'
 import { useRubrics } from '@/stores/rubric'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const store = useRubrics()
 store.fetchAllRubric()
+
+function createRubric() {
+    router.push('/rubrics/create')
+}
 </script>
 
 <script>
