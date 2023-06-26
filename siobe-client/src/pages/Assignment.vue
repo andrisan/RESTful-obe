@@ -43,8 +43,8 @@
                                     <a href="#" class="text-orange-500 pr-5 hover:text-orange-800"> Details
                                     </a>
                                     <a href="#" class="text-blue-500 pr-5 hover:text-blue-800">
-                                        <router-link v-slot="{ href, isActive, navigate }"
-                                            :to="'/update-assignment/' + assignment.id" custom>
+                                        <router-link v-slot="{navigate, href, isActive  }"
+                                            :to="'update-assignment/'+assignment.id">
                                             <ResponsiveNavLink :href="href" :active="isActive" @click="navigate">
                                                 Edit
                                             </ResponsiveNavLink>

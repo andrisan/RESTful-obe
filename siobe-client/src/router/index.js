@@ -220,6 +220,11 @@ const routes = [
         component: Assignment,
         query: {
             resend: 'resend',
+
+
+        },
+        meta: {
+            title: 'Assignment',
         },
     },
 ]
