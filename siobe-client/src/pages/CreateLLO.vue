@@ -30,10 +30,11 @@
                     </p>
                     <select v-model="selectedCloId"
                         class="bg-gray-50 border border-gray-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 mt-3">
-                        <option value="">Choose the CLO</option>
-                        <option v-for="clo in store.getAllClo" :key="clo.id" :value="clo.id" class="text-black text-sm">
-                            {{ clo.code }}
-                        </option>
+                        <option disabled="" selected="">Choose the CLO</option>
+                        <option value="1">CLO 1</option>
+                        <option value="2">CLO 2</option>
+                        <option value="3">CLO 3</option>
+                        <option value="4">CLO 4</option>
                     </select>
 
                 </div>
@@ -56,8 +57,11 @@
 
                 </div>
                 <div class="flex mt-5">
-                    <button @click="lloStore.createLlo(selectedCloId, code, description);" class="bg-gray-700 border rounded-md"
-                        style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
+                    <!-- <button @click="lloStore.createLlo(selectedCloId, code, description);" class="bg-gray-700 border rounded-md"
+                        style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button> -->
+                    <button class="bg-gray-700 border rounded-md"
+                        style="font-weight: bold; color: white; width: 100px; height: 32px;"
+                        @click="lloStore.createLlo(selectedCloId, code, description)">SAVE</button>
                     <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
                         Cancel
                     </button>
@@ -74,8 +78,8 @@ import { useLlo } from '@/stores/llo';
 import { useClo } from '@/stores/clo';
 import { toRef } from 'vue';
 
-const store = useClo()
-store.fetchAllClo()
+// const store = useClo()
+// store.fetchAllClo()
 
 const route = useRoute()
 const lloStore = useLlo()
@@ -88,5 +92,5 @@ const selectedCloId = ref('');
 // const createLlo = () => {
 //     lloStore.createLlo(description.value, code.value, selectedCloIdRef.value);
 // };
-console.log(selectedCloId)
+// console.log(selectedCloId)
 </script>

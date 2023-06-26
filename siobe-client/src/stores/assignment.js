@@ -3,11 +3,11 @@ import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
-const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
+// const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
 
 export const useAssignments = defineStore('assignment', {
     state: () => ({
-        allAssignment: [], 
+        allAssignment: [],
         showAssignment: [],
         updateAssignment: null,
     }),
@@ -38,10 +38,9 @@ export const useAssignments = defineStore('assignment', {
             axiosClient
                 .post('//127.0.0.1:8000/api/assignments/', {
                     assignment_plan_id: assignment_plan_id,
-                    course_class_id:course_class_id,
-                    due_date:due_date,
-                    note:note,
-
+                    course_class_id: course_class_id,
+                    due_date: due_date,
+                    note: note,
                 })
                 .then(response => {
                     console.log(response.status)
@@ -66,9 +65,17 @@ export const useAssignments = defineStore('assignment', {
                 })
         },
 
-        updateAssignment(assignmentId, name) {
-            axiosClient.patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
-                    name: name,
+        updateAssignment(
+            assignmentId,
+            assignment_plan_id,
+            due_date,
+            note,
+        ) {
+            axiosClient
+                .patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
+                    assignment_plan_id: assignment_plan_id,
+                    due_date: due_date,
+                    note: note,
                 })
                 .then(response => {
                     console.log(response.status)

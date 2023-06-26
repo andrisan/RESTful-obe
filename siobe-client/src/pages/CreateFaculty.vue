@@ -20,8 +20,9 @@
 
                     </div>
                     <div class="flex">
-                        <button @click="facultyStore.createFaculty(name)" class="bg-gray-700 border rounded-md"
-                            style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
+                        <button class="bg-gray-700 border rounded-md"
+                            style="font-weight: bold; color: white; width: 100px; height: 32px;"
+                            @click="facultyStore.createFaculty(name)">SAVE</button>
                         <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
                             Cancel
                         </button>

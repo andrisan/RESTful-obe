@@ -34,11 +34,10 @@ export const useLlo = defineStore('llo', {
         createLlo(selectedCloId, code, description) {
             axiosClient
                 .post('//127.0.0.1:8000/api/llo', {
-                    clo_id: selectedCloId,
+                    selectedCloId: selectedCloId,
                     code: code,
-                    description: description
-                    
-                 })
+                    description: description,
+                })
                 .then(response => {
                     console.log(response.status)
                     this.createLlo = response.status
@@ -48,7 +47,7 @@ export const useLlo = defineStore('llo', {
                     this.createLlo = error.response.status
                 })
         },
-        
+
         updateLlo(lloId, description) {
             axiosClient
                 .patch('//127.0.0.1:8000/api/llo/' + lloId, {
