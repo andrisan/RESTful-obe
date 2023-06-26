@@ -1,17 +1,16 @@
 import axios from '@/lib/axios'
-import { useStorage } from '@vueuse/core'
-import { defineStore, acceptHMRUpdate } from 'pinia'
+import { defineStore } from 'pinia'
 const csrf = () => axios.get('/sanctum/csrf-cookie')
 
 export const useSyllabiStore = defineStore('syllabi', {
   state: () => ({
-    //syllabiId: null,
     syllabusData: [],
     syllabi: [],
     courses: [],
     tableDataclo: [],
     tableDatailo: [],
-    studyProgram:[]
+    studyProgram:[],
+    ilos:[]
   }),
 
   computed: {
@@ -26,7 +25,7 @@ export const useSyllabiStore = defineStore('syllabi', {
         .get('/api/syllabi',
           {
             headers: {
-              'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+              'Authorization': 'Bearer [token]',
               'X-CSRF-TOKEN': '',
             },
           }
@@ -41,13 +40,13 @@ export const useSyllabiStore = defineStore('syllabi', {
 
     async deleteSyllabus(syllabusId) {
       try {
-        const response = await csrf(); // Fetch CSRF token
-        const csrfToken = response.data.csrfToken; // Assuming the token is available in the response
+        const response = await csrf(); 
+        const csrfToken = response.data.csrfToken; 
 
         await axios.delete(`/api/syllabi/${syllabusId}`, {
           headers: {
-            'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
-            'X-CSRF-TOKEN': csrfToken, // Include the retrieved CSRF token
+            'Authorization': 'Bearer [token]',
+            'X-CSRF-TOKEN': csrfToken, 
           },
         });
         this.fetchSyllabi();
@@ -63,7 +62,7 @@ export const useSyllabiStore = defineStore('syllabi', {
         .get('/api/courses',
           {
             headers: {
-              'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+              'Authorization': 'Bearer [token]',
               'X-CSRF-TOKEN': '',
             },
           }
@@ -81,7 +80,7 @@ export const useSyllabiStore = defineStore('syllabi', {
       try{
         const response = await axios.get(`/api/syllabi/${syllabusId}`, {
           headers: {
-            'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+            'Authorization': 'Bearer [token]',
             'X-CSRF-TOKEN': '',
           },
         });
@@ -100,7 +99,7 @@ export const useSyllabiStore = defineStore('syllabi', {
         .get(`/api/syllabi/${syllabusId}/clo`,
           {
             headers: {
-              'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+              'Authorization': 'Bearer [token]',
               'X-CSRF-TOKEN': '',
             },
           }
@@ -118,7 +117,7 @@ export const useSyllabiStore = defineStore('syllabi', {
         .get(`/api/syllabi/${syllabusId}/ilo`,
           {
             headers: {
-              'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+              'Authorization': 'Bearer [token]',
               'X-CSRF-TOKEN': '',
             },
           }
@@ -137,7 +136,7 @@ export const useSyllabiStore = defineStore('syllabi', {
       axios
         .post('/api/syllabi', form.value, {
           headers: {
-            'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+            'Authorization': 'Bearer [token]',
             'X-CSRF-TOKEN': '',
           },
         })
@@ -159,7 +158,7 @@ export const useSyllabiStore = defineStore('syllabi', {
       axios
         .patch(`/api/syllabi/${syllabusId}`, form.value, {
           headers: {
-            'Authorization': 'Bearer hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c',
+            'Authorization': 'Bearer [token]',
             'X-CSRF-TOKEN': '',
           },
         })
@@ -171,5 +170,71 @@ export const useSyllabiStore = defineStore('syllabi', {
 
         })
     },
+
+    async addIlo(form, id) {
+      await csrf()
+      console.log(form);
+      axios
+        .post('/api/ilo', form.value, {
+          headers: {
+            'Authorization': 'Bearer [token]',
+            'X-CSRF-TOKEN': '',
+          },
+        })
+        .then(response => {
+          this.router.push({ name: `syllabi/${id}` })
+        })
+        .catch(error => {
+          if (error.response.status !== 422) throw error
+
+          setErrors.value = Object.values(
+            error.response.data.errors,
+          ).flat()
+          processing.value = false
+        })
+    },
+
+    async addclo(form, id) {
+      await csrf()
+      console.log(form);
+      axios
+        .post('/api/clo', form.value, {
+          headers: {
+            'Authorization': 'Bearer [token]',
+            'X-CSRF-TOKEN': '',
+          },
+        })
+        .then(response => {
+          this.router.push({ name: `syllabi/${id}` })
+        })
+        .catch(error => {
+          if (error.response.status !== 422) throw error
+
+          setErrors.value = Object.values(
+            error.response.data.errors,
+          ).flat()
+          processing.value = false
+        })
+    },
+
+
+    async fetchIlo() {
+      axios
+        .get('/api/ilo',
+          {
+            headers: {
+              'Authorization': 'Bearer [token]',
+              'X-CSRF-TOKEN': '',
+            },
+          }
+        )
+        .then(data => {
+          this.ilos = data.data;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        })
+    },
+
   },
 });

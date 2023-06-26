@@ -67,7 +67,7 @@ onMounted(() => {
                                                     </td>
                                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{
                                                         item.author }}</td>
-                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{
+                                                    <td clas-60s="text-gray0 px-6 py-3 border-t border-gray-100">{{
                                                         item.head_of_study_program }}</td>
                                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                         <div class="flex flex-wrap space-x-4">

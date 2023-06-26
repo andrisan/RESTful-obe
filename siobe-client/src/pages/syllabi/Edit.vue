@@ -17,18 +17,20 @@ const form = ref({
   creator_user_id: 1
 });
 
+const updateDataSyllaby = async () => {
+  await store.editSyllabi(form, id)
+}
+
 onMounted(async () => {
   await store.fetchSyllabibyid(id);
   await store.fetchCourse();
-  form.value.course_id = store.syllabibyidData.course_id;
-  form.value.title = store.syllabibyidData.title;
-  form.value.author = store.syllabibyidData.author;
-  form.value.head_of_study_program = store.syllabibyidData.head_of_study_program;
+  form.value.course_id = store.syllabusData.course_id;
+  form.value.title = store.syllabusData.title;
+  form.value.author = store.syllabusData.author;
+  form.value.head_of_study_program = store.syllabusData.head_of_study_program;
 });
 
-const updateDataSyllaby = async () => {
-  await store.editSyllabi(form.value, id)
-}
+
 </script>
 
 <template>
@@ -79,7 +81,7 @@ const updateDataSyllaby = async () => {
                   <span class="label-text">Title</span>
                 </label><br>
                 <input type="text" name="title" placeholder="Edit Syllabus Title"
-                  class="input input-bordered w-full max-w-xs" v-model="form.title" >
+                  class="input input-bordered w-full max-w-xs" v-model="form.title">
               </div>
 
               <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"></div>
@@ -87,7 +89,7 @@ const updateDataSyllaby = async () => {
                 <label class="label">
                   <span class="label-text">Author</span>
                 </label><br>
-                <textarea  v-model="form.author" class="textarea textarea-bordered w-full lg:w-3/4 h-64" placeholder="Edit Syllabus Author"
+                <textarea v-model="form.author" class="textarea textarea-bordered w-full lg:w-3/4 h-64" placeholder="Edit Syllabus Author"
                   name="author"></textarea>
               </div>
 

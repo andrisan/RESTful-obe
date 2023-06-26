@@ -103,55 +103,6 @@ const addDataSyllaby = () => {
   </AuthenticatedLayout>
 </template>
 
-<!-- <script>
-import axios from 'axios';
-
-export default {
-  data() {
-    return {
-      courses: [],
-      selectedCourse: null,
-    };
-  },
-  created() {
-
-    const authToken = 'hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c';
-    const headers = {
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      Authorization: `Bearer ${authToken}`,
-    };
-
-    axios
-      .get('http://localhost:8000/api/courses', { headers })
-      .then(response => {
-        this.courses = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
-  methods: {
-    saveSyllabus() {
-      const authToken = 'hoBe3kjRA1GZpueZJYKIzbXOihpf6uJyEqJHS06c';
-      const headers = {
-        Authorization: `Bearer ${authToken}`,
-      };
-
-      const formData = new FormData();
-      formData.append('course_id', this.selectedCourse);
-      formData.append('creator_user_id', 1);
-      axios
-        .post('http://127.0.0.1:8000/api/syllabi', formData, { headers })
-        .then(response => {
-          console.log('Syllabus saved successfully:', response.data);
-        })
-        .catch(error => {
-          console.error('Error saving syllabus:', error);
-        });
-    },
-  },
-};
-</script> -->
 <style>
 textarea {
   width: 100%;
