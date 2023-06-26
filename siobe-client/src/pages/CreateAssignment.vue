@@ -38,7 +38,7 @@
                                     <option disabled="" selected="">
                                         Choose the assignment plan
                                     </option>
-                                    <option value="17">Judul</option>
+                                    <option value="1">Judul</option>
                                 </select>
                             </div>
                         </div>
@@ -51,10 +51,9 @@
                                     <option disabled="" selected="">
                                         Choose the assignment course class
                                     </option>
-                                    <option value="1">Course 1</option>
-                                    <option value="2">Course 2</option>
-                                    <option value="3">Course 3</option>
-
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
                         </div>
@@ -86,7 +85,7 @@
                 </div>
                 <div class="flex">
                     <button
-                        @click="assignmentStore.createAssignment(assignment_plan_id, due_date, note,course_class_id)"
+                        @click="assignmentStore.createAssignment(assignment_plan_id, course_class_id, due_date, note)"
                         class="bg-gray-700 border rounded-md"
                         style="
                             font-weight: bold;
@@ -113,5 +112,8 @@ import { useAssignments } from '@/stores/assignment';
 
 const route = useRoute()
 const assignmentStore = useAssignments()
-const name = ref('')
+const assignment_plan_id = ref('')
+const course_class_id = ref('')
+const due_date = ref('')
+const note = ref('')
 </script>

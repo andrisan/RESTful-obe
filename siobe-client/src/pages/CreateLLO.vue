@@ -28,7 +28,7 @@
                 class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
                 <div class="bottom-desc font-sans">
                     <p class="font-normal text-gray-700">
-                        Course Learnign Outcome (CLO)
+                        Course Learning Outcome (CLO)
                     </p>
                     <select
                         name=""

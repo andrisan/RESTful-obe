@@ -34,19 +34,19 @@ export const useAssignments = defineStore('assignment', {
                 })
         },
 
-        createAssignment(assignment_plan_id, due_date, note,course_class_id) {
+        createAssignment(assignment_plan_id, course_class_id, due_date, note) {
             axiosClient
                 .post('//127.0.0.1:8000/api/assignments/', {
                     assignment_plan_id: assignment_plan_id,
+                    course_class_id:course_class_id,
                     due_date:due_date,
                     note:note,
-                    course_class_id:course_class_id
+
                 })
                 .then(response => {
                     console.log(response.status)
                     window.location.href = '/assignment'
                     this.createAssignment = response.status
-
                 })
                 .catch(error => {
                     console.log(error.response)
@@ -86,7 +86,7 @@ export const useAssignments = defineStore('assignment', {
             // console.log(assignment.id);
             if (del) {
                 axiosClient
-                    .delete(`/api/assigments/${id}`)
+                    .delete(`//127.0.0.1:8000/api/assignments/${id}`)
                     .then(response => {
                         console.log('Assignment deleted successfully.')
                         this.fetchAllAssignment() // Update the assignment list after deletion
