@@ -9,6 +9,7 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\CriteriaLevelController;
 use App\Http\Controllers\StudentGradeController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\AssignmentPlanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\DepartmentController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseClassController;
+use App\Models\AssignmentPlan;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,7 @@ use App\Http\Controllers\CourseClassController;
 Route::apiResource('assignments', AssignmentController::class);
 Route::apiResource('faculties',FacultyController::class);
 Route::apiResource('llo', LessonLearningOutcomeController::class);
+Route::apiResource('assignment_plans', AssignmentPlanController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);

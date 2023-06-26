@@ -5,76 +5,76 @@ import { reactive, ref } from 'vue'
 
 const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
 
-export const useAssignments = defineStore('assignment', {
+export const useAssignmentPlans = defineStore('assignment_plan', {
     state: () => ({
-        allAssignment: [],
-        showAssignment: [],
-        updateAssignment: null,
+        allAssignmentPlan: [],
+        showAssignmentPlan: [],
+        updateAssignmentPlan: null,
     }),
 
     getters: {
-        getAllAssignment(state) {
-            return state.allAssignment
+        getAllAssignmentPlan(state) {
+            return state.allAssignmentPlan
         },
-        getShowAssignment(state) {
-            return state.showAssignment
+        getShowAssignmentPlan(state) {
+            return state.showAssignmentPlan
         },
     },
 
     actions: {
-        fetchAllAssignment() {
+        fetchAllAssignmentPlan() {
             axiosClient
-                .get('//127.0.0.1:8000/api/assignments')
+                .get('//127.0.0.1:8000/api/assignment_plans')
                 .then(response => {
                     console.log(response.data)
-                    this.allAssignment = response.data.data
+                    this.allAssignmentPlan = response.data.data
                 })
                 .catch(error => {
-                    this.allAssignment = error
+                    this.allAssignmentPlan = error
                 })
         },
 
-        createAssignment(name) {
+        createAssignmentPlan(name) {
             axiosClient
-                .post('//127.0.0.1:8000/api/assignments/', {
+                .post('//127.0.0.1:8000/api/assignment_plans/', {
                     name: name,
                 })
                 .then(response => {
                     console.log(response.status)
-                    window.location.href = '/assignment'
-                    this.createAssignment = response.status
+                    window.location.href = '/assignment_plans'
+                    this.createAssignmentPlan = response.status
 
                 })
                 .catch(error => {
                     console.log(error.response)
-                    this.createAssignment = error.response.status
+                    this.createAssignmentPlan = error.response.status
                 })
         },
 
-        fetchAssignmentWithId(id) {
+        fetchAssignmentPlanWithId(id) {
             axios
-                .get('//127.0.0.1:8000/api/assignments/' + id)
+                .get('//127.0.0.1:8000/api/assignment_plans/' + id)
                 .then(response => {
                     console.log(response.data)
-                    this.showAssignment = response.data.data
+                    this.showAssignmentPlan = response.data.data
                 })
                 .catch(error => {
-                    this.showAssignment = error
+                    this.showAssignmentPlan = error
                 })
         },
 
-        updateAssignment(assignmentId, name) {
-            axiosClient.patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
+        updateAssignmentPlan(assignmentPlanId, name) {
+            axiosClient.patch('//127.0.0.1:8000/api/assignment_plans/' + assignmentPlanId, {
                     name: name,
                 })
                 .then(response => {
                     console.log(response.status)
                     window.location.href = '/assignment'
-                    this.createAssignment = response.status
+                    this.createAssignmentPlan = response.status
                 })
                 .catch(error => {
                     console.log(error.response)
-                    this.createAssignment = error.response.status
+                    this.createAssignmentPlan = error.response.status
                 })
         },
 
@@ -83,10 +83,10 @@ export const useAssignments = defineStore('assignment', {
             // console.log(assignment.id);
             if (del) {
                 axiosClient
-                    .delete(`/api/assigments/${id}`)
+                    .delete(`/api/assigment_plans/${id}`)
                     .then(response => {
-                        console.log('Assignment deleted successfully.')
-                        this.fetchAllAssignment() // Update the assignment list after deletion
+                        console.log('Assignment Plan deleted successfully.')
+                        this.fetchAllAssignment() // Update the assignment plan list after deletion
                     })
                     .catch(error => {
                         console.error(error)
