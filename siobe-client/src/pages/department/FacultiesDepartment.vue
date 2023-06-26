@@ -1,5 +1,18 @@
 <script setup>
-import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
+import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue';
+import { useDepartmentStore } from '@/stores/department.js';
+import { onMounted } from 'vue';
+
+const store = useDepartmentStore();
+
+onMounted(() => {
+  store.fetchDepartment();
+});
+
+const deleteDepartment = (departmentId) => {
+  // Panggil metode di store untuk menghapus departemen dengan ID yang diberikan
+  store.deleteDepartment(departmentId);
+};
 </script>
 
 <template>
@@ -59,9 +72,9 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">1</td>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Information Technology</td>
+                            <tr v-for="(department, index) in store.departmentData" :key="department.id">
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ index + 1 }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ department.name }}</td>
                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                     <div class="flex flex-wrap space-x-4">
                                         <a href="http://127.0.0.1:3000/faculties/1/departments/1/study-programs" class="text-amber-700">Manage Study Programs</a>
@@ -79,7 +92,6 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
                         </tbody>
                     </table>
                 </div>
-                <!-- body-end -->
             </div>
         </div>
     </AuthenticatedLayout>
