@@ -59,7 +59,7 @@ import { useLlo } from '@/stores/llo';
 import { ref } from 'vue';
 
 const route = useRoute();
-const lloId = ref(route.params.id)
+const lloId = ref(route.params.id).value
 
 const lloStore = useLlo()
 const description = ref('')

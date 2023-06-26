@@ -54,8 +54,9 @@
 									  </ResponsiveNavLink>
 									</router-link>
 								  </a>
-								  <a href="#" class="text-blue-500 pr-5 hover:text-blue-800">
-									delete
+								  <a href="#" class="text-blue-500 pr-5 hover:text-blue-800"
+									@click="store.destroyLlo(llo.id)">
+                                        Delete
 								  </a>
 								</div>
 							  </td>

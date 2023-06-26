@@ -50,19 +50,35 @@ export const useLlo = defineStore('llo', {
                 })
         },
         
-        updateFaculty(lloId, name) {
+        updateFaculty(lloId, description) {
             axiosClient
-                .put('//127.0.0.1:8000/api/faculties/' + lloId, {
-                    name: name,
+                .patch('//127.0.0.1:8000/api/llo/' + lloId, {
+                    description: description,
                 })
                 .then(response => {
                     console.log(response.status)
-                    this.createFaculty = response.status
+                    window.location.href = '/llo'
+                    this.createLlo = response.status
                 })
                 .catch(error => {
                     console.log(error.response)
-                    this.createFaculty = error.response.status
+                    this.createLlo = error.response.status
                 })
+        },
+
+        destroyLlo(id) {
+            let del = window.confirm('Are you sure?')
+            if (del) {
+                axiosClient
+                    .delete(`//127.0.0.1:8000/api/llo/${id}`)
+                    .then(response => {
+                        console.log('Llo deleted successfully.')
+                        this.fetchAllLlo()
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+            }
         },
     },
 })
