@@ -3,6 +3,9 @@ import { useUsers } from '@/stores/user'
 import Welcome from '@/pages/Welcome.vue'
 import PageNotFound from '@/pages/errors/404.vue'
 import Dashboard from '@/pages/Dashboard.vue'
+import StudyProgram from '@/pages/StudyProgram.vue'
+import Course from '@/pages/Course.vue'
+import CourseClass from '@/pages/CourseClass.vue'
 import Login from '@/pages/auth/Login.vue'
 import Register from '@/pages/auth/Register.vue'
 import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
@@ -41,6 +44,7 @@ const routes = [
             ],
         },
     },
+   
     {
         path: '/home',
         redirect: '/dashboard',
@@ -58,6 +62,33 @@ const routes = [
         component: Dashboard,
         meta: {
             title: 'Dashboard',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/studyprograms',
+        name: 'studyprograms',
+        component: StudyProgram,
+        meta: {
+            title: 'StudyProgram',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/courses',
+        name: 'courses',
+        component: Course,
+        meta: {
+            title: 'Course',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/courseclasses',
+        name: 'courseclasses',
+        component: CourseClass,
+        meta: {
+            title: 'CourseClass',
             guard: 'auth',
         },
     },
@@ -127,7 +158,6 @@ const routes = [
         path: '/:pathMatch(.*)*',
         redirect: '/page-not-found',
     },
-
     {
         path: '/rubrics',
         name: 'rubrics',
@@ -192,6 +222,7 @@ const routes = [
             guard: 'auth',
         },
     },
+
 ]
 
 const router = createRouter({
