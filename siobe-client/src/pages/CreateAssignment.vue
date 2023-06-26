@@ -42,6 +42,22 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="pb-4">
+                            <h1 class="font-bold text-gray-600">
+                                Course Class
+                            </h1>
+                            <div class="form-control w-full lg:w-[32rem]">
+                                <select v-model="course_class_id" class="text-gray-500 select select-bordered border rounded-md">
+                                    <option disabled="" selected="">
+                                        Choose the assignment course class
+                                    </option>
+                                    <option value="1">Course 1</option>
+                                    <option value="2">Course 2</option>
+                                    <option value="3">Course 3</option>
+
+                                </select>
+                            </div>
+                        </div>
                         <div>
                             <h1 class="text-gray-600 font-bold py-2">
                                 Deadline
@@ -70,7 +86,7 @@
                 </div>
                 <div class="flex">
                     <button
-                        @click="assignmentStore.createAssignment(assignment_plan_id, due_date, note)"
+                        @click="assignmentStore.createAssignment(assignment_plan_id, due_date, note,course_class_id)"
                         class="bg-gray-700 border rounded-md"
                         style="
                             font-weight: bold;
