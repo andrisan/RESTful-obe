@@ -47,7 +47,6 @@ const routes = [
             guard: 'auth',
         },
     },
-    
     {
         path: '/dashboard',
         name: 'dashboard',
@@ -63,13 +62,6 @@ const routes = [
         name: 'studyprograms.create',
         component: () => import( /* webpackChunkName: "studyprograms.create" */ '@/pages/StudyProgram/StudyProgramCreate.vue')
     },
-
-    {
-        path: '/edit/:id',
-        name: 'post.edit',
-        component: () => import( /* webpackChunkName: "post.edit" */ '@/views/post/Edit.vue')
-    },
-    
     {
         path: '/studyprograms',
         name: 'studyprograms',
@@ -79,17 +71,6 @@ const routes = [
             guard: 'auth',
         },
     },
-
-    {
-        path: '/studyprograms/create',
-        name: 'studyprogramscreate',
-        component: StudyProgramCreate,
-        meta: {
-            title: 'StudyProgramCreate',
-            guard: 'auth',
-        },
-    },
-
     {
         path: '/courses',
         name: 'courses',
@@ -99,7 +80,6 @@ const routes = [
             guard: 'auth',
         },
     },
-
     {
         path: '/courseclasses',
         name: 'courseclasses',
@@ -109,7 +89,6 @@ const routes = [
             guard: 'auth',
         },
     },
-
     {
         path: '/login',
         name: 'login',
@@ -122,7 +101,6 @@ const routes = [
             guard: 'guest',
         },
     },
-
     {
         path: '/register',
         name: 'register',
@@ -132,7 +110,6 @@ const routes = [
             guard: 'guest',
         },
     },
-
     {
         path: '/forgot-password',
         name: 'forgot-password',
@@ -142,7 +119,6 @@ const routes = [
             guard: 'guest',
         },
     },
-
     {
         path: '/password-reset/:token',
         name: 'password-reset',
@@ -155,7 +131,6 @@ const routes = [
             guard: 'guest',
         },
     },
-
     {
         path: '/verify-email',
         name: 'verify-email',
@@ -168,7 +143,6 @@ const routes = [
             guard: 'auth',
         },
     },
-    
     {
         path: '/page-not-found',
         name: 'page-not-found',
@@ -177,7 +151,6 @@ const routes = [
             title: 'Page Not Found',
         },
     },
-
     {
         path: '/:pathMatch(.*)*',
         redirect: '/page-not-found',
@@ -189,6 +162,8 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 })
+
+// Navigation guard
 
 router.beforeEach((to, from, next) => {
     const store = useUsers()
