@@ -45,10 +45,21 @@
 							<td class="px-6 py-4">
 								{{ llo.description }}
 							</td>
-							<td class="px-6 py-4">
-								<button class="text-red-500 pr-5">edit</button>
-								<button class="text-red-500 pr-5">delete</button>
-							</td>
+							<td class="text-gray-600 px-6 py-4 border-t border-gray-100">
+								<div class="flex flex-wrap space-x-4">
+								  <a href="#" class="text-blue-500 pr-5 hover:text-blue-800">
+									<router-link v-slot="{ href, isActive, navigate }" :to="'/update-llo/' + llo.id" custom>
+									  <ResponsiveNavLink :href="href" :active="isActive" @click="navigate">
+										Edit
+									  </ResponsiveNavLink>
+									</router-link>
+								  </a>
+								  <a href="#" class="text-blue-500 pr-5 hover:text-blue-800"
+									@click="store.destroyLlo(llo.id)">
+                                        Delete
+								  </a>
+								</div>
+							  </td>
 						</tr>
 					</tbody>
 				</table>

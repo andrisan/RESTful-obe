@@ -14,6 +14,7 @@ import UpdateFaculty from '@/pages/UpdateFaculty.vue'
 import AssignmentDetail from '@/pages/AssignmentDetails.vue'
 import Llo from '@/pages/Llo.vue'
 import CreateLlo from '@/pages/CreateLLO.vue'
+import UpdateLlo from '@/pages/UpdateLLO.vue'
 import CreateAssignment from '@/pages/CreateAssignment.vue'
 import Assignment from '@/pages/Assignment.vue'
 
@@ -178,6 +179,16 @@ const routes = [
             resend: 'resend',
         },
     },
+    {
+        path: '/update-llo/:id',
+        name: 'Update Llo',
+        component: UpdateLlo,
+        query: {
+            resend: 'resend',
+        },
+    },
+
+
     {
         path: '/create-assignment',
         name: 'Create Assignment',
