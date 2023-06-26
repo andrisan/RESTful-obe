@@ -1,5 +1,14 @@
 <script setup>
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
+import { onMounted } from 'vue';
+import { useFacultiesStore } from '../../router/faculties';
+
+const store = useFacultiesStore();
+
+onMounted(() => {
+  store.fetchFaculties();
+});
+
 </script>
 
 <template>
@@ -49,9 +58,9 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">1</td>
-                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Faculty of Lowe-Feil</td>
+                            <tr v-for="(item, index) in store.faculties" :key="index">
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100"> {{ index+1 }}</td>
+                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100"> {{ faculties.name }} </td>
                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                     <div class="flex flex-wrap space-x-4">
                                         <a href="http://127.0.0.1:3000/faculties/1/departments" class="text-amber-700">Manage Departement</a>
