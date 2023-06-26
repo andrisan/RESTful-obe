@@ -26,7 +26,7 @@ export const useFaculties = defineStore('faculty', {
             axiosClient
                 .get('//127.0.0.1:8000/api/faculties')
                 .then(response => {
-                    // console.log(response.data)
+                    console.log(response.data)
                     this.allFaculty = response.data.data
                 })
                 .catch(error => {
