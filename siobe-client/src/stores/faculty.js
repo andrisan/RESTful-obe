@@ -71,7 +71,7 @@ export const useFaculties = defineStore('faculty', {
             // console.log(faculty.id);
             if (del) {
                 axiosClient
-                    .delete(`/api/faculties/${id}`)
+                    .delete(`//127.0.0.1:8000/api/faculties/${id}`)
                     .then(response => {
                         console.log('Faculty deleted successfully.')
                         this.fetchAllFaculty() // Update the faculty list after deletion
