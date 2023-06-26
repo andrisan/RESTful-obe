@@ -7,7 +7,7 @@ const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
 
 export const useAssignments = defineStore('assignment', {
     state: () => ({
-        allAssignment: [],
+        allAssignment: [], 
         showAssignment: [],
         updateAssignment: null,
     }),

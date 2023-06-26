@@ -32,12 +32,12 @@ use App\Http\Controllers\CourseClassController;
 Route::apiResource('assignments', AssignmentController::class);
 Route::apiResource('faculties',FacultyController::class);
 Route::apiResource('llo', LessonLearningOutcomeController::class);
+Route::apiResource('clo', CourseLearningOutcomeController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('rubrics', RubricController::class);
     Route::apiResource('ilo', IntendedLearningOutcomeController::class);
-    Route::apiResource('clo', CourseLearningOutcomeController::class);
     Route::apiResource('syllabi', SyllabusController::class);
     Route::apiResource('study-programs',StudyProgramController::class);
     Route::apiResource('courses',CourseController::class);
