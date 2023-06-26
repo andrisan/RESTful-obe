@@ -6,27 +6,112 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                COURSE CLASS
+                Course Class
             </h2>
         </template>
 
-        <div class="py-4">
-          <button type="button" class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mr-2 mb-2">
-            <svg class="w-4 h-4 mr-2 -ml-1 text-[#626890]" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="ethereum" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"></path></svg>
-            TI-A
-          </button>
-        </div>
-        <div class="py-4">
-          <button type="button" class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mr-2 mb-2">
-            <svg class="w-4 h-4 mr-2 -ml-1 text-[#626890]" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="ethereum" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"></path></svg>
-            TI-B
-          </button>
-        </div>
-        <div class="py-4">
-          <button type="button" class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mr-2 mb-2">
-            <svg class="w-4 h-4 mr-2 -ml-1 text-[#626890]" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="ethereum" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"></path></svg>
-            TI-C
-          </button>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        <main>
+                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                <div class="text-sm breadcrumbs pl-2 py-6 font-bold text-gray-600">
+                                </div>
+                                <div class="pb-8">
+                                    <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
+                                        <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                                            <a href="/courseclasses/create"
+                                                class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                <span class="pr-1"><i class="fa fa-plus"></i> Create New Course Class</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+                                        <table class="border-collapse table-auto w-full bg-white table-striped relative">
+                                            <thead>
+                                                <tr class="text-left">
+                                                    <th
+                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-6">
+                                                        No</th>
+                                                    <th
+                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">
+                                                        Nama</th>
+                                                    <th
+                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">
+                                                        Kode Kelas</th>
+                                                    <th
+                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">
+                                                        Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(item, index) in courseclasses" :key="index">
+                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ index + 1 }}</td>
+                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                                        <a :href="`courseclasses/show/${item.id}`"
+                                                            class="text-blue-500 hover:text-blue-700">{{ item.name }}</a>
+                                                    </td>
+                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ item.class_code }}</td>
+                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
+                                                        <div class="flex flex-wrap space-x-4">
+                                                            <a href=""
+                                                                class="text-blue-500">Edit</a>
+                                                            <form method="POST" action="">
+                                                                <input type="hidden" name="" value=""> <input
+                                                                    type="hidden" name="_method" value="delete">
+                                                                <button class="text-red-500" @click="deleteCourseClass(item)">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>
+
+<script>
+
+
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      courseclasses: [],
+    };
+  },
+  mounted() {
+    this.getCourseClass();
+  },
+  methods: {
+    getCourseClass() {
+      axios
+        .get("http://localhost:8000/api/course-classes", {
+        })
+        .then((response) => {
+          this.courseclasses = response.data.data;
+        })
+        .catch((error) => {
+          this.validation = error.response.data;
+        });
+    },
+    deleteCourseClass(courseclasses) {
+      if (confirm("Hapus Course?" + courseclasses.id)) {
+        axios
+          .delete('http://127.0.0.1:8000/api/course-classes' + courseclasses.id)
+      }
+    },
+  },
+}
+</script>
