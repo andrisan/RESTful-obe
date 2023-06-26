@@ -10,9 +10,54 @@
                 </router-link>
             </div>
             <div class="flex justify-center items-center">
-                <table
-                    class="table-auto text-sm text-left text-gray-500 shadow-md rounded-lg w-9/12">
+                <table class="table-auto text-sm text-left text-gray-500 shadow-md rounded-lg w-9/12">
                     <thead
+                        class="text-m text-gray-500 font-bold uppercase bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">No</th>
+                            <th scope="col" class="px-6 py-3 w-">
+                                Assignment Plan ID's
+                            </th>
+                            <th scope="col" class="px-6 py-3 w-">
+                                Course Class ID's
+                            </th>
+                            <th scope="col" class="px-6 py-3 w-">
+                                Due Date
+                            </th>
+                            <th scope="col" class="px-6 py-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(assignment, index) in assignmentStore.getAllAssignment" :key="index">
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900">
+                                {{ index + 1 }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ assignment.assignment_plan_id }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ assignment.course_class_id }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ assignment.due_date }}
+                            </td>
+                            <td class="text-gray-600 px-6 py-4 border-t border-gray-100">
+                                <div class="flex flex-wrap space-x-4">
+                                    <a href="#" class="text-orange-500 pr-5 hover:text-orange-800"> Details
+                                    </a>
+                                    <a href="#" class="text-blue-500 pr-5 hover:text-blue-800"> Edit
+                                    </a>
+                                    <button class="text-red-500 pr-5 hover:text-red-800"
+                                        @click="store.destroyAssignment(assignment.id)">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <!-- Ini kalau list by AssignmentPlan -->
+                    <!-- <thead
                         class="text-m text-gray-500 font-bold uppercase bg-gray-100">
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
@@ -33,20 +78,8 @@
                             <td class="text-gray-600 px-6 py-4 border-t border-gray-100">
                                 <div class="flex flex-wrap space-x-4">
                                     <a href="#" class="text-orange-500 pr-5 hover:text-orange-800"> Details
-                                        <!-- <router-link v-slot="{ href, isActive, navigate }"
-                                            :to="'/detail-assignment/' + assignment.id" custom>
-                                            <ResponsiveNavLink :href="href" :active="isActive" @click="navigate">
-                                                Details
-                                            </ResponsiveNavLink>
-                                        </router-link> -->
                                     </a>
                                     <a href="#" class="text-blue-500 pr-5 hover:text-blue-800"> Edit
-                                        <!-- <router-link v-slot="{ href, isActive, navigate }"
-                                            :to="'/edit-assignment/' + assignment.id" custom>
-                                            <ResponsiveNavLink :href="href" :active="isActive" @click="navigate">
-                                                Edit
-                                            </ResponsiveNavLink>
-                                        </router-link> -->
                                     </a>
                                     <button class="text-red-500 pr-5 hover:text-red-800"
                                         @click="store.destroyAssignment(assignment.id)">
@@ -55,8 +88,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
-                    </tbody>
+                    </tbody> -->
                 </table>
             </div>
         </div>
