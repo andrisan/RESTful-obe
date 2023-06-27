@@ -57,6 +57,17 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- <div>
+                            <h1 class="text-gray-600 font-bold py-2">
+                                Assignment Date
+                            </h1>
+                            <div class="flex-row flex gap-10">
+                                <div class="text-gray-500">
+                                    <input v-model="assignment_date" type="datetime-local" placeholder="Type here"
+                                        class="input input-bordered w-full max-w-xs border rounded-md" />
+                                </div>
+                            </div>
+                        </div> -->
                         <div>
                             <h1 class="text-gray-600 font-bold py-2">
                                 Deadline
@@ -103,6 +114,7 @@ const route = useRoute()
 const assignmentStore = useAssignments()
 const assignment_plan_id = ref('')
 const course_class_id = ref('')
+// const assignment_date = ref('')
 const due_date = ref('')
 const note = ref('')
 </script>

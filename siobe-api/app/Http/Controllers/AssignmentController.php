@@ -17,7 +17,7 @@ class AssignmentController extends Controller
 
 	public function index()
 	{
-		$assignment = Assignment::paginate(50);
+		$assignment = Assignment::all();
 		return AssignmentResource::collection($assignment);
 	}
 

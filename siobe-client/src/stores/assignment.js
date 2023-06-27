@@ -68,14 +68,18 @@ export const useAssignments = defineStore('assignment', {
         updateAssignment(
             assignmentId,
             assignment_plan_id,
+            assigned_date,
             due_date,
             note,
+            course_class_id
         ) {
             axiosClient
                 .patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
                     assignment_plan_id: assignment_plan_id,
+                    assigned_date:assigned_date,
                     due_date: due_date,
                     note: note,
+                    course_class_id:course_class_id
                 })
                 .then(response => {
                     console.log(response.status)
