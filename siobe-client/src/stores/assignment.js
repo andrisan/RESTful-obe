@@ -3,11 +3,11 @@ import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
-const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
+// const csrf = () => axiosClient.get('/sanctum/csrf-cookie')
 
 export const useAssignments = defineStore('assignment', {
     state: () => ({
-        allAssignment: [], 
+        allAssignment: [],
         showAssignment: [],
         updateAssignment: null,
     }),
@@ -34,19 +34,18 @@ export const useAssignments = defineStore('assignment', {
                 })
         },
 
-        createAssignment(assignment_plan_id, due_date, note,course_class_id) {
+        createAssignment(assignment_plan_id, course_class_id, due_date, note) {
             axiosClient
                 .post('//127.0.0.1:8000/api/assignments/', {
                     assignment_plan_id: assignment_plan_id,
-                    due_date:due_date,
-                    note:note,
-                    course_class_id:course_class_id
+                    course_class_id: course_class_id,
+                    due_date: due_date,
+                    note: note,
                 })
                 .then(response => {
                     console.log(response.status)
                     window.location.href = '/assignment'
                     this.createAssignment = response.status
-
                 })
                 .catch(error => {
                     console.log(error.response)
@@ -66,9 +65,21 @@ export const useAssignments = defineStore('assignment', {
                 })
         },
 
-        updateAssignment(assignmentId, name) {
-            axiosClient.patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
-                    name: name,
+        updateAssignment(
+            assignmentId,
+            assignment_plan_id,
+            assigned_date,
+            due_date,
+            note,
+            course_class_id
+        ) {
+            axiosClient
+                .patch('//127.0.0.1:8000/api/assignments/' + assignmentId, {
+                    assignment_plan_id: assignment_plan_id,
+                    assigned_date:assigned_date,
+                    due_date: due_date,
+                    note: note,
+                    course_class_id:course_class_id
                 })
                 .then(response => {
                     console.log(response.status)
@@ -86,7 +97,7 @@ export const useAssignments = defineStore('assignment', {
             // console.log(assignment.id);
             if (del) {
                 axiosClient
-                    .delete(`/api/assigments/${id}`)
+                    .delete(`//127.0.0.1:8000/api/assignments/${id}`)
                     .then(response => {
                         console.log('Assignment deleted successfully.')
                         this.fetchAllAssignment() // Update the assignment list after deletion

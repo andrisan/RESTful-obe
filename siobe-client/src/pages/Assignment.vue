@@ -3,16 +3,13 @@
         <!-- Bagian template lainnya -->
         <div class="">
             <div class="flex justify-end mb-6">
-                <router-link
-                    to="/create-assignment"
-                    class="bg-white drop-shadow px-3 py-3 rounded-lg mr-48 mt-6">
+                <router-link to="/create-assignment" class="bg-white drop-shadow px-3 py-3 rounded-lg mr-48 mt-6">
                     Create New Assignment
                 </router-link>
             </div>
             <div class="flex justify-center items-center">
                 <table class="table-auto text-sm text-left text-gray-500 shadow-md rounded-lg w-9/12">
-                    <thead
-                        class="text-m text-gray-500 font-bold uppercase bg-gray-100">
+                    <thead class="text-m text-gray-500 font-bold uppercase bg-gray-100">
                         <tr>
                             <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3 w-">
@@ -45,10 +42,16 @@
                                 <div class="flex flex-wrap space-x-4">
                                     <a href="#" class="text-orange-500 pr-5 hover:text-orange-800"> Details
                                     </a>
-                                    <a href="#" class="text-blue-500 pr-5 hover:text-blue-800"> Edit
+                                    <a href="#" class="text-blue-500 pr-5 hover:text-blue-800">
+                                        <router-link v-slot="{navigate, href, isActive  }"
+                                            :to="'update-assignment/'+assignment.id">
+                                            <ResponsiveNavLink :href="href" :active="isActive" @click="navigate">
+                                                Edit
+                                            </ResponsiveNavLink>
+                                        </router-link>
                                     </a>
                                     <button class="text-red-500 pr-5 hover:text-red-800"
-                                        @click="store.destroyAssignment(assignment.id)">
+                                        @click="assignmentStore.destroyAssignment(assignment.id)">
                                         Delete
                                     </button>
                                 </div>
@@ -102,6 +105,6 @@ import { useAssignmentPlans } from '@/stores/assignment_plan'
 const assignmentStore = useAssignments()
 assignmentStore.fetchAllAssignment()
 
-const assignmentPlanStore = useAssignmentPlans()
-assignmentPlanStore.fetchAllAssignmentPlan()
+// const assignmentPlanStore = useAssignmentPlans()
+// assignmentPlanStore.fetchAllAssignmentPlan()
 </script>

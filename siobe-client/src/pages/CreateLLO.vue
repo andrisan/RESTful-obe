@@ -26,7 +26,7 @@
             <div class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
                 <div class="bottom-desc font-sans">
                     <p class="font-normal text-gray-700">
-                        Course Learnign Outcome (CLO)
+                        Course Learning Outcome (CLO)
                     </p>
                     <select v-model="selectedCloId"
                         class="bg-gray-50 border border-gray-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 mt-3">
@@ -60,8 +60,11 @@
 
                 </div>
                 <div class="flex mt-5">
-                    <button @click="lloStore.createLlo(selectedCloId, code, description);" class="bg-gray-700 border rounded-md"
-                        style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button>
+                    <!-- <button @click="lloStore.createLlo(selectedCloId, code, description);" class="bg-gray-700 border rounded-md"
+                        style="font-weight: bold; color: white; width: 100px; height: 32px;">SAVE</button> -->
+                    <button class="bg-gray-700 border rounded-md"
+                        style="font-weight: bold; color: white; width: 100px; height: 32px;"
+                        @click="lloStore.createLlo(selectedCloId, code, description)">SAVE</button>
                     <button class="text-gray-600 hover:bg-gray-100 py-2 px-4 rounded-lg">
                         Cancel
                     </button>

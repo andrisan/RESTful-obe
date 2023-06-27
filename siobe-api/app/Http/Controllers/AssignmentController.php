@@ -17,7 +17,7 @@ class AssignmentController extends Controller
 
 	public function index()
 	{
-		$assignment = Assignment::paginate(10);
+		$assignment = Assignment::all();
 		return AssignmentResource::collection($assignment);
 	}
 
@@ -35,9 +35,10 @@ class AssignmentController extends Controller
 	 * Display the specified resource.
 	 */
 
-	public function show(string $id)
+	public function show(Assignment $Assignment) : AssignmentResource
 	{
-		//
+
+        return new AssignmentResource($Assignment);
 	}
 
 
