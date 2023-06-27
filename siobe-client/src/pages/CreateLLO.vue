@@ -30,10 +30,14 @@
                     </p>
                     <select v-model="selectedCloId"
                         class="bg-gray-50 border border-gray-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 mt-3">
-                        <option value="">Choose the CLO</option>
-                        <option v-for="clo in store.getAllClo" :key="clo.id" :value="clo.id" class="text-black text-sm">
-                            {{ clo.code }}
-                        </option>
+                        <option disabled="" selected="">Choose the CLO</option>
+                        <option value="1">CLO 1</option>
+                        <option value="2">CLO 2</option>
+                        <option value="3">CLO 3</option>
+                        <option value="4">CLO 4</option>
+                        <!-- <option v-for="clo in store.getAllClo" :key="clo.id" :value="clo.id" class="text-black text-sm">
+                            {{ clo.code }} -->
+                        <!-- </option> -->
                     </select>
 
                 </div>
@@ -71,11 +75,11 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLlo } from '@/stores/llo';
-import { useClo } from '@/stores/clo';
+// import { useClo } from '@/stores/clo';
 import { toRef } from 'vue';
 
-const store = useClo()
-store.fetchAllClo()
+// const store = useClo()
+// store.fetchAllClo()
 
 const route = useRoute()
 const lloStore = useLlo()
@@ -83,10 +87,4 @@ const code = ref('')
 const description = ref('')
 const selectedCloId = ref('');
 
-// const selectedCloIdRef = toRef(store, 'selectedCloId');
-
-// const createLlo = () => {
-//     lloStore.createLlo(description.value, code.value, selectedCloIdRef.value);
-// };
-console.log(selectedCloId)
 </script>
