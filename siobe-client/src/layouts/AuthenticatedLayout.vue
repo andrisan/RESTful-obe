@@ -25,7 +25,8 @@ const submitLogout = () => {
 </script>
 
 <template>
-    <div v-if="auth">
+    <!-- uncomment if you are able to login -->
+    <!-- <div v-if="auth"> -->
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
@@ -40,6 +41,7 @@ const submitLogout = () => {
                             </div>
 
                             <!-- Navigation Links -->
+                            <!-- 1 -->
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <router-link
@@ -234,5 +236,5 @@ const submitLogout = () => {
                 <slot />
             </main>
         </div>
-    </div>
+    <!-- </div> -->
 </template>

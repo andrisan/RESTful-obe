@@ -3,6 +3,14 @@ import { useUsers } from '@/stores/user'
 import Welcome from '@/pages/Welcome.vue'
 import PageNotFound from '@/pages/errors/404.vue'
 import Dashboard from '@/pages/Dashboard.vue'
+import Faculties from '@/pages/department/Faculties.vue'
+import Department from '@/pages/department/FacultiesDepartment.vue'
+import CreateDepartment from '@/pages/department/FacultiesCreateDepartment.vue'
+import EditDepartment from '@/pages/department/FacultiesEditDepartment.vue'
+import Syllabi from '@/pages/learningplan/Syllabi.vue'
+import SyllabiDetail from '@/pages/learningplan/SyllabiDetail.vue'
+import CreateLearningPlan from '@/pages/learningplan/SyllabiCreateLearningPlan.vue'
+import EditLearningPlan from '@/pages/learningplan/SyllabiEditLearningPlan.vue'
 import StudyProgram from '@/pages/StudyProgram.vue'
 import Course from '@/pages/Course.vue'
 import CourseClass from '@/pages/CourseClass.vue'
@@ -50,7 +58,6 @@ const routes = [
             ],
         },
     },
-   
     {
         path: '/home',
         redirect: '/dashboard',
@@ -68,7 +75,8 @@ const routes = [
         component: Dashboard,
         meta: {
             title: 'Dashboard',
-            guard: 'auth',
+            guard: 'guest',
+            // necessarily : auth
         },
     },
     
@@ -102,6 +110,86 @@ const routes = [
         meta: {
             title: 'CourseClass',
             guard: 'auth',
+        },
+    },
+    {
+        path: '/faculties',
+        name: 'faculties',
+        component: Faculties,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties/1/departments',
+        name: 'department',
+        component: Department,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties/1/departments/create',
+        name: 'create department',
+        component: CreateDepartment,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/faculties/1/departments/1/edit',
+        name: 'edit department',
+        component: EditDepartment,
+        meta: {
+            title: 'Faculties',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi',
+        name: 'syllabi',
+        component: Syllabi,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi/1',
+        name: 'detail syllabi',
+        component: SyllabiDetail,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi/1/learning-plans/create',
+        name: 'create learning plan',
+        component: CreateLearningPlan,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
+        },
+    },
+    {
+        path: '/syllabi/1/learning-plans/1/edit',
+        name: 'edit learning plan',
+        component: EditLearningPlan,
+        meta: {
+            title: 'Syllabi',
+            guard: 'guest',
+            // necessarily : auth
         },
     },
     {
@@ -167,7 +255,7 @@ const routes = [
         },
     },
     {
-        path: '/:pathMatch(.*)*',
+        path: '/:pathMatch(.)',
         redirect: '/page-not-found',
     },
     {

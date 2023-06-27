@@ -21,13 +21,26 @@ class LearningPlanUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'week_number' => ['sometimes'],
-            'llo_id' => ['required'],
-            'syllabus_id' => ['sometimes'],
-            'study_material' => ['sometimes'],
-            'learning_method' => ['sometimes'],
-            'estimated_time' => ['sometimes'],
-        ];
+        $method = $this->method();
+		if ($method == 'PATCH') {
+			return [
+				'week_number' => ['sometimes', 'integer'],
+            'llo_id' => ['required', 'integer'],
+            'syllabus_id' => ['sometimes', 'integer'],
+            'study_material' => ['sometimes', 'string'],
+            'learning_method' => ['sometimes', 'string'],
+            'estimated_time' => ['sometimes', 'string']
+			];
+		} else {
+			return [
+				'week_number' => ['required', 'integer'],
+            'llo_id' => ['required', 'integer'],
+            'syllabus_id' => ['required', 'integer'],
+            'study_material' => ['required', 'string'],
+            'learning_method' => ['required', 'string'],
+            'estimated_time' => ['required', 'string']
+			];
+		}
+        
     }
 }
