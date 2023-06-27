@@ -16,7 +16,7 @@ class LessonLearningOutcomeController extends Controller
 	 */
 	public function index()
 	{
-		$llo = LessonLearningOutcome::paginate(10);
+		$llo = LessonLearningOutcome::all();
 		return LessonLearningOutcomeResource::collection($llo);
 	}
 

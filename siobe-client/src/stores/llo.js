@@ -31,16 +31,16 @@ export const useLlo = defineStore('llo', {
                 })
         },
 
-        createLlo(selectedCloId, code, description) {
+        createLlo(clo_id, code, description,syllabus_id) {
             axiosClient
                 .post('//127.0.0.1:8000/api/llo', {
-                    selectedCloId: selectedCloId,
+                    clo_id: clo_id,
                     code: code,
                     description: description,
+                    syllabus_id: 1
                 })
                 .then(response => {
                     console.log(response.status)
-                    window.location.href = '/llo'
                     this.createLlo = response.status
                 })
                 .catch(error => {

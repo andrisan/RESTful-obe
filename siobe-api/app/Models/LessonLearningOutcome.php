@@ -15,7 +15,9 @@ class LessonLearningOutcome extends Model
         'clo_id',
         'position',
         'code',
+        'syllabus_id',
         'description',
+
     ];
 
     public function courseLearningOutcome()
