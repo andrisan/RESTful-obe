@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create ('student_data', function (Blueprint $table){
-            $table->foreignId('id')->primary()->constrained('users');
+            $table->foreignId('id')->primary()->constrained('users')->onDelete('cascade');
             $table->string('student_id_number')->nullable();
         });
 
@@ -25,20 +25,20 @@ return new class extends Migration
 
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('faculty_id')->constrained('faculties');
+            $table->foreignId('faculty_id')->constrained('faculties')->onDelete('cascade');
             $table->string('name')->nullable();
         });
 
         Schema::create('study_programs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id')->constrained('departments');
+            $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->string('name');
         });
 
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('study_program_id')->constrained('study_programs');
-            $table->foreignId('creator_user_id')->constrained('users');
+            $table->foreignId('study_program_id')->constrained('study_programs')->onDelete('cascade');
+            $table->foreignId('creator_user_id')->constrained('users')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('code')->unique()->nullable();
             $table->integer('course_credit')->nullable();
@@ -53,7 +53,7 @@ return new class extends Migration
 
         Schema::create('syllabi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->string('title');
             $table->text('author')->nullable();
             $table->string('head_of_study_program', 512)->nullable();
@@ -61,30 +61,30 @@ return new class extends Migration
 
         Schema::create('intended_learning_outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('syllabus_id')->constrained('syllabi');
+            $table->foreignId('syllabus_id')->constrained('syllabi')->onDelete('cascade');
             $table->integer('position')->nullable();
             $table->text('description')->nullable();
         });
 
         Schema::create('course_learning_outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ilo_id')->constrained('intended_learning_outcomes');
+            $table->foreignId('ilo_id')->constrained('intended_learning_outcomes')->onDelete('cascade');
             $table->integer('position')->nullable();
             $table->text('description')->nullable();
         });
 
         Schema::create('lesson_learning_outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('clo_id')->constrained('course_learning_outcomes');
+            $table->foreignId('clo_id')->constrained('course_learning_outcomes')->onDelete('cascade');
             $table->integer('position')->nullable();
             $table->text('description')->nullable();
         });
 
         Schema::create('learning_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('syllabus_id')->constrained('syllabi');
+            $table->foreignId('syllabus_id')->constrained('syllabi')->onDelete('cascade');
             $table->integer('week_number')->nullable();
-            $table->foreignId('llo_id')->constrained('lesson_learning_outcomes');
+            $table->foreignId('llo_id')->constrained('lesson_learning_outcomes')->onDelete('cascade');
             $table->text('study_material')->nullable();
             $table->text('learning_method')->nullable();
             $table->string('estimated_time',1024)->nullable();
@@ -93,7 +93,7 @@ return new class extends Migration
 
         Schema::create('assignment_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('syllabus_id')->constrained('syllabi');
+            $table->foreignId('syllabus_id')->constrained('syllabi')->onDelete('cascade');
             $table->text('objective')->nullable();
             $table->string('title', 2048)->nullable();
             $table->boolean('is_group_assignment')->nullable();
@@ -107,15 +107,15 @@ return new class extends Migration
 
         Schema::create('rubrics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_plan_id')->constrained('assignment_plans');
+            $table->foreignId('assignment_plan_id')->constrained('assignment_plans')->onDelete('cascade');
             $table->string('title',1024);
             $table->timestampsTz();
         });
 
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rubric_id')->constrained('rubrics');
-            $table->foreignId('llo_id')->constrained('lesson_learning_outcomes');
+            $table->foreignId('rubric_id')->constrained('rubrics')->onDelete('cascade')->onDelete('cascade');
+            $table->foreignId('llo_id')->constrained('lesson_learning_outcomes')->onDelete('cascade');
             $table->string('title', 1024)->nullable();
             $table->string('description', 1024)->nullable();
             $table->float('max_point')->nullable();
@@ -124,7 +124,7 @@ return new class extends Migration
 
         Schema::create('criteria_levels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('criteria_id')->constrained('criterias');
+            $table->foreignId('criteria_id')->constrained('criterias')->onDelete('cascade');
             $table->float('point');
             $table->string('title', 1024)->nullable();
             $table->text('description')->nullable();
@@ -132,38 +132,38 @@ return new class extends Migration
 
         Schema::create('assignment_plan_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_plan_id')->constrained('assignment_plans');
-            $table->foreignId('criteria_id')->nullable()->constrained('criterias');
+            $table->foreignId('assignment_plan_id')->constrained('assignment_plans')->onDelete('cascade');
+            $table->foreignId('criteria_id')->nullable()->constrained('criterias')->onDelete('cascade');
             $table->string('code', 512);
             $table->text('description');
         });
 
         Schema::create('grading_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('learning_plan_id')->constrained('learning_plans');
-            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_tasks');
+            $table->foreignId('learning_plan_id')->constrained('learning_plans')->onDelete('cascade');
+            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_tasks')->onDelete('cascade');
         });
 
         Schema::create('course_classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->string('name', 1024);
             $table->string('thumbnail_img', 1024)->nullable();
             $table->string('class_code', 256)->nullable();
-            $table->foreignId('creator_user_id')->constrained('users');
+            $table->foreignId('creator_user_id')->constrained('users')->onDelete('cascade');
             $table->timestampsTz();
         });
 
         Schema::create('join_classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_class_id')->constrained('course_classes');
-            $table->foreignId('student_user_id')->constrained('users');
+            $table->foreignId('course_class_id')->constrained('course_classes')->onDelete('cascade');
+            $table->foreignId('student_user_id')->constrained('users')->onDelete('cascade');
         });
 
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_plan_id')->constrained('assignment_plans');
-            $table->foreignId('course_class_id')->constrained('course_classes');
+            $table->foreignId('assignment_plan_id')->constrained('assignment_plans')->onDelete('cascade');
+            $table->foreignId('course_class_id')->constrained('course_classes')->onDelete('cascade');
             $table->timestamp('assigned_date')->nullable();
             $table->timestamp('due_date')->nullable();
             $table->text('note')->nullable();
@@ -171,10 +171,10 @@ return new class extends Migration
 
         Schema::create('student_grades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_user_id')->constrained('users');
-            $table->foreignId('assignment_id')->constrained('assignments');
-            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_tasks');
-            $table->foreignId('criteria_level_id')->constrained('criteria_levels');
+            $table->foreignId('student_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('assignment_id')->constrained('assignments')->onDelete('cascade');
+            $table->foreignId('assignment_plan_task_id')->constrained('assignment_plan_tasks')->onDelete('cascade');
+            $table->foreignId('criteria_level_id')->constrained('criteria_levels')->onDelete('cascade');
             $table->timestampsTz();
         });
     }

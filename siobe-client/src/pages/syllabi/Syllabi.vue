@@ -1,12 +1,21 @@
 <script setup>
-import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
+import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'   
+import { useSyllabiStore } from '@/stores/syllabi.js';
+import { onMounted } from 'vue';
+
+const store = useSyllabiStore();
+
+onMounted(() => {
+  store.fetchSyllabi();
+  //console.log(store.syllabusData);
+});
 </script>
 
 <template>
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Course Class
+                My Syllabi
             </h2>
         </template>
 
@@ -21,9 +30,9 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
                                 <div class="pb-8">
                                     <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                                         <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                                            <a href="/courseclasses/create"
+                                            <a href="/syllabi/create"
                                                 class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                <span class="pr-1"><i class="fa fa-plus"></i> Create New Course Class</span>
+                                                <span class="pr-1"><i class="fa fa-plus"></i> Create New Syllabus</span>
                                             </a>
                                         </div>
                                     </div>
@@ -36,33 +45,36 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
                                                         No</th>
                                                     <th
                                                         class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">
-                                                        Nama</th>
+                                                        Title</th>
                                                     <th
-                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-64">
-                                                        Kode Kelas</th>
+                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate ">
+                                                        Author</th>
+                                                    <th
+                                                        class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-128">
+                                                        Course</th>
                                                     <th
                                                         class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-48">
                                                         Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(item, index) in courseclasses" :key="index">
-                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ index + 1 }}</td>
+                                                <tr v-for="(item, index) in store.syllabi" :key="index">
+                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ index +
+                                                        1 }}</td>
                                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
-                                                        <a :href="`courseclasses/show/${item.id}`"
-                                                            class="text-blue-500 hover:text-blue-700">{{ item.name }}</a>
+                                                        <a :href="`syllabi/show/${item.id}`"
+                                                            class="text-blue-500 hover:text-blue-700">{{ item.title }}</a>
                                                     </td>
-                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ item.class_code }}</td>
+                                                    <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{
+                                                        item.author }}</td>
+                                                    <td clas-60s="text-gray0 px-6 py-3 border-t border-gray-100">{{
+                                                        item.head_of_study_program }}</td>
                                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                         <div class="flex flex-wrap space-x-4">
-                                                            <a href=""
-                                                                class="text-blue-500">Edit</a>
-                                                            <form method="POST" action="">
-                                                                <input type="hidden" name="" value=""> <input
-                                                                    type="hidden" name="_method" value="delete">
-                                                                <button class="text-red-500" @click="deleteCourseClass(item)">
-                                                                    Delete
-                                                                </button>
+                                                            <a :href="`/syllabi/edit/${item.id}`" class="text-blue-500">Edit</a>
+                                                            <form method="POST" @submit.prevent="store.deleteSyllabus(item.id)">
+                                                                <input type="hidden" name="syllabusId" :value="item.id">
+                                                                <button type="submit" class="text-red-500">Delete</button>
                                                             </form>
                                                         </div>
                                                     </td>
@@ -79,39 +91,3 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
         </div>
     </AuthenticatedLayout>
 </template>
-
-<script>
-
-
-import axios from "axios";
-
-export default {
-  data() {
-    return {
-      courseclasses: [],
-    };
-  },
-  mounted() {
-    this.getCourseClass();
-  },
-  methods: {
-    getCourseClass() {
-      axios
-        .get("http://localhost:8000/api/course-classes", {
-        })
-        .then((response) => {
-          this.courseclasses = response.data.data;
-        })
-        .catch((error) => {
-          this.validation = error.response.data;
-        });
-    },
-    deleteCourseClass(courseclasses) {
-      if (confirm("Hapus Course?" + courseclasses.id)) {
-        axios
-          .delete('http://127.0.0.1:8000/api/course-classes' + courseclasses.id)
-      }
-    },
-  },
-}
-</script>

@@ -17,6 +17,7 @@ use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseClassController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ use App\Http\Controllers\CourseClassController;
 |
 */
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+
+// Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('faculties',FacultyController::class);
     Route::apiResource('rubrics', RubricController::class);
@@ -39,6 +41,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('study-programs',StudyProgramController::class);
     Route::apiResource('courses',CourseController::class);
     Route::apiResource('course-classes',CourseClassController::class);
+    Route::apiResource('lesson-learning-outcomes', LessonLearningOutcomeController::class);
 
     Route::scopeBindings()->group(function () {
         Route::apiResource('rubrics', RubricController::class);
@@ -46,12 +49,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::apiResource('rubrics.criterias.criteria-levels', CriteriaLevelController::class);
         Route::apiResource('student-grades', StudentGradeController::class);
         Route::apiResource('assignments', AssignmentController::class);
-        Route::apiResource('llo', LessonLearningOutcomeController::class);
         Route::apiResource('faculties.departments', DepartmentController::class);
         Route::apiResource('syllabi.ilo', IntendedLearningOutcomeController::class);
         Route::apiResource('syllabi.clo', CourseLearningOutcomeController::class);
     });
-});
+// });
 
 Route::post('register-device', function (Request $request) {
     $credentials = $request->validate([

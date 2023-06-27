@@ -56,7 +56,22 @@ const submitLogout = () => {
                                     </NavLink>
                                 </router-link>
                             </div>
-                            <!-- 2 -->
+
+                            <div
+                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <router-link
+                                    v-slot="{ href, isActive, navigate }"
+                                    to="/studyprograms"
+                                    custom>
+                                    <NavLink
+                                        :href="href"
+                                        :active="isActive"
+                                        @click="navigate">
+                                        Study Program
+                                    </NavLink>
+                                </router-link>
+                            </div>
+
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <router-link
@@ -67,37 +82,22 @@ const submitLogout = () => {
                                         :href="href"
                                         :active="isActive"
                                         @click="navigate">
-                                        Courses
+                                        Course
                                     </NavLink>
                                 </router-link>
                             </div>
-                            <!-- 3 -->
+
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <router-link
                                     v-slot="{ href, isActive, navigate }"
-                                    to="/syllabi"
+                                    to="/courseclasses"
                                     custom>
                                     <NavLink
                                         :href="href"
                                         :active="isActive"
                                         @click="navigate">
-                                        Syllabi
-                                    </NavLink>
-                                </router-link>
-                            </div>
-                            <!-- 4 -->
-                            <div
-                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <router-link
-                                    v-slot="{ href, isActive, navigate }"
-                                    to="/classes"
-                                    custom>
-                                    <NavLink
-                                        :href="href"
-                                        :active="isActive"
-                                        @click="navigate">
-                                        Classes
+                                        Course Class
                                     </NavLink>
                                 </router-link>
                             </div>

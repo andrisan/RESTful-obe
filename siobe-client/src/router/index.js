@@ -19,6 +19,21 @@ import Register from '@/pages/auth/Register.vue'
 import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
 import ResetPassword from '@/pages/auth/ResetPassword.vue'
 import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
+import Syllabi from '@/pages/syllabi/Syllabi.vue'
+import ShowSyllabi from '@/pages/syllabi/Show.vue'
+import CreateSyllabi from '@/pages/syllabi/Create.vue'
+import CLO from '@/pages/syllabi/CLO.vue'
+import ILO from '@/pages/syllabi/ILO.vue'
+import Edit from '@/pages/syllabi/Edit.vue'
+
+import Rubrics from '@/pages/Rubrics.vue'
+import Showrubrics from '@/pages/ShowRubrics.vue'
+import Createcriterialevel from '@/pages/CreateCriteriaLevel.vue'
+import EditRubrics from '@/pages/EditRubrics.vue'
+import CreateCriteria from '@/pages/CreateCriteria.vue'
+import EditCriteria from '@/pages/EditCriteria.vue'
+import EditCriteriaLevel from '@/pages/EditCriteriaLevel.vue'
+import CreateRubrics from '@/pages/CreateRubrics.vue'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME
 
@@ -63,6 +78,12 @@ const routes = [
             guard: 'guest',
             // necessarily : auth
         },
+    },
+    
+    {
+        path: '/studyprograms/create',
+        name: 'studyprograms.create',
+        component: () => import( /* webpackChunkName: "studyprograms.create" */ '@/pages/StudyProgram/StudyProgramCreate.vue')
     },
     {
         path: '/studyprograms',
@@ -237,6 +258,116 @@ const routes = [
         path: '/:pathMatch(.)',
         redirect: '/page-not-found',
     },
+    {
+        path: '/rubrics',
+        name: 'rubrics',
+        component: Rubrics,
+    },
+    {
+        path: '/syllabi',
+        name: 'syllabi',
+        component: Syllabi,
+        meta: {
+            title: 'Syllabi',
+        },
+    },
+    {
+        path: '/syllabi/create',
+        name: 'CreateSyllabi',
+        component: CreateSyllabi,
+        meta: {
+            title: 'Syllabi',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/:id',
+        name: 'showrubrics',
+        component: Showrubrics,
+    }, 
+    {
+        path: '/syllabi/create/:id/CLO',
+        name: 'CLO',
+        component: CLO,
+        props: true,
+        meta: {
+            title: 'CLO',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/:rubricId/criteria/:criteriaId/criteria-level/create',
+        name: 'createcriterialevel',
+        component: Createcriterialevel
+    },
+    {
+        path: '/syllabi/create/:id/ILO',
+        name: 'ILO',
+        component: ILO,
+        props: true,
+        meta: {
+            title: 'ILO',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/:id/edit',
+        name: 'editrubrics',
+        component: EditRubrics,
+    },
+    {
+        path: '/syllabi/edit/:id',
+        name: 'Edit',
+        component: Edit,
+        props: true,
+        meta: {
+            title: 'Syllabi',
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/:id/criteria/create',
+        name: 'createCriteria',
+        component: CreateCriteria,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/:rubricId/criterias/:criteriaId/edit',
+        name: 'editCriteria',
+        component: EditCriteria,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/:rubricId/criteria/:criteriaId/criteria-level/:criteriaLevelId/edit',
+        name: 'editCriteriaLevel',
+        component: EditCriteriaLevel,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/rubrics/create',
+        name: 'createRubrics',
+        component: CreateRubrics,
+        meta: {
+            guard: 'auth',
+        },
+    },
+    {
+        path: '/syllabi/show/:id',
+        name: 'showsyllabi',
+        component: ShowSyllabi,
+        props: true,
+        meta: {
+            title: 'Syllabi',
+            guard: 'auth',
+        },
+    },
+    
 ]
 
 const router = createRouter({
